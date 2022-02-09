@@ -1,0 +1,17 @@
+$OpenBSD$
+
+Don't install config files directly in /etc, @sample later
+via PLIST
+
+Index: setup.py
+--- setup.py.orig
++++ setup.py
+@@ -29,7 +29,7 @@ setuptools.setup(
+         "Operating System :: OS Independent",
+     ],
+     data_files=[
+-        ('/etc/dnsrecon', [
++        ('${PREFIX}/share/examples/dnsrecon', [
+             'namelist.txt',
+             'snoop.txt',
+             'subdomains-top1mil-20000.txt',
