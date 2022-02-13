@@ -1,0 +1,26 @@
+@comment $OpenBSD: PLIST,v$
+bin/bewgor
+lib/python${MODPY_VERSION}/site-packages/bewgor/
+lib/python${MODPY_VERSION}/site-packages/bewgor-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/
+lib/python${MODPY_VERSION}/site-packages/bewgor-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/PKG-INFO
+lib/python${MODPY_VERSION}/site-packages/bewgor-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/SOURCES.txt
+lib/python${MODPY_VERSION}/site-packages/bewgor-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/dependency_links.txt
+lib/python${MODPY_VERSION}/site-packages/bewgor-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/entry_points.txt
+lib/python${MODPY_VERSION}/site-packages/bewgor-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/top_level.txt
+lib/python${MODPY_VERSION}/site-packages/bewgor/BEWGor.py
+lib/python${MODPY_VERSION}/site-packages/bewgor/__init__.py
+${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/bewgor/${MODPY_PYCACHE}/
+lib/python${MODPY_VERSION}/site-packages/bewgor/${MODPY_PYCACHE}BEWGor.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/bewgor/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/bewgor/${MODPY_PYCACHE}banners.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/bewgor/${MODPY_PYCACHE}information.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/bewgor/${MODPY_PYCACHE}main_subject.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/bewgor/${MODPY_PYCACHE}person.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/bewgor/${MODPY_PYCACHE}utilities.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/bewgor/${MODPY_PYCACHE}validator.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/bewgor/banners.py
+lib/python${MODPY_VERSION}/site-packages/bewgor/information.py
+lib/python${MODPY_VERSION}/site-packages/bewgor/main_subject.py
+lib/python${MODPY_VERSION}/site-packages/bewgor/person.py
+lib/python${MODPY_VERSION}/site-packages/bewgor/utilities.py
+lib/python${MODPY_VERSION}/site-packages/bewgor/validator.py

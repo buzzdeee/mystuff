@@ -1,0 +1,7 @@
+BEWGor is designed help with ensuring password security. It is a Python
+script that prompts the user for biographical data about a person,
+referred to as the Subject. This data is then used to create likely
+passwords for that Subject.
+
+All information is manually inputted and stored locally. No information
+is sent to any other location, or pulled from the web.
