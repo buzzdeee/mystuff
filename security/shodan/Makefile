@@ -1,5 +1,3 @@
-# $OpenBSD$
-
 COMMENT =		library and command-line utility for Shodan
 
 MODPY_EGG_VERSION =	1.26.1

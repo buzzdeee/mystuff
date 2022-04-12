@@ -1,0 +1,8 @@
+${GEM_BIN}/evil-winrm
+${GEM_LIB}/cache/${DISTNAME}.gem
+${GEM_LIB}/gems/${DISTNAME}/
+${GEM_LIB}/gems/${DISTNAME}/bin/
+${GEM_LIB}/gems/${DISTNAME}/bin/evil-winrm
+${GEM_LIB}/gems/${DISTNAME}/lib/
+${GEM_LIB}/gems/${DISTNAME}/lib/evil-winrm.rb
+${GEM_LIB}/specifications/${DISTNAME}.gemspec
