@@ -1,0 +1,16 @@
+
+Add Support for OpenBSD
+
+Index: lib/facter/config.rb
+--- lib/facter/config.rb.orig
++++ lib/facter/config.rb
+@@ -45,7 +45,8 @@ module Facter
+         },
+         {
+           'Bsd' => [
+-            'Freebsd'
++            'Freebsd',
++            'Openbsd'
+           ]
+         },
+         'Solaris',
