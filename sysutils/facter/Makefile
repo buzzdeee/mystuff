@@ -4,6 +4,7 @@ ONLY_FOR_ARCHS =	${CLANG_ARCHS} ${LLVM_ARCHS}
 COMMENT =		collect and display system facts
 
 VERSION =		3.14.24
+REVISION =		0
 DISTNAME =		facter-${VERSION}
 SHARED_LIBS +=  	facter                    3.3
 PKGSPEC =		facter->=3.0,<4.0
