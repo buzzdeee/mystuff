@@ -7,8 +7,8 @@ Index: ext/bin/puppetdb
      USER="_puppetdb"
 -    INSTALL_DIR="/opt/puppetlabs/server/apps/puppetdb"
 -    CONFIG="/etc/puppetlabs/puppetdb/conf.d"
-+    INSTALL_DIR="${PREFIX}/share/puppetlabs/puppetdb"
-+    CONFIG="${SYSCONFDIR}/puppetlabs/puppetdb/conf.d"
++    INSTALL_DIR="${PREFIX}/share/puppetdb"
++    CONFIG="${PREFIX}/puppetlabs/puppetdb/conf.d"
  else
      echo "You seem to be missing some important configuration files; could not find /etc/default/puppetdb or /etc/sysconfig/puppetdb" >&2
      exit 1
