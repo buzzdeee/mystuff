@@ -23,8 +23,8 @@ module Facter
             @fact_list.fetch(fact_name) { read_facts(fact_name) }
           end
 
-	  CTL_HW = 6
-	  HW_PRODUCT = 15
+          CTL_HW = 6
+          HW_PRODUCT = 15
 
           def read_facts(fact_name)
             require 'facter/resolvers/bsd/ffi/ffi_helper'

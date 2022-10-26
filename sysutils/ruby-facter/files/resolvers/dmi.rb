@@ -14,9 +14,9 @@ module Facter
           end
 
           CTL_HW = 6
-	  HW_VENDOR = 14
-	  HW_PRODUCT = 15
-	  HW_VERSION = 16
+          HW_VENDOR = 14
+          HW_PRODUCT = 15
+          HW_VERSION = 16
           HW_SERIALNO = 17
           HW_UUID = 18
 
