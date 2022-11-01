@@ -4,28 +4,6 @@
 @rcscript ${RCDIR}/puppetdb
 bin/puppetdb
 share/doc/pkg-readmes/${PKGSTEM}
-share/examples/puppetdb/
-share/examples/puppetdb/puppetlabs/
-share/examples/puppetdb/puppetlabs/puppetdb/
-@sample ${SYSCONFDIR}/puppetlabs/puppetdb/
-share/examples/puppetdb/puppetlabs/puppetdb/bootstrap.cfg
-@sample ${SYSCONFDIR}/puppetlabs/puppetdb/bootstrap.cfg
-share/examples/puppetdb/puppetlabs/puppetdb/conf.d/
-@sample ${SYSCONFDIR}/puppetlabs/puppetdb/conf.d/
-share/examples/puppetdb/puppetlabs/puppetdb/conf.d/auth.conf
-@sample ${SYSCONFDIR}/puppetlabs/puppetdb/conf.d/auth.conf
-share/examples/puppetdb/puppetlabs/puppetdb/conf.d/config.ini
-@sample ${SYSCONFDIR}/puppetlabs/puppetdb/conf.d/config.ini
-share/examples/puppetdb/puppetlabs/puppetdb/conf.d/database.ini
-@sample ${SYSCONFDIR}/puppetlabs/puppetdb/conf.d/database.ini
-share/examples/puppetdb/puppetlabs/puppetdb/conf.d/jetty.ini
-@sample ${SYSCONFDIR}/puppetlabs/puppetdb/conf.d/jetty.ini
-share/examples/puppetdb/puppetlabs/puppetdb/conf.d/repl.ini
-@sample ${SYSCONFDIR}/puppetlabs/puppetdb/conf.d/repl.ini
-share/examples/puppetdb/puppetlabs/puppetdb/logback.xml
-@sample ${SYSCONFDIR}/puppetlabs/puppetdb/logback.xml
-share/examples/puppetdb/puppetlabs/puppetdb/request-logging.xml
-@sample ${SYSCONFDIR}/puppetlabs/puppetdb/request-logging.xml
 @owner _puppetdb
 @sample /var/db/puppetlabs/server/data/puppetdb/
 @sample /var/db/puppetlabs/server/data/puppetdb/db/
@@ -33,6 +11,26 @@ share/examples/puppetdb/puppetlabs/puppetdb/request-logging.xml
 @sample /var/db/puppetlabs/server/data/puppetdb/state/
 @sample /var/log/puppetlabs/puppetdb/
 @owner
+share/examples/puppetlabs/
+share/examples/puppetlabs/puppetdb/
+@sample ${SYSCONFDIR}/puppetlabs/puppetdb/
+share/examples/puppetlabs/puppetdb/bootstrap.cfg
+share/examples/puppetlabs/puppetdb/conf.d/
+@sample ${SYSCONFDIR}/puppetlabs/puppetdb/conf.d/
+share/examples/puppetlabs/puppetdb/conf.d/auth.conf
+@sample ${SYSCONFDIR}/puppetlabs/puppetdb/conf.d/auth.conf
+share/examples/puppetlabs/puppetdb/conf.d/config.ini
+@sample ${SYSCONFDIR}/puppetlabs/puppetdb/conf.d/config.ini
+share/examples/puppetlabs/puppetdb/conf.d/database.ini
+@sample ${SYSCONFDIR}/puppetlabs/puppetdb/conf.d/database.ini
+share/examples/puppetlabs/puppetdb/conf.d/jetty.ini
+@sample ${SYSCONFDIR}/puppetlabs/puppetdb/conf.d/jetty.ini
+share/examples/puppetlabs/puppetdb/conf.d/repl.ini
+@sample ${SYSCONFDIR}/puppetlabs/puppetdb/conf.d/repl.ini
+share/examples/puppetlabs/puppetdb/logback.xml
+@sample ${SYSCONFDIR}/puppetlabs/puppetdb/logback.xml
+share/examples/puppetlabs/puppetdb/request-logging.xml
+@sample ${SYSCONFDIR}/puppetlabs/puppetdb/request-logging.xml
 share/puppetlabs/
 share/puppetlabs/puppetdb/
 share/puppetlabs/puppetdb/cli/

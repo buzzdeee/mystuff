@@ -5,7 +5,7 @@
  [global]
  # Store mq/db data in a custom directory
 -vardir = /opt/puppetlabs/server/data/puppetdb
-+vardir = /var/db/puppetlabs/server/data/puppetdb
++vardir = /var/puppetlabs/puppetdb/data
  
  # Use an external logback config file
 -logging-config = /etc/puppetlabs/puppetdb/logback.xml

@@ -29,10 +29,10 @@ RUN_DEPENDS-main=${BASE_PKGPATH},-plugin=${V} \
 		java/javaPathHelper \
 		shells/bash
 
-MAKE_FLAGS +=	confdir="share/examples/puppetdb/" \
+MAKE_FLAGS +=	confdir="share/examples/" \
 		datadir="share/puppetlabs" \
 		bindir="bin" \
-		rubylibdir="${MODRUBY_SITEDIR}" \
+		rubylibdir="share/puppetlabs/puppet" \
 		DESTDIR="${PREFIX}/"
 
 NO_BUILD=	Yes
@@ -52,5 +52,8 @@ do-install:
 	#rm ${PREFIX}/share/puppetdb/ezbake*
 	${INSTALL_SCRIPT} ${WRKSRC}/ext/default \
 		${PREFIX}/share/puppetlabs/puppetdb/cli/cli-defaults.sh
+	#echo `gem31 which puppet.rb | rev | cut -d '/' -f 2- | rev`
+	#${INSTALL_SCRIPT_DIR} ${DESTDIR}/`gem31 which puppet.rb | rev | cut -d '/' -f 2- | rev`
+	#mv ${PREFIX}/${MODRUBY_SITEDIR}/puppet ${DESTDIR}/`gem31 which puppet.rb | rev | cut -d '/' -f 2- | rev`
 
 .include <bsd.port.mk>
