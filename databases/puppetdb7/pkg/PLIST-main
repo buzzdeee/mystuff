@@ -15,6 +15,7 @@ share/examples/puppetlabs/
 share/examples/puppetlabs/puppetdb/
 @sample ${SYSCONFDIR}/puppetlabs/puppetdb/
 share/examples/puppetlabs/puppetdb/bootstrap.cfg
+@sample ${SYSCONFDIR}/puppetlabs/puppetdb/bootstrap.cfg
 share/examples/puppetlabs/puppetdb/conf.d/
 @sample ${SYSCONFDIR}/puppetlabs/puppetdb/conf.d/
 share/examples/puppetlabs/puppetdb/conf.d/auth.conf
