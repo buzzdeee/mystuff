@@ -621,6 +621,11 @@ ${GEM_LIB}/gems/${DISTNAME}/lib/facter/facts/openbsd/ruby/version.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/facter/facts/openbsd/ssh.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/facter/facts/openbsd/sshalgorithmkey.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/facter/facts/openbsd/sshfp_algorithm.rb
+${GEM_LIB}/gems/${DISTNAME}/lib/facter/facts/openbsd/system_uptime/
+${GEM_LIB}/gems/${DISTNAME}/lib/facter/facts/openbsd/system_uptime/days.rb
+${GEM_LIB}/gems/${DISTNAME}/lib/facter/facts/openbsd/system_uptime/hours.rb
+${GEM_LIB}/gems/${DISTNAME}/lib/facter/facts/openbsd/system_uptime/seconds.rb
+${GEM_LIB}/gems/${DISTNAME}/lib/facter/facts/openbsd/system_uptime/uptime.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/facter/facts/openbsd/timezone.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/facter/facts/openbsd/virtual.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/facter/facts/openwrt/
