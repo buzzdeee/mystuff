@@ -8,12 +8,12 @@ module Facter
       class Dhcp < Facter::Resolvers::Networking
         init_resolver
         class << self
-          def extract_dhcp(interface_name, _raw_data, parsed_interface_data)
-            result = Facter::Core::Execution.execute("dhcpleasectl -l #{interface_name}", logger: log)
-            return unless result.empty?
 
-            match = result.match(/^#{interface_name} \[Bound\]$/)&.to_s&.strip
-            parsed_interface_data[:dhcp] = interface_name unless match.empty?
+          def extract_dhcp(interface_name, raw_data, parsed_interface_data)
+            return unless raw_data =~ /status:\s+active/
+
+            result = Facter::Core::Execution.execute("dhcpleasectl -l #{interface_name}", logger: log)
+            parsed_interface_data[:dhcp] =  extract_values(result, /\sdhcp server (\S+)/).first unless result.empty?
           end
         end
       end
