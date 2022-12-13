@@ -1,0 +1,9 @@
+Index: assets/source/process.sh
+--- assets/source/process.sh.orig
++++ assets/source/process.sh
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/usr/bin/env bash
+ 
+ mkdir -p ../../working/data
+ mkdir -p ../../working/textures

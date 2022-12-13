@@ -1,0 +1,12 @@
+Index: CMakeLists.txt
+--- CMakeLists.txt.orig
++++ CMakeLists.txt
+@@ -132,7 +132,7 @@ if(EXISTS "${PROJECT_SOURCE_DIR}/assets/source/process
+ 		list(APPEND DATA_SCRIPTS "${SCRIPT_OUTPUT}")
+ 		add_custom_command(
+ 			OUTPUT "${SCRIPT_OUTPUT}"
+-			COMMAND luac "${STRIP_LUA}" -o "${SCRIPT_OUTPUT}" "${SCRIPT_PATH}"
++			COMMAND luac53 "${STRIP_LUA}" -o "${SCRIPT_OUTPUT}" "${SCRIPT_PATH}"
+ 			DEPENDS "${SCRIPT_PATH}"
+ 		)
+ 	endforeach()

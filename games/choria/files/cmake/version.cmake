@@ -1,0 +1,9 @@
+execute_process(COMMAND git rev-parse --short HEAD RESULT_VARIABLE RETURN_CODE OUTPUT_VARIABLE BUILD_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+if(RETURN_CODE EQUAL 0)
+	configure_file(
+		"${SRC}"
+		"${DST}"
+		@ONLY
+	)
+endif()
