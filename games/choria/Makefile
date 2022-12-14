@@ -31,6 +31,7 @@ LIB_DEPENDS =	audio/libogg \
 		devel/jsoncpp \
 		devel/sdl2 \
 		devel/sdl2-image \
+		graphics/glm \
 		databases/sqlite3 \
 		textproc/tinyxml2
 
