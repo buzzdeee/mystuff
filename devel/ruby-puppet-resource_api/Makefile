@@ -10,7 +10,7 @@ PERMIT_PACKAGE =	Yes
 
 MODULES =		lang/ruby
 BUILD_DEPENDS +=	${RUN_DEPENDS}
-RUN_DEPENDS +=		devel/ruby-hocon,${MODRUBY_FLAVOR}>=1,<2 \
+RUN_DEPENDS +=		devel/ruby-hocon,${MODRUBY_FLAVOR}>=1,<2
 
 CONFIGURE_STYLE = 	ruby gem
 
