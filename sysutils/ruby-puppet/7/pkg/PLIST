@@ -1,5 +1,8 @@
+@option is-branch
+@newgroup _puppet:580
+@newuser _puppet:580:580::Puppet user:/var/empty:/sbin/nologin
+@extraunexec rm -rf ${SYSCONFDIR}/puppetlabs/*
 @rcscript ${RCDIR}/puppet
-@rcscript ${RCDIR}/puppetmaster
 ${GEM_BIN}/puppet
 ${GEM_LIB}/cache/${DISTNAME}.gem
 ${GEM_LIB}/gems/${DISTNAME}/
@@ -15,10 +18,16 @@ ${GEM_LIB}/gems/${DISTNAME}/Rakefile
 ${GEM_LIB}/gems/${DISTNAME}/bin/
 ${GEM_LIB}/gems/${DISTNAME}/bin/puppet
 ${GEM_LIB}/gems/${DISTNAME}/conf/
+@sample ${SYSCONFDIR}/puppetlabs/
+@sample ${SYSCONFDIR}/puppetlabs/puppet/
 ${GEM_LIB}/gems/${DISTNAME}/conf/environment.conf
+@sample ${SYSCONFDIR}/puppetlabs/puppet/environment.conf
 ${GEM_LIB}/gems/${DISTNAME}/conf/fileserver.conf
+@sample ${SYSCONFDIR}/puppetlabs/puppet/fileserver.conf
 ${GEM_LIB}/gems/${DISTNAME}/conf/hiera.yaml
+@sample ${SYSCONFDIR}/puppetlabs/puppet/hiera.yaml
 ${GEM_LIB}/gems/${DISTNAME}/conf/puppet.conf
+@sample ${SYSCONFDIR}/puppetlabs/puppet/puppet.conf
 ${GEM_LIB}/gems/${DISTNAME}/examples/
 ${GEM_LIB}/gems/${DISTNAME}/examples/enc/
 ${GEM_LIB}/gems/${DISTNAME}/examples/enc/regexp_nodes/

@@ -1,10 +1,9 @@
 @option is-branch
 @newgroup _puppet:580
-@newuser _puppet:580:580:daemon:Puppet user:/var/empty:/sbin/nologin
+@newuser _puppet:580:580::Puppet user:/var/empty:/sbin/nologin
 @extraunexec rm -rf ${SYSCONFDIR}/puppetlabs/*
 @rcscript ${RCDIR}/puppet
-@comment @rcscript /etc/rc.d/puppetmaster
-bin/puppet
+${GEM_BIN}/puppet
 ${MODRUBY_SITEDIR}/hiera/
 ${MODRUBY_SITEDIR}/hiera/puppet_function.rb
 ${MODRUBY_SITEDIR}/hiera/scope.rb
@@ -1250,8 +1249,15 @@ ${MODRUBY_SITEDIR}/puppet_x.rb
 ${MODRUBY_RELEXAMPLEDIR}-puppet/
 ${MODRUBY_RELEXAMPLEDIR}-puppet/code/
 ${MODRUBY_RELEXAMPLEDIR}-puppet/puppet/
+@sample ${SYSCONFDIR}/puppetlabs/
+@sample ${SYSCONFDIR}/puppetlabs/puppet/
 ${MODRUBY_RELEXAMPLEDIR}-puppet/puppet/auth.conf
+@sample ${SYSCONFDIR}/puppetlabs/puppet/auth.conf
 ${MODRUBY_RELEXAMPLEDIR}-puppet/puppet/environment.conf
+@sample ${SYSCONFDIR}/puppetlabs/puppet/environment.conf
 ${MODRUBY_RELEXAMPLEDIR}-puppet/puppet/fileserver.conf
+@sample ${SYSCONFDIR}/puppetlabs/puppet/fileserver.conf
 ${MODRUBY_RELEXAMPLEDIR}-puppet/puppet/hiera.yaml
+@sample ${SYSCONFDIR}/puppetlabs/puppet/hiera.yaml
 ${MODRUBY_RELEXAMPLEDIR}-puppet/puppet/puppet.conf
+@sample ${SYSCONFDIR}/puppetlabs/puppet/puppet.conf

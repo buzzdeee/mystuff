@@ -1,7 +1,7 @@
 PORTROACH=		limit:^6
 
 VERSION=		6.28.0
-REVISION=		0
+REVISION=		1
 
 RUN_DEPENDS+=		databases/ruby-hiera3,${MODRUBY_FLAVOR} \
 			devel/ruby-gettext-setup,${MODRUBY_FLAVOR}>=0.28,<1 \
@@ -9,14 +9,16 @@ RUN_DEPENDS+=		databases/ruby-hiera3,${MODRUBY_FLAVOR} \
 			devel/ruby-rgen,${MODRUBY_FLAVOR} \
 			devel/ruby-concurrent-ruby,${MODRUBY_FLAVOR} \
 			devel/ruby-semantic_puppet,${MODRUBY_FLAVOR} \
-			sysutils/facter
+			sysutils/facter \
+			www/ruby-httpclient,${MODRUBY_FLAVOR}
 
-SUBST_VARS +=	MODPY_DEFAULT_VERSION_2 MODPY_DEFAULT_VERSION_3
+SUBST_VARS +=	MODPY_DEFAULT_VERSION_2 MODPY_DEFAULT_VERSION_3 MODRUBY_BINREV
 
 pre-install:
 	${SUBST_CMD} ${WRKDIST}/lib/puppet/provider/package/gem.rb \
 		${WRKDIST}/lib/puppet/provider/package/pip.rb \
 		${WRKDIST}/lib/puppet/provider/package/pip3.rb \
+		${WRKDIST}/lib/puppet/provider/package/gem.rb \
 		${WRKSRC}/lib/puppet/reference/configuration.rb \
 		${WRKSRC}/lib/puppet/util/run_mode.rb \
 		${WRKSRC}/lib/puppet/defaults.rb
@@ -31,5 +33,9 @@ do-install:
 		${PREFIX}/${MODRUBY_RELEXAMPLEDIR}-puppet/puppet/
 	# Suppress a huge number of Ruby deprecation/obsolete warnings
 	sed -i -e "s/ruby${MODRUBY_BINREV}/ruby${MODRUBY_BINREV} -W0/" ${PREFIX}/bin/puppet
+
+post-install:
+	find ${PREFIX} -type f \( -name '*.beforesubst' -or -name '*.orig' \) -delete
+	gunzip ${PREFIX}/man/*/*.gz
 
 .include <bsd.port.mk>

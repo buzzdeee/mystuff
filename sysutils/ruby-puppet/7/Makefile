@@ -1,8 +1,8 @@
-PORTROACH=		limit:^6
+PORTROACH=		limit:^7
 
 VERSION=		7.20.0
 
-XXRUN_DEPENDS+=		converters/ruby-multi_json,${MODRUBY_FLAVOR}>=1.10,<2 \
+RUN_DEPENDS+=		converters/ruby-multi_json,${MODRUBY_FLAVOR}>=1.10,<2 \
 			databases/ruby-hiera3,${MODRUBY_FLAVOR}>=3.2.1,<4 \
 			devel/ruby-concurrent-ruby,${MODRUBY_FLAVOR}>=1,<2 \
 			devel/ruby-deep_merge,${MODRUBY_FLAVOR}>=1,<2 \
