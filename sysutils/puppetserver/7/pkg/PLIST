@@ -1,3 +1,4 @@
+@rcscript ${RCDIR}/puppetserver
 bin/puppetserver
 share/examples/puppetserver/
 share/examples/puppetserver/puppetlabs/
