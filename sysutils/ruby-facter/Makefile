@@ -12,7 +12,7 @@ MODULES =		lang/ruby
 
 BUILD_DEPENDS +=	${RUN_DEPENDS}
 
-RUN_DEPENDS += devel/ruby-ffi \
+RUN_DEPENDS += devel/ruby-ffi,${MODRUBY_FLAVOR} \
 		devel/ruby-hocon,${MODRUBY_FLAVOR}>=1.3,<2 \
 		devel/ruby-thor,${MODRUBY_FLAVOR}>=1.0.1,<2
 
