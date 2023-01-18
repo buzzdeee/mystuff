@@ -1,4 +1,4 @@
-${GEM_BIN}/hocon31
+${GEM_BIN}/hocon${GEM_BIN_SUFFIX}
 ${GEM_LIB}/cache/${DISTNAME}.gem
 ${GEM_LIB}/gems/${DISTNAME}/
 ${GEM_LIB}/gems/${DISTNAME}/CHANGELOG.md
