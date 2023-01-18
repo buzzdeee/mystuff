@@ -1,4 +1,5 @@
 @option is-branch
+@conflict puppetdb-termini-*
 share/puppetlabs/puppet/
 share/puppetlabs/puppet/puppet/
 share/puppetlabs/puppet/puppet/face/
