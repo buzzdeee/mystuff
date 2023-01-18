@@ -1,4 +1,5 @@
 @option is-branch
+@conflict puppet-*
 @newgroup _puppet:580
 @newuser _puppet:580:580::Puppet user:/var/empty:/sbin/nologin
 @extraunexec rm -rf ${SYSCONFDIR}/puppetlabs/*
