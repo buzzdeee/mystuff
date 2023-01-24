@@ -1,34 +1,34 @@
 @rcscript ${RCDIR}/puppetserver
 bin/puppetserver
-share/examples/puppetserver/
-share/examples/puppetserver/puppetlabs/
-share/examples/puppetserver/puppetlabs/puppetserver/
+share/doc/pkg-readmes/${PKGSTEM}
+share/examples/puppetlabs/
+share/examples/puppetlabs/puppetserver/
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/
-share/examples/puppetserver/puppetlabs/puppetserver/conf.d/
+share/examples/puppetlabs/puppetserver/conf.d/
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/conf.d/
-share/examples/puppetserver/puppetlabs/puppetserver/conf.d/auth.conf
+share/examples/puppetlabs/puppetserver/conf.d/auth.conf
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/conf.d/auth.conf
-share/examples/puppetserver/puppetlabs/puppetserver/conf.d/ca.conf
+share/examples/puppetlabs/puppetserver/conf.d/ca.conf
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/conf.d/ca.conf
-share/examples/puppetserver/puppetlabs/puppetserver/conf.d/global.conf
+share/examples/puppetlabs/puppetserver/conf.d/global.conf
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/conf.d/global.conf
-share/examples/puppetserver/puppetlabs/puppetserver/conf.d/metrics.conf
+share/examples/puppetlabs/puppetserver/conf.d/metrics.conf
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/conf.d/metrics.conf
-share/examples/puppetserver/puppetlabs/puppetserver/conf.d/puppetserver.conf
+share/examples/puppetlabs/puppetserver/conf.d/puppetserver.conf
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/conf.d/puppetserver.conf
-share/examples/puppetserver/puppetlabs/puppetserver/conf.d/web-routes.conf
+share/examples/puppetlabs/puppetserver/conf.d/web-routes.conf
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/conf.d/web-routes.conf
-share/examples/puppetserver/puppetlabs/puppetserver/conf.d/webserver.conf
+share/examples/puppetlabs/puppetserver/conf.d/webserver.conf
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/conf.d/webserver.conf
-share/examples/puppetserver/puppetlabs/puppetserver/logback.xml
+share/examples/puppetlabs/puppetserver/logback.xml
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/logback.xml
-share/examples/puppetserver/puppetlabs/puppetserver/request-logging.xml
+share/examples/puppetlabs/puppetserver/request-logging.xml
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/request-logging.xml
-share/examples/puppetserver/puppetlabs/puppetserver/services.d/
+share/examples/puppetlabs/puppetserver/services.d/
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/services.d/
-share/examples/puppetserver/puppetlabs/puppetserver/services.d/bootstrap.cfg
+share/examples/puppetlabs/puppetserver/services.d/bootstrap.cfg
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/services.d/bootstrap.cfg
-share/examples/puppetserver/puppetlabs/puppetserver/services.d/ca.cfg
+share/examples/puppetlabs/puppetserver/services.d/ca.cfg
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/services.d/ca.cfg
 share/puppetlabs/
 share/puppetlabs/puppetserver/
