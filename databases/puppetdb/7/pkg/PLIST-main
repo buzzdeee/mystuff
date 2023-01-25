@@ -50,3 +50,6 @@ share/puppetlabs/puppetdb/cli/cli-defaults.sh
 share/puppetlabs/puppetdb/ezbake-functions.sh
 share/puppetlabs/puppetdb/ezbake.manifest
 share/puppetlabs/puppetdb/puppetdb.jar
+@owner _puppetdb
+@group _puppetdb
+@sample ${LOCALSTATEDIR}/puppetlabs/puppetdb/
