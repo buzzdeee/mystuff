@@ -40,7 +40,8 @@ do-install:
 	install -d -m 0755 "${PREFIX}/share/examples/puppetlabs/puppetserver/services.d"
 	cp ${WRKSRC}/ext/system-config/services.d/bootstrap.cfg \
 		${PREFIX}/share/examples/puppetlabs/puppetserver/services.d/
-	${SUBST_CMD} ${WRKSRC}/ext/default ${WRKSRC}/ext/bin/puppetserver ${WRKSRC}/ext/cli/*
+	${SUBST_CMD} ${WRKSRC}/ext/default ${WRKSRC}/ext/bin/puppetserver ${WRKSRC}/ext/cli/* \
+			${WRKSRC}/ext/config/conf.d/puppetserver.conf
 	cd ${WRKSRC} && ${MAKE_ENV} ${MAKE_PROGRAM} ${MAKE_FLAGS} install-puppetserver
 	cp ${WRKSRC}/ext/default ${PREFIX}/share/puppetlabs/puppetserver/cli/cli-defaults.sh
 	rm -rf ${PREFIX}/var

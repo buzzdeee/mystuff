@@ -1,0 +1,13 @@
+puppetserver on OpenBSD
+-----------------------
+
+as root:
+puppetserver gem install --no-document puppet hiera-eyaml \
+	hiera-file ipaddress msgpack
+# as long as ruby-facter OpenBSD support is not yet merged upstream:
+rm -rf /var/puppetlabs/puppetserver/data/jruby-gems/gems/facter-*
+cp -r /usr/local/lib/ruby/gems/3.1/gems/facter-* \
+	/var/puppetlabs/puppetserver/data/jruby-gems/gems/
+
+cp -r /usr/local/share/puppetlabs/puppet/puppet/ \
+	/var/puppetlabs/puppetserver/data/jruby-gems/gems/puppet-7*/lib/

@@ -47,3 +47,8 @@ share/puppetlabs/puppetserver/cli/cli-defaults.sh
 share/puppetlabs/puppetserver/ezbake-functions.sh
 share/puppetlabs/puppetserver/ezbake.manifest
 share/puppetlabs/puppetserver/puppet-server-release.jar
+@owner _puppet
+@group _puppet
+@sample ${LOCALSTATEDIR}/puppetlabs/puppetserver/
+@sample ${LOCALSTATEDIR}/puppetlabs/puppetserver/data/
+@sample ${LOCALSTATEDIR}/puppetlabs/puppetserver/data/state
