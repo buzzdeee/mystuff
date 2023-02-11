@@ -24,8 +24,7 @@ MULTI_PACKAGES= -main -plugin
 BUILD_DEPENDS =	sysutils/coreutils
 RUN_DEPENDS-plugin=sysutils/ruby-puppet/7>=7.0.0,<8.0.0v0
 
-RUN_DEPENDS-main=${BASE_PKGPATH},-plugin=${V} \
-		${MODJAVA_RUN_DEPENDS} \
+RUN_DEPENDS-main=${MODJAVA_RUN_DEPENDS} \
 		java/javaPathHelper \
 		shells/bash
 
@@ -41,6 +40,7 @@ NO_TEST=	Yes
 do-configure:
 	${SUBST_CMD} ${WRKSRC}/ext/bin/puppetdb \
 		${WRKSRC}/ext/cli/ssl-setup \
+		${WRKSRC}/ext/default \
 		${WRKSRC}/ext/config/conf.d/*.ini
 	sed -i 's,/bin/bash,${LOCALBASE}/bin/bash,g;' \
 		${WRKSRC}/ext/bin/puppetdb \

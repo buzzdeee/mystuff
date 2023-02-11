@@ -16,7 +16,8 @@ MODULES =		java \
 			lang/ruby
 MODJAVA_VER =		1.8+
 
-RUN_DEPENDS =		java/javaPathHelper \
+RUN_DEPENDS =		databases/puppetdb/7,-plugin \
+			java/javaPathHelper \
 			${MODJAVA_RUN_DEPENDS} \
 			shells/bash \
 			sysutils/ruby-puppet/7 \

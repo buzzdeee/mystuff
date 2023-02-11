@@ -4,12 +4,6 @@
 @newuser _puppetdb:719:719:daemon:PuppetDB user:/nonexistent:/sbin/nologin
 @rcscript ${RCDIR}/puppetdb
 bin/puppetdb
-@owner _puppetdb
-@sample /var/db/puppetlabs/server/data/puppetdb/
-@sample /var/db/puppetlabs/server/data/puppetdb/db/
-@sample /var/db/puppetlabs/server/data/puppetdb/mq/
-@sample /var/db/puppetlabs/server/data/puppetdb/state/
-@sample /var/log/puppetlabs/puppetdb/
 @owner
 share/examples/puppetlabs/
 share/examples/puppetlabs/puppetdb/
@@ -52,3 +46,6 @@ share/puppetlabs/puppetdb/puppetdb.jar
 @owner _puppetdb
 @group _puppetdb
 @sample ${LOCALSTATEDIR}/puppetlabs/puppetdb/
+@sample ${LOCALSTATEDIR}/puppetlabs/puppetdb/data/
+@sample ${LOCALSTATEDIR}/puppetlabs/server/data/state/
+@sample ${LOCALSTATEDIR}/log/puppetlabs/puppetdb/
