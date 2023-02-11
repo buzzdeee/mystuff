@@ -52,3 +52,4 @@ share/puppetlabs/puppetserver/puppet-server-release.jar
 @sample ${LOCALSTATEDIR}/puppetlabs/puppetserver/
 @sample ${LOCALSTATEDIR}/puppetlabs/puppetserver/data/
 @sample ${LOCALSTATEDIR}/puppetlabs/puppetserver/data/state
+@sample ${LOCALSTATEDIR}/log/puppetlabs/puppetserver/

@@ -4,7 +4,6 @@
 @newuser _puppetdb:719:719:daemon:PuppetDB user:/nonexistent:/sbin/nologin
 @rcscript ${RCDIR}/puppetdb
 bin/puppetdb
-share/doc/pkg-readmes/${PKGSTEM}
 @owner _puppetdb
 @sample /var/db/puppetlabs/server/data/puppetdb/
 @sample /var/db/puppetlabs/server/data/puppetdb/db/
