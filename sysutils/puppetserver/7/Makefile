@@ -35,7 +35,7 @@ MAKE_FLAGS +=	confdir="share/examples/" \
 NO_BUILD=       Yes
 NO_TEST=        Yes
 
-SUBST_VARS +=	MODRUBY_REV
+SUBST_VARS +=	MODRUBY_REV MODRUBY_FLAVOR
 
 do-install:
 	install -d -m 0755 "${PREFIX}/share/examples/puppetlabs/puppetserver/services.d"
