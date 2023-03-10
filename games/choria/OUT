@@ -1,0 +1,36 @@
+===>  Generating configure for choria-1.0.2
+===>  Configuring for choria-1.0.2
+perl -pi -e "s,games/,,g" /home/ports/pobj/amd64/choria-1.0.2/choria-1.0.2-4a83c4cd/CMakeLists.txt  /home/ports/pobj/amd64/choria-1.0.2/choria-1.0.2-4a83c4cd/deployment/choria
+perl -pi -e "s,games,bin,g" /home/ports/pobj/amd64/choria-1.0.2/choria-1.0.2-4a83c4cd/CMakeLists.txt
+/usr/bin/perl /home/ports/infrastructure/bin/pkg_subst -DMODCMAKE_BUILD_SUFFIX=-release.cmake -DMODLUA_VERSION=5.3 -DMODLUA_LIB=-llua5.3 -DMODLUA_INCL_DIR=/usr/local/include/lua-5.3/ -DMODLUA_EXAMPLEDIR=/usr/local/share/examples/choria-1.0.2/ -DMODLUA_DOCDIR=/usr/local/share/doc/choria-1.0.2/ -DMODLUA_LIBDIR=/usr/local/lib/lua/5.3/ -DMODLUA_DATADIR=/usr/local/share/lua/5.3/ -DMODLUA_DEP=lua53 -DMODLUA_DEP_VERSION=53 -DMODLUA_BIN=/usr/local/bin/lua53 -DARCH=amd64 -DBASE_PKGPATH=games/choria -DFLAVOR_EXT= -DFULLPKGNAME=choria-1.0.2 -DHOMEPAGE=https://choria.gitlab.io/ -DLOCALBASE=/usr/local -DLOCALSTATEDIR=/var -DMACHINE_ARCH=amd64 -DMAINTAINER=Sebastian\ Reitenbach\ \<sebastia@openbsd.org\> -DPREFIX=/usr/local -DRCDIR=/etc/rc.d -DSYSCONFDIR=/etc -DTRUEPREFIX=/usr/local -DX11BASE=/usr/X11R6 -DPKGSTEM=choria -i -B /home/ports/pobj/amd64/choria-1.0.2 /home/ports/pobj/amd64/choria-1.0.2/choria-1.0.2-4a83c4cd/CMakeLists.txt
+-- The C compiler identification is Clang 13.0.0
+-- The CXX compiler identification is Clang 13.0.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /home/ports/pobj/amd64/choria-1.0.2/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /home/ports/pobj/amd64/choria-1.0.2/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found OpenGL: /usr/X11R6/lib/libGL.so.17.2   
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Found SDL2: /usr/local/lib/libSDL2main.a;/usr/local/lib/libSDL2.so.0.12;-lpthread  
+-- Found SDL2_image: /usr/local/lib/libSDL2_image.so.0.1  
+-- Found OpenAL: /usr/local/lib/libopenal.so.4.2  
+-- Found Vorbis: debug;/usr/local/lib/libvorbis.so.9.0;optimized;/usr/local/lib/libvorbis.so.9.0;debug;/usr/local/lib/libvorbisfile.so.6.0;optimized;/usr/local/lib/libvorbisfile.so.6.0  
+-- Found Ogg: debug;/usr/local/lib/libogg.so.6.2;optimized;/usr/local/lib/libogg.so.6.2  
+-- Found Freetype: /usr/X11R6/lib/libfreetype.so.30.2 (found version "2.12.1") 
+-- Found ZLIB: /usr/lib/libz.so.7.0 (found version "1.2.13") 
+-- Found SQLite: /usr/local/lib/libsqlite3.so.37.21  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/ports/pobj/amd64/choria-1.0.2/build-amd64
