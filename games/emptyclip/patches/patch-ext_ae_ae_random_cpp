@@ -1,0 +1,9 @@
+--- ext/ae/ae/random.cpp.orig	Sat Sep 30 20:42:49 2023
++++ ext/ae/ae/random.cpp	Sat Sep 30 20:43:22 2023
+@@ -37,5 +37,6 @@
+ template int64_t GetRandomInt<int64_t>(int64_t Min, int64_t Max);
+ template uint32_t GetRandomInt<uint32_t>(uint32_t Min, uint32_t Max);
+ template uint64_t GetRandomInt<uint64_t>(uint64_t Min, uint64_t Max);
++template u_long GetRandomInt<u_long>(u_long Min, u_long Max);
+ 
+ }

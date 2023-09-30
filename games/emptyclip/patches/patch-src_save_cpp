@@ -1,0 +1,11 @@
+--- src/save.cpp.orig	Sat Sep 30 20:29:29 2023
++++ src/save.cpp	Sat Sep 30 20:30:02 2023
+@@ -347,7 +347,7 @@
+ 
+ 	// Initialize
+ 	Player->AddMissingBackpacks();
+-	Player->ActiveBackpack = std::min(Player->ActiveBackpack, Player->Inventory->Containers[(size_t)BagType::BACKPACK].size() - 1);
++	Player->ActiveBackpack = std::min<uint64_t>(Player->ActiveBackpack, Player->Inventory->Containers[(size_t)BagType::BACKPACK].size() - 1);
+ 	Player->CheckpointIndex = 0;
+ 	Player->CalculateExperienceStats();
+ 	Player->CalculateSkillsRemaining();
