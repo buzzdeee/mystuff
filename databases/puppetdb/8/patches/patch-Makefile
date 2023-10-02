@@ -1,0 +1,28 @@
+Index: Makefile
+--- Makefile.orig
++++ Makefile
+@@ -1,9 +1,9 @@
+-prefix = /usr/local
+-datadir = $(prefix)/share
+-confdir = /etc
+-rubylibdir = $(shell ruby -rrbconfig -e "puts RbConfig::CONFIG['sitelibdir']")
+-rundir = /var/run
+-bindir = /usr/bin
++prefix ?= /usr/local
++datadir ?= $(prefix)/share
++confdir ?= /etc
++rubylibdir ?= $(shell ruby -rrbconfig -e "puts RbConfig::CONFIG['sitelibdir']")
++rundir ?= /var/run
++bindir ?= /usr/bin
+ 
+ install-puppetdb:
+ 	install -d -m 0755 "$(DESTDIR)$(datadir)/puppetdb"
+@@ -32,8 +32,6 @@ install-puppetdb:
+ 	install -m 0755 ext/cli/stop "$(DESTDIR)$(datadir)/puppetdb/cli/apps/stop"
+ 	install -m 0755 ext/cli/reload "$(DESTDIR)$(datadir)/puppetdb/cli/apps/reload"
+ 	install -m 0755 ext/cli/delete-reports "$(DESTDIR)$(datadir)/puppetdb/cli/apps/delete-reports"
+-	install -d -m 0755 "$(DESTDIR)$(rundir)"
+-
+ 
+ install-puppetdb-termini:
+ 	install -Dm 0644 puppet/reports/puppetdb.rb "$(DESTDIR)$(rubylibdir)/puppet/reports/puppetdb.rb"
