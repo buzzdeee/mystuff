@@ -1,0 +1,14 @@
+Remove sys-proctable dependency, only needed on Windows.
+
+Index: .metadata
+--- .metadata.orig	Mon Oct  2 22:55:55 2023
++++ .metadata	Mon Oct  2 22:56:10 2023
+@@ -176,7 +176,7 @@
+     - - "<"
+       - !ruby/object:Gem::Version
+         version: 1.4.0
+-  type: :runtime
++  type: : development
+   prerelease: false
+   version_requirements: !ruby/object:Gem::Requirement
+     requirements:
