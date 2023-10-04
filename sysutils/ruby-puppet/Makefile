@@ -1,5 +1,4 @@
     SUBDIR =
-    SUBDIR += 6
     SUBDIR += 7
     SUBDIR += 8
 
