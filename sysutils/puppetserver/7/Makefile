@@ -2,9 +2,8 @@ PORTROACH =		limit:^7
 
 COMMENT =		Puppet server
 
-VERSION =		7.9.5
+VERSION =		7.13.0
 DISTNAME =		puppetserver-${VERSION}
-REVISION =		0
 
 
 CATEGORIES =		sysutils
@@ -13,7 +12,7 @@ HOMEPAGE =		https://puppet.com/docs/puppet/7/server/about_server.html
 
 PERMIT_PACKAGE =	Yes
 
-MASTER_SITES =		https://downloads.puppetlabs.com/puppet/
+SITES =			https://downloads.puppetlabs.com/puppet/
 
 MODULES =		java \
 			lang/ruby
