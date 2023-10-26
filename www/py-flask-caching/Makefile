@@ -4,6 +4,7 @@ MODPY_EGG_VERSION=2.1.0
 DISTNAME=	Flask-Caching-${MODPY_EGG_VERSION}
 PKGNAME=	py-${DISTNAME:L}
 CATEGORIES=	www
+MAINTAINER=	Sebastian Reitenbach <sebastia@openbsd.org>
 
 # BSD
 PERMIT_PACKAGE=	Yes

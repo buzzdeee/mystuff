@@ -1,13 +1,9 @@
-# $OpenBSD$
-
 COMMENT =		collection of cache libraries
 
 MODPY_EGG_VERSION =	0.10.2
 DISTNAME =		cachelib-${MODPY_EGG_VERSION}
 PKGNAME =		py-${DISTNAME}
-
 CATEGORIES =		devel
-
 MAINTAINER =		Sebastian Reitenbach <sebastia@openbsd.org>
 
 # BSD
