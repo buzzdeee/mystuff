@@ -21,7 +21,7 @@ COMPILER =		base-clang ports-gcc base-gcc
 
 MODCMAKE_LDFLAGS =		-L${LOCALBASE}/lib
 
-MASTER_SITES =	https://gitlab.com/jazztickets/uploads/-/raw/main/
+SITES =	https://gitlab.com/jazztickets/uploads/-/raw/main/
 
 MODULES =	devel/cmake
 
