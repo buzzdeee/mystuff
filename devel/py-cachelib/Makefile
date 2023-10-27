@@ -16,7 +16,7 @@ MODPY_PYBUILD =		setuptools
 FLAVORS =		python3
 FLAVOR =		python3
 
-TEST_DEPENDS +=		devel/py-test-xprocess${MODPY_FLAVOR}
+TEST_DEPENDS =		devel/py-test-xprocess${MODPY_FLAVOR}
 MODPY_PYTEST_ARGS =	--ignore tests/test_dynamodb_cache.py
 
 .include <bsd.port.mk>
