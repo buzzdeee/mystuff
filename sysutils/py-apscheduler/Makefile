@@ -3,7 +3,7 @@ COMMENT =		schedule Python code
 MODPY_EGG_VERSION =	3.10.4
 DISTNAME =		APScheduler-${MODPY_EGG_VERSION}
 PKGNAME =		py-${DISTNAME:L}
-CATEGORIES =		devel
+CATEGORIES =		sysutils
 MAINTAINER =		Sebastian Reitenbach <sebastia@openbsd.org>
 
 # MIT

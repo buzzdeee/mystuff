@@ -10,14 +10,14 @@ MAINTAINER =	Sebastian Reitenbach <sebastia@openbsd.org>
 PERMIT_PACKAGE=	Yes
 
 MODULES=		lang/python
-
 MODPY_PI=		Yes
 MODPY_PYBUILD =		setuptools
+
 FLAVORS=		python3
 FLAVOR=			python3
 
-RUN_DEPENDS=		devel/py-apscheduler${MODPY_FLAVOR} \
-			devel/py-dateutil${MODPY_FLAVOR} \
+RUN_DEPENDS=		devel/py-dateutil${MODPY_FLAVOR} \
+			sysutils/py-apscheduler${MODPY_FLAVOR} \
 			www/py-flask${MODPY_FLAVOR}
 
 .include <bsd.port.mk>
