@@ -10,15 +10,16 @@ MAINTAINER=	Sebastian Reitenbach <sebastia@openbsd.org>
 PERMIT_PACKAGE=	Yes
 
 MODULES=		lang/python
-
 MODPY_PI=		Yes
 MODPY_PYBUILD =		setuptools
+
 FLAVORS=		python3
 FLAVOR=			python3
 
 RUN_DEPENDS=		devel/py-cachelib${MODPY_FLAVOR} \
 			www/py-flask${MODPY_FLAVOR}
 
-#6 failed, 114 passed, 78 skipped, 83 warnings, 1 error
+#3 failures caused due to failing ports: async, pylibmc
+TEST_DEPENDS =		misc/py-memcached${MODPY_FLAVOR}
 
 .include <bsd.port.mk>
