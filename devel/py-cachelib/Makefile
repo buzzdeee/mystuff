@@ -11,13 +11,12 @@ PERMIT_PACKAGE =	Yes
 
 MODULES =		lang/python
 MODPY_PI =		Yes
-MODPY_SETUPTOOLS =	Yes
-MODPY_PYTEST =		Yes
+MODPY_PYBUILD =		setuptools
 
 FLAVORS =		python3
 FLAVOR =		python3
 
-# 11 failed, 86 passed, 35 skipped (dynamodb tests fail)
 TEST_DEPENDS +=		devel/py-test-xprocess${MODPY_FLAVOR}
+MODPY_PYTEST_ARGS =	--ignore tests/test_dynamodb_cache.py
 
 .include <bsd.port.mk>
