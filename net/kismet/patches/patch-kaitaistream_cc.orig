@@ -1,0 +1,17 @@
+Index: kaitaistream.cc
+--- kaitaistream.cc.orig
++++ kaitaistream.cc
+@@ -19,7 +19,13 @@
+ #define bswap_64(x) _byteswap_uint64(x)
+ #else // !__APPLE__ or !_MSC_VER
+ #include <endian.h>
++#if defined(__OPENBSD__)
++#define bswap_16(x) _byteswap_ushort(x)
++#define bswap_32(x) _byteswap_ulong(x)
++#define bswap_64(x) _byteswap_uint64(x)
++#else
+ #include <byteswap.h>
++#endif // SYS_OPENBSD
+ #endif
+ 
+ #include <iostream>

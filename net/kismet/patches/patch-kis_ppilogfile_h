@@ -1,0 +1,12 @@
+Index: kis_ppilogfile.h
+--- kis_ppilogfile.h.orig
++++ kis_ppilogfile.h
+@@ -27,7 +27,7 @@
+ #include <string>
+ 
+ extern "C" {
+-#include <pcap/pcap.h>
++#include <pcap.h>
+ }
+ 
+ #include "globalregistry.h"
