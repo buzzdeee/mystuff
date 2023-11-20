@@ -25,8 +25,6 @@ SITES =	https://gitlab.com/jazztickets/uploads/-/raw/main/
 
 MODULES =	devel/cmake
 
-#BUILD_DEPENDS =	graphics/glm \
-#		shells/bash
 LIB_DEPENDS =	audio/libogg \
 		audio/libvorbis \
 		audio/openal \
@@ -37,12 +35,10 @@ LIB_DEPENDS =	audio/libogg \
 RUN_DEPENDS =	devel/desktop-file-utils \
 		x11/gtk+4,-guic
 
+FIX_CRLF_FILES = ext/ae/tinyxml2/tinyxml2.cpp
+
 NO_TEST =	Yes
 
 WRKDIST =	${WRKDIR}/emptyclip-${V}-${COMMIT}
 
-#pre-configure:
-#	perl -pi -e "s,games/,,g" ${WRKSRC}/CMakeLists.txt \
-#				  ${WRKSRC}/deployment/choria
-	
 .include <bsd.port.mk>

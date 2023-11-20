@@ -1,6 +1,7 @@
---- src/save.cpp.orig	Sat Sep 30 20:29:29 2023
-+++ src/save.cpp	Sat Sep 30 20:30:02 2023
-@@ -347,7 +347,7 @@
+Index: src/save.cpp
+--- src/save.cpp.orig
++++ src/save.cpp
+@@ -347,7 +347,7 @@ void _Save::LoadPlayer(_Player *Player) {
  
  	// Initialize
  	Player->AddMissingBackpacks();
