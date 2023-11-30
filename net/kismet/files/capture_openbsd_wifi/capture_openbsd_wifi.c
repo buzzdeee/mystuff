@@ -547,8 +547,7 @@ setiflladdr(local_wifi_t *local_wifi, struct ether_addr *eap)
 	arc4random_buf(&eabuf, sizeof eabuf);
 	/* Non-multicast and claim it is a hardware address */
 	eabuf.ether_addr_octet[0] &= 0xfc;
-	eap = &eabuf;
-
+	
 	strlcpy(my_ifr.ifr_name, local_wifi->interface, sizeof(my_ifr.ifr_name));
 	my_ifr.ifr_addr.sa_len = ETHER_ADDR_LEN;
 	my_ifr.ifr_addr.sa_family = AF_LINK;
@@ -556,6 +555,7 @@ setiflladdr(local_wifi_t *local_wifi, struct ether_addr *eap)
 	getsock(AF_INET);
 	if (ioctl(sock, SIOCSIFLLADDR, (caddr_t)&my_ifr) == -1)
 		warn("%s: SIOCSIFLLADDR", my_ifr.ifr_name);
+	bcopy(&eabuf, eap, ETHER_ADDR_LEN);
 	
 }
 
@@ -1433,7 +1433,8 @@ int list_callback(kis_capture_handler_t *caph, uint32_t seqno,
         if (ioctl(sock, SIOCGIFGMEMB, (caddr_t)&ifgr) == -1) {
                 if (errno == EINVAL || errno == ENOTTY ||
                     errno == ENOENT)
-                        return (-1);
+			// there may be no interfaces in the wlan group
+                        return (0);
         }
 
         len = ifgr.ifgr_len;
