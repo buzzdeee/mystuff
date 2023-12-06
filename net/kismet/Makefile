@@ -70,11 +70,13 @@ WANTLIB += absl_str_format_internal absl_strerror absl_string_view
 WANTLIB += absl_strings absl_strings_internal absl_symbolize absl_synchronization
 WANTLIB += absl_throw_delegate absl_time absl_time_zone crypto
 WANTLIB += execinfo pcre2-8 protobuf protobuf-c sqlite3 ssl utf8_range
-WANTLIB += utf8_validity websockets z
+WANTLIB += utf8_validity websockets z atomic usb-1.0
 LIB_DEPENDS=		devel/pcre \
 			devel/protobuf-c \
+			lang/gcc/8 \
 			www/libwebsockets
-RUN_DEPENDS=		net/wireshark,-text \
+RUN_DEPENDS=		comms/rtl-sdr \
+			net/wireshark,-text \
 			net/py-websockets
 
 .include <bsd.port.arch.mk>
@@ -83,15 +85,13 @@ post-patch:
 	cp -r ${FILESDIR}/capture_openbsd_wifi ${WRKSRC}
 	find ${WRKSRC}/capture_openbsd_wifi -name CVS -type d -exec rm -rf {} \; || true
 
-#post-configure:
-#	${SUBST_CMD} ${WRKSRC}/conf/kismet.conf \
-#			${WRKSRC}/man/kismet_drone.conf.5
-#	cd ${WRKSRC} && ${GMAKE} depend
+post-configure:
+	${SUBST_CMD} ${WRKSRC}/conf/kismet_logging.conf
 
-#post-install:
-#	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/kismet
-#	${INSTALL_DATA} ${WRKSRC}/README \
-#			${PREFIX}/share/doc/kismet
-#	@cd ${WRKSRC} && ${GMAKE} binsuidinstall
+post-install:
+	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/kismet
+	${INSTALL_DATA} ${WRKSRC}/README.SSL \
+			${PREFIX}/share/doc/kismet
+	@cd ${WRKSRC} && ${GMAKE} binsuidinstall
 
 .include <bsd.port.mk>

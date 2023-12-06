@@ -146,6 +146,8 @@ lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/rtlsdr/
 lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/rtlsdr/__init__.py
 ${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/rtlsdr/${MODPY_PYCACHE}/
 lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/rtlsdr/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
+share/doc/kismet/
+share/doc/kismet/README.SSL
 share/examples/kismet/
 @mode 770
 @sample ${CONFDIR}/
@@ -153,13 +155,21 @@ share/examples/kismet/
 share/examples/kismet/kismet.conf
 @sample ${CONFDIR}/kismet.conf
 share/examples/kismet/kismet_80211.conf
+@sample ${CONFDIR}/kismet_80211.conf
 share/examples/kismet/kismet_alerts.conf
+@sample ${CONFDIR}/kismet_alerts.conf
 share/examples/kismet/kismet_filter.conf
+@sample ${CONFDIR}/kismet_filter.conf
 share/examples/kismet/kismet_httpd.conf
+@sample ${CONFDIR}/kismet_httpd.conf
 share/examples/kismet/kismet_logging.conf
+@sample ${CONFDIR}/kismet_logging.conf
 share/examples/kismet/kismet_memory.conf
+@sample ${CONFDIR}/kismet_memory.conf
 share/examples/kismet/kismet_uav.conf
+@sample ${CONFDIR}/kismet_uav.conf
 share/examples/kismet/kismet_wardrive.conf
+@sample ${CONFDIR}/kismet_wardrive.conf
 share/kismet/
 @mode 770
 @owner _kismet
