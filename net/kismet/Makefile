@@ -35,7 +35,8 @@ CONFIGURE_ARGS=		--sysconfdir=${CONFDIR} \
 			--with-suidgroup=_kismet \
 			--disable-wifi-coconut
 
-CONFIGURE_ENV=		CPPFLAGS="-I${X11BASE}/include -I${LOCALBASE}/include -D__BYTE_ORDER=1234" \
+#CONFIGURE_ENV=		CPPFLAGS="-I${X11BASE}/include -I${LOCALBASE}/include -D__BYTE_ORDER=1234" \
+CONFIGURE_ENV=		CPPFLAGS="-I${X11BASE}/include -I${LOCALBASE}/include" \
 			LDFLAGS="-L${X11BASE}/lib -L${LOCALBASE}/lib"
 
 USE_GMAKE=		Yes
@@ -73,7 +74,7 @@ WANTLIB += execinfo pcre2-8 protobuf protobuf-c sqlite3 ssl utf8_range
 WANTLIB += utf8_validity websockets z atomic usb-1.0
 LIB_DEPENDS=		devel/pcre \
 			devel/protobuf-c \
-			lang/gcc/8 \
+			lang/gcc/8,-libs \
 			www/libwebsockets
 RUN_DEPENDS=		comms/rtl-sdr \
 			net/wireshark,-text \
