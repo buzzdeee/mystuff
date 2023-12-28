@@ -1,12 +1,15 @@
 Index: kis_ppilogfile.h
 --- kis_ppilogfile.h.orig
 +++ kis_ppilogfile.h
-@@ -27,7 +27,7 @@
+@@ -27,7 +27,11 @@
  #include <string>
  
  extern "C" {
--#include <pcap/pcap.h>
++#if defined(__OpenBSD__)
 +#include <pcap.h>
++#else
+ #include <pcap/pcap.h>
++#endif
  }
  
  #include "globalregistry.h"
