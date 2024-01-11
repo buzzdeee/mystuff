@@ -20,6 +20,7 @@ RUN_DEPENDS=		devel/py-cachelib${MODPY_FLAVOR} \
 			www/py-flask${MODPY_FLAVOR}
 
 #3 failures caused due to failing ports: async, pylibmc
-TEST_DEPENDS =		misc/py-memcached${MODPY_FLAVOR}
+TEST_DEPENDS =		databases/py-redis${MODPY_FLAVOR} \
+			misc/py-memcached${MODPY_FLAVOR}
 
 .include <bsd.port.mk>
