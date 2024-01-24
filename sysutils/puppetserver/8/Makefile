@@ -1,6 +1,6 @@
 COMMENT =		Puppet server
 
-VERSION =		8.2.0
+VERSION =		8.4.0
 DISTNAME =		puppetserver-${VERSION}
 
 CATEGORIES =		sysutils
@@ -9,7 +9,7 @@ HOMEPAGE =		https://puppet.com/docs/puppet/8/server/about_server.html
 
 PERMIT_PACKAGE =	Yes
 
-MASTER_SITES =		https://downloads.puppetlabs.com/puppet/
+SITES =			https://downloads.puppetlabs.com/puppet/
 
 MODULES =		java \
 			lang/ruby
@@ -19,7 +19,7 @@ RUN_DEPENDS =		databases/puppetdb/8,-plugin \
 			java/javaPathHelper \
 			${MODJAVA_RUN_DEPENDS} \
 			shells/bash \
-			sysutils/ruby-puppet/7 \
+			sysutils/ruby-puppet/8 \
 			sysutils/ruby-puppetserver-ca,${MODRUBY_FLAVOR}
 
 MODRUBY_ADJ_FILES =	ca
