@@ -1,9 +1,8 @@
 PORTROACH=		limit:^7
 
-VERSION=		8.2.0
+VERSION=		8.4.0
 
-RUN_DEPENDS+=		converters/ruby-multi_json,${MODRUBY_FLAVOR}>=1.10,<2 \
-			databases/ruby-hiera3,${MODRUBY_FLAVOR}>=3.2.1,<4 \
+RUN_DEPENDS+=		converters/ruby-multi_json,${MODRUBY_FLAVOR}>=1.13,<2 \
 			devel/ruby-concurrent-ruby,${MODRUBY_FLAVOR}>=1,<2 \
 			devel/ruby-deep_merge,${MODRUBY_FLAVOR}>=1,<2 \
 			devel/ruby-fast_gettext,${MODRUBY_FLAVOR}>=2.1,<3 \
@@ -12,7 +11,7 @@ RUN_DEPENDS+=		converters/ruby-multi_json,${MODRUBY_FLAVOR}>=1.10,<2 \
 			devel/ruby-scanf,${MODRUBY_FLAVOR}>=1,<2 \
 			devel/ruby-semantic_puppet,${MODRUBY_FLAVOR}>=1,<2 \
 			net/ruby-msgpack,${MODRUBY_FLAVOR} \
-			sysutils/ruby-facter,${MODRUBY_FLAVOR}>=2.0.1,<5
+			sysutils/ruby-facter,${MODRUBY_FLAVOR}>=4.3.0,<5
 
 pre-configure:
 	${SUBST_CMD} ${WRKSRC}/lib/puppet/provider/package/gem.rb \

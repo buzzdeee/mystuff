@@ -24,7 +24,7 @@ Index: install.rb
      end
      opts.on('--ruby[=OPTIONAL]', 'Ruby interpreter to use with installation', 'overrides ruby used to call install.rb') do |ruby|
 @@ -262,7 +262,7 @@ def prepare_installation
-   elsif $operatingsystem == "windows"
+   elsif $osname == "windows"
      vardir = File.join(ENV['ALLUSERSPROFILE'], "PuppetLabs", "puppet", "cache")
    else
 -    vardir = "/opt/puppetlabs/puppet/cache"
@@ -33,7 +33,7 @@ Index: install.rb
  
    if not InstallOptions.publicdir.nil?
 @@ -270,7 +270,7 @@ def prepare_installation
-   elsif $operatingsystem == "windows"
+   elsif $osname == "windows"
      publicdir = File.join(ENV['ALLUSERSPROFILE'], "PuppetLabs", "puppet", "public")
    else
 -    publicdir = "/opt/puppetlabs/puppet/public"
@@ -42,7 +42,7 @@ Index: install.rb
  
    if not InstallOptions.rundir.nil?
 @@ -301,7 +301,7 @@ def prepare_installation
-     if $operatingsystem == "windows"
+     if $osname == "windows"
        localedir = File.join(ENV['PROGRAMFILES'], "Puppet Labs", "Puppet", "puppet", "share", "locale")
      else
 -      localedir = "/opt/puppetlabs/puppet/share/locale"

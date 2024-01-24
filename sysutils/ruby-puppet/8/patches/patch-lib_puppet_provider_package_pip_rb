@@ -5,7 +5,7 @@ python2 version
 Index: lib/puppet/provider/package/pip.rb
 --- lib/puppet/provider/package/pip.rb.orig
 +++ lib/puppet/provider/package/pip.rb
-@@ -38,7 +38,7 @@ Puppet::Type.type(:package).provide :pip, :parent => :
+@@ -39,7 +39,7 @@ Puppet::Type.type(:package).provide :pip, :parent => :
      if Puppet::Util::Platform.windows?
        ["pip.exe"]
      else

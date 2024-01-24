@@ -4,7 +4,7 @@ Update the default directory locations
 Index: lib/puppet/util/run_mode.rb
 --- lib/puppet/util/run_mode.rb.orig
 +++ lib/puppet/util/run_mode.rb
-@@ -63,19 +63,19 @@ module Puppet
+@@ -65,19 +65,19 @@ module Puppet
  
      class UnixRunMode < RunMode
        def conf_dir
