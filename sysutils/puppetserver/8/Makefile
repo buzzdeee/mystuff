@@ -13,7 +13,7 @@ SITES =			https://downloads.puppetlabs.com/puppet/
 
 MODULES =		java \
 			lang/ruby
-MODJAVA_VER =		1.8+
+MODJAVA_VER =		11+
 
 RUN_DEPENDS =		databases/puppetdb/8,-plugin \
 			java/javaPathHelper \

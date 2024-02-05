@@ -23,9 +23,9 @@ Install the same version within Puppetserver:
 
 Then continue and install remaining Ruby gems into Puppetserver:
 # puppetserver gem install --no-document puppet hiera-eyaml \
-	hiera-file ipaddress msgpack
+	ipaddress msgpack
 
-You may not need hiera-eyaml, hiera-file, or ipaddress gem, on the
+You may not need hiera-eyaml, or ipaddress gem, on the
 other hand, your Puppet modules might rely on other gems.
 
 As long as the OpenBSD support is not yet released in the facter Gem,
@@ -38,4 +38,4 @@ If you're using PuppetDB, you have to copy over the PuppetDB termini
 into Puppetservers Puppet lib directory:
 
 cp -r ${LOCALBASE}/share/puppetlabs/puppet/puppet/ \
-	${LOCALSTATEDIR}/puppetlabs/puppetserver/data/jruby-gems/gems/puppet-7*/lib/
+	${LOCALSTATEDIR}/puppetlabs/puppetserver/data/jruby-gems/gems/puppet-8*/lib/

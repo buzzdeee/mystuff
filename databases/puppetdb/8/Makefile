@@ -1,7 +1,7 @@
 COMMENT-main=	fast, scalable, and reliable data warehouse for Puppet
 COMMENT-plugin= PuppetDB terminus plugin
 
-V=		8.1.0
+V=		8.3.0
 DISTNAME=	puppetdb-$V
 PKGNAME-plugin= puppetdb-termini-$V
 CATEGORIES=	databases
@@ -10,14 +10,14 @@ HOMEPAGE=	https://puppet.com/docs/puppetdb/
 
 MAINTAINER=	Sebastian Reitenbach <sebastia@openbsd.org>
 
-MASTER_SITES=	https://downloads.puppetlabs.com/puppetdb/
+SITES=		https://downloads.puppetlabs.com/puppetdb/
 
 # Apachev2
 PERMIT_PACKAGE=	Yes
 
 MODULES=	java \
 		lang/ruby
-MODJAVA_VER=	1.8+
+MODJAVA_VER=	11+
 
 MULTI_PACKAGES= -main -plugin
 
