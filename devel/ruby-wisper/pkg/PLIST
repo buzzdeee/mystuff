@@ -1,5 +1,5 @@
-${GEM_BIN}/console32
-${GEM_BIN}/setup32
+${GEM_BIN}/console${GEM_BIN_SUFFIX}
+${GEM_BIN}/setup${GEM_BIN_SUFFIX}
 ${GEM_LIB}/cache/${DISTNAME}.gem
 ${GEM_LIB}/gems/${DISTNAME}/
 ${GEM_LIB}/gems/${DISTNAME}/.gitignore

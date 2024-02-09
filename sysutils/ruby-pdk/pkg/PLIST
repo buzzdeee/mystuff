@@ -1,4 +1,4 @@
-${GEM_BIN}/pdk32
+${GEM_BIN}/pdk${GEM_BIN_SUFFIX}
 ${GEM_LIB}/cache/${DISTNAME}.gem
 ${GEM_LIB}/gems/${DISTNAME}/
 ${GEM_LIB}/gems/${DISTNAME}/CHANGELOG.md

@@ -27,8 +27,9 @@ RUN_DEPENDS += archivers/ruby-minitar,${MODRUBY_FLAVOR}>=0.9,<1 \
 		sysutils/ruby-tty-which,${MODRUBY_FLAVOR}>=0.5,<1 \
 		www/ruby-httpclient,${MODRUBY_FLAVOR}>=2.8.3,<2.9
 		
-		
-
 CONFIGURE_STYLE =	ruby gem
+
+pre-build:
+	${SUBST_CMD} ${WRKSRC}/lib/pdk/cli/exec.rb
 
 .include <bsd.port.mk>
