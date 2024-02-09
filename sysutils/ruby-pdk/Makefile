@@ -1,0 +1,34 @@
+COMMENT =	Puppet development kit
+
+DISTNAME =	pdk-3.0.1
+CATEGORIES =	sysutils
+HOMEPAGE =	https://github.com/puppetlabs/pdk
+MAINTAINER =	Sebastian Reitenbach <sebastia@openbsd.org>
+
+# Apache 2.0
+PERMIT_PACKAGE =	Yes
+
+MODULES =		lang/ruby
+
+BUILD_DEPENDS +=	${RUN_DEPENDS}
+RUN_DEPENDS += archivers/ruby-minitar,${MODRUBY_FLAVOR}>=0.9,<1 \
+		devel/ruby-childprocess,${MODRUBY_FLAVOR}>=4.1,<5 \
+		devel/ruby-concurrent-ruby,${MODRUBY_FLAVOR} \
+		devel/ruby-cri,${MODRUBY_FLAVOR}>=2.15.11,<2.16 \
+		devel/ruby-deep_merge,${MODRUBY_FLAVOR}>=1.2.2,<1.3 \
+		devel/ruby-diff-lcs,${MODRUBY_FLAVOR}>=1.3 \
+		devel/ruby-ffi,${MODRUBY_FLAVOR}>=1.15.5,<2 \
+		devel/ruby-hitimes,${MODRUBY_FLAVOR}=2.0.0 \
+		devel/ruby-json-schema,${MODRUBY_FLAVOR}>=4,<5 \
+		devel/ruby-pathspec,${MODRUBY_FLAVOR}>=1.1,<2 \
+		sysutils/ruby-facter,${MODRUBY_FLAVOR}>=4,<5 \
+		sysutils/ruby-tty-prompt,${MODRUBY_FLAVOR}>=0.23,<1 \
+		sysutils/ruby-tty-spinner,${MODRUBY_FLAVOR}>=0.9,<1 \
+		sysutils/ruby-tty-which,${MODRUBY_FLAVOR}>=0.5,<1 \
+		www/ruby-httpclient,${MODRUBY_FLAVOR}>=2.8.3,<2.9
+		
+		
+
+CONFIGURE_STYLE =	ruby gem
+
+.include <bsd.port.mk>
