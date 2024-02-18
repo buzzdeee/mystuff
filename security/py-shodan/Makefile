@@ -13,8 +13,11 @@ PERMIT_PACKAGE =	Yes
 
 MODULES =		lang/python
 MODPY_PI =		Yes
-MODPY_SETUPTOOLS =	Yes
+MODPY_PYBUILD =		setuptools
 MODPY_PYTEST =		Yes
+
+FLAVORS =		python3
+FLAVOR =		python3
 
 RUN_DEPENDS =		devel/py-click-plugins${MODPY_FLAVOR} \
 			devel/py-colorama${MODPY_FLAVOR} \

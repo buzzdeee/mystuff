@@ -1,3 +1,5 @@
+@option is-branch
+@conflict puppetserver-*
 @rcscript ${RCDIR}/puppetserver
 bin/puppetserver
 share/doc/pkg-readmes/${PKGSTEM}
