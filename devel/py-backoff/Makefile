@@ -2,7 +2,7 @@
 
 COMMENT =		function decoration for backoff and retry
 
-MODPY_EGG_VERSION =	1.11.1
+MODPY_EGG_VERSION =	2.2.1
 DISTNAME =		backoff-${MODPY_EGG_VERSION}
 PKGNAME =		py-${DISTNAME}
 

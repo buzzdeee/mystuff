@@ -1,4 +1,3 @@
-@comment $OpenBSD: PLIST,v$
 lib/python${MODPY_VERSION}/site-packages/backoff/
 lib/python${MODPY_VERSION}/site-packages/backoff-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/
 lib/python${MODPY_VERSION}/site-packages/backoff-${MODPY_EGG_VERSION}-py${MODPY_VERSION}.egg-info/PKG-INFO
@@ -13,10 +12,15 @@ lib/python${MODPY_VERSION}/site-packages/backoff/${MODPY_PYCACHE}_common.${MODPY
 lib/python${MODPY_VERSION}/site-packages/backoff/${MODPY_PYCACHE}_decorator.${MODPY_PYC_MAGIC_TAG}pyc
 lib/python${MODPY_VERSION}/site-packages/backoff/${MODPY_PYCACHE}_jitter.${MODPY_PYC_MAGIC_TAG}pyc
 lib/python${MODPY_VERSION}/site-packages/backoff/${MODPY_PYCACHE}_sync.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/backoff/${MODPY_PYCACHE}_typing.${MODPY_PYC_MAGIC_TAG}pyc
 lib/python${MODPY_VERSION}/site-packages/backoff/${MODPY_PYCACHE}_wait_gen.${MODPY_PYC_MAGIC_TAG}pyc
+lib/python${MODPY_VERSION}/site-packages/backoff/${MODPY_PYCACHE}types.${MODPY_PYC_MAGIC_TAG}pyc
 lib/python${MODPY_VERSION}/site-packages/backoff/_async.py
 lib/python${MODPY_VERSION}/site-packages/backoff/_common.py
 lib/python${MODPY_VERSION}/site-packages/backoff/_decorator.py
 lib/python${MODPY_VERSION}/site-packages/backoff/_jitter.py
 lib/python${MODPY_VERSION}/site-packages/backoff/_sync.py
+lib/python${MODPY_VERSION}/site-packages/backoff/_typing.py
 lib/python${MODPY_VERSION}/site-packages/backoff/_wait_gen.py
+lib/python${MODPY_VERSION}/site-packages/backoff/py.typed
+lib/python${MODPY_VERSION}/site-packages/backoff/types.py
