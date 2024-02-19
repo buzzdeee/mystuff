@@ -1,0 +1,15 @@
+Let it find binutils
+Index: pwnlib/asm.py
+--- pwnlib/asm.py.orig
++++ pwnlib/asm.py
+@@ -205,6 +205,10 @@ def which_binutils(util, check_version=False):
+     # hack for homebrew-installed binutils on mac
+     if platform.system() == 'Darwin':
+         utils = ['g'+util, util]
++    # as well as binutils package on OpenBSD
++    if platform.system() == 'OpenBSD':
++        utils = ['g'+util, util]
++
+ 
+     for arch in arches:
+         for gutil in utils:
