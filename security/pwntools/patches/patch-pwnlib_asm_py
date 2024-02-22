@@ -2,7 +2,80 @@ Let it find binutils
 Index: pwnlib/asm.py
 --- pwnlib/asm.py.orig
 +++ pwnlib/asm.py
-@@ -205,6 +205,10 @@ def which_binutils(util, check_version=False):
+@@ -100,6 +100,53 @@ def dpkg_search_for_binutils(arch, util):
+ 
+     return packages
+ 
++def pkg_info_search_for_binutils(arch):
++    """use pkg_info to search for any available assemblers which will work.
++
++    Returns:
++        > list of candidate package names.
++
++    ::
++
++        >>> pwnlib.asm.pkg_info_search_for_binutils('aarch64', 'as')
++        ['aarch64-none-elf-binutils']
++    """
++
++    # Example output:
++    # aarch64-none-elf-binutils-2.40 (installed)
++    # arm-none-eabi-binutils-2.40 (installed)
++    # avr-binutils-2.30
++    # avr32-binutils-2.23.1p1
++    # binutils-2.42
++    # msp430-binutils-2.21.1ap3
++    # riscv-elf-binutils-2.40p1
++    # riscv32-esp-elf-binutils-2.35.1.2020.1223
++    # xtensa-elf-binutils-2.27p2
++    # xtensa-esp32-elf-binutils-2.35.1.2020.1223p1
++    # xtensa-esp32s2-elf-binutils-2.35.1.2020.1223p0
++    # xtensa-esp32s3-elf-binutils-2.35.1.2020.1223p0
++    # xtensa-lx106-elf-binutils-2.32p1
++    packages = []
++
++    try:
++        pkgname = '%s-*-binutils-*' 
++        output = subprocess.check_output(['pkg_info', '-Q', 'binutils'], universal_newlines = True)
++        for line in output.strip().splitlines():
++            if ' ' in line:
++                package, random = line.split(' ', 1)
++            else:
++                package = line
++            if package.startswith(arch):
++                packages.append(package)
++            if arch == platform.processor():
++                if package.startswith('binutils-'):
++                    packages.append(package) 
++    except OSError:
++        pass
++    except subprocess.CalledProcessError:
++        pass
++
++    return packages
+ def print_binutils_instructions(util, context):
+     """On failure to find a binutils utility, inform the user of a way
+     they can get it easily.
+@@ -125,10 +172,15 @@ def print_binutils_instructions(util, context):
+         'thumb': 'armeabi',
+     }.get(context.arch, context.arch)
+ 
+-    packages = dpkg_search_for_binutils(binutils_arch, util)
++    if platform.system() == 'OpenBSD':
++        packages = pkg_info_search_for_binutils(binutils_arch)
++        if packages:
++            instructions = '$ sudo pkg_add %s' % packages[0]
++    else:
++        packages = dpkg_search_for_binutils(binutils_arch, util)
++        if packages:
++            instructions = '$ sudo apt-get install %s' % packages[0]
+ 
+-    if packages:
+-        instructions = '$ sudo apt-get install %s' % packages[0]
+ 
+     log.error("""
+ Could not find %(util)r installed for %(context)s
+@@ -205,6 +257,10 @@ def which_binutils(util, check_version=False):
      # hack for homebrew-installed binutils on mac
      if platform.system() == 'Darwin':
          utils = ['g'+util, util]

@@ -16,8 +16,11 @@ MODULES =		lang/python
 MODPY_PI =		Yes
 MODPY_PYBUILD =	setuptools
 
-RUN_DEPENDS =		devel/binutils \
-			devel/capstone/python${MODPY_FLAVOR} \
+FLAVORS =		python3
+FLAVOR =		python3
+
+#RUN_DEPENDS =		devel/binutils \
+RUN_DEPENDS = devel/capstone/python${MODPY_FLAVOR} \
 			devel/py-dateutil${MODPY_FLAVOR} \
 			devel/py-elftools${MODPY_FLAVOR} \
 			devel/py-intervaltree${MODPY_FLAVOR} \
