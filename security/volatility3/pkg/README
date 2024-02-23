@@ -1,8 +1,6 @@
-Before first run
-================
-
-Create the cache directory in your home directory:
-mkdir -p ~/.cache/volatility3
++-------------------------------------------------------------------------------
+| Running ${PKGSTEM} on OpenBSD
++-------------------------------------------------------------------------------
 
 Install symbol tables
 =====================

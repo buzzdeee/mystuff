@@ -14,10 +14,15 @@ PERMIT_PACKAGE =	Yes
 MODULES =		lang/python
 MODPY_PI =		Yes
 MODPY_PYBUILD =		setuptools
-MODPY_PYTEST =		No
+MODPY_PYTEST =		Yes
 
 FLAVORS =		python3
 FLAVOR =		python3
+
+PORTHOME =		${WRKDIR}
+
+# fixture 'image' not found
+NO_TEST =		Yes
 
 RUN_DEPENDS =		security/py-cryptodome${MODPY_FLAVOR} \
 			security/py-pefile${MODPY_FLAVOR} \
