@@ -1,0 +1,55 @@
+XXX THIS IS UGLY
+Index: bindings/java/build-unix.xml
+--- bindings/java/build-unix.xml.orig
++++ bindings/java/build-unix.xml
+@@ -31,13 +31,13 @@
+ 	</target>
+ 
+ 	<target name="check-native-build-unix" depends="testTSKLibs" if="tsk_so.present">
+-		<uptodate property="native-up-to-date" srcfile="./jni/.libs/libtsk_jni.so" targetfile="${amd64}/linux/libtsk_jni.so"/>
++		<uptodate property="native-up-to-date" srcfile="./jni/.libs/libtsk_jni.so.0.0" targetfile="${amd64}/linux/libtsk_jni.so.0.0"/>
+ 	</target>
+ 
+ 	<target name="testTSKLibs">
+ 		<property environment="env"/>
+ 		<available file="./jni/.libs/libtsk_jni.dylib" property="tsk_dylib.present"/>
+-		<available file="./jni/.libs/libtsk_jni.so" property="tsk_so.present"/>
++		<available file="./jni/.libs/libtsk_jni.so.0.0" property="tsk_so.present"/>
+ 		<fail message="JNI native library not built.">
+ 			<condition>
+ 				<not>
+@@ -72,26 +72,26 @@
+ 	<!-- Non-OS X -->
+ 	<target name="copyTskLibs_so" depends="testTSKLibs" if="tsk_so.present">
+ 		<property environment="env"/>
+-		<copy file="./jni/.libs/libtsk_jni.so" tofile="./libtsk_jni.so" overwrite="true"/>
++		<copy file="./jni/.libs/libtsk_jni.so.0.0" tofile="./libtsk_jni.so.0.0" overwrite="true"/>
+ 	</target>
+ 
+ 	<target name="copyLinuxLibs" depends="testTSKLibs" if="tsk_so.present">
+ 		<property environment="env"/>
+-		<property name="jni.so" location="${basedir}/jni/.libs/libtsk_jni.so"/>
++		<property name="jni.so" location="${basedir}/jni/.libs/libtsk_jni.so.0.0"/>
+ 		<property name="zlib.so" location="${lib.z.path}/libz.so"/>
+ 		<property name="libewf.so" location="${lib.ewf.path}/libewf.so"/>
+ 		<!-- x86_64 -->
+-		<copy file="${jni.so}" tofile="${x86_64}/linux/libtsk_jni.so" overwrite="true"/>
++		<copy file="${jni.so}" tofile="${x86_64}/linux/libtsk_jni.so.0.0" overwrite="true"/>
+ 		<!-- amd64 -->
+-		<copy file="${jni.so}" tofile="${amd64}/linux/libtsk_jni.so" overwrite="true"/>
++		<copy file="${jni.so}" tofile="${amd64}/linux/libtsk_jni.so.0.0" overwrite="true"/>
+ 		<!-- x86 -->
+-		<copy file="${jni.so}" tofile="${x86}/linux/libtsk_jni.so" overwrite="true"/>
++		<copy file="${jni.so}" tofile="${x86}/linux/libtsk_jni.so.0.0" overwrite="true"/>
+ 		<!-- i386 -->
+-		<copy file="${jni.so}" tofile="${i386}/linux/libtsk_jni.so" overwrite="true"/>
++		<copy file="${jni.so}" tofile="${i386}/linux/libtsk_jni.so.0.0" overwrite="true"/>
+ 		<!-- i586 -->
+-		<copy file="${jni.so}" tofile="${i586}/linux/libtsk_jni.so" overwrite="true"/>
++		<copy file="${jni.so}" tofile="${i586}/linux/libtsk_jni.so.0.0" overwrite="true"/>
+ 		<!-- i686 -->
+-		<copy file="${jni.so}" tofile="${i686}/linux/libtsk_jni.so" overwrite="true"/>
++		<copy file="${jni.so}" tofile="${i686}/linux/libtsk_jni.so.0.0" overwrite="true"/>
+ 	</target>
+ 
+ 	<target name="copyLibs" depends="copyLinuxLibs,copyMacLibs"/>

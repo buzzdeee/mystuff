@@ -1,19 +1,17 @@
-# Much help came from Alexandre Anriot, Robert Nagy, Bernd Ahlers,
-# and, last but not least, Pedro la Peu.
-
 COMMENT=	802.11 layer2 wireless network detector, sniffer, and IDS
 
 # No wireless capabilities
 NOT_FOR_ARCHS=	m88k
 
-V=		2023-07-R1
+V=		2024-02-R1
+GH_ACCOUNT=	kismetwireless
+GH_PROJECT=	kismet
+GH_COMMIT=	ccd95cefba3fc31d1385a5766e1e2a135dd8b45f
 DISTNAME=	kismet-${V}
 PKGNAME=	kismet-${V:S,-,,g}
 CATEGORIES=	net security
 
 HOMEPAGE=	https://www.kismetwireless.net/
-SITES=		${HOMEPAGE}code/
-EXTRACT_SUFX=	.tar.xz
 
 MAINTAINER=	Sebastian Reitenbach <sebastia@openbsd.org>
 
@@ -23,9 +21,8 @@ PERMIT_PACKAGE=	Yes
 COMPILER =		base-clang ports-gcc base-gcc
 MODULES =		lang/python
 
-#AUTOCONF_VERSION =	2.71
-#CONFIGURE_STYLE=	autoreconf no-autoheader
-CONFIGURE_STYLE=	gnu
+# "old" is required for setting --sysconfdir
+CONFIGURE_STYLE=	gnu old
 
 CONFDIR=		${SYSCONFDIR}/kismet
 SUBST_VARS+=		CONFDIR
@@ -35,17 +32,13 @@ CONFIGURE_ARGS=		--sysconfdir=${CONFDIR} \
 			--with-suidgroup=_kismet \
 			--disable-wifi-coconut
 
-#CONFIGURE_ENV=		CPPFLAGS="-I${X11BASE}/include -I${LOCALBASE}/include -D__BYTE_ORDER=1234 -UBOOST_NO_CXX11_HDR_FUNCTIONAL" \
-CONFIGURE_ENV=		CPPFLAGS="-I${X11BASE}/include -I${LOCALBASE}/include -UBOOST_NO_CXX11_HDR_FUNCTIONAL" \
+CONFIGURE_ENV=		CPPFLAGS="-I${X11BASE}/include -I${LOCALBASE}/include" \
 			LDFLAGS="-L${X11BASE}/lib -L${LOCALBASE}/lib"
 
 USE_GMAKE=		Yes
 
 SAMPLES_DIR=		${DESTDIR}${LOCALBASE}/share/examples/kismet
 FAKE_FLAGS+=		ETC=${SAMPLES_DIR}
-
-# They don't have tests.
-NO_TEST=		Yes
 
 WANTLIB+=		c m pcap ${COMPILER_LIBCXX} util
 WANTLIB += absl_bad_optional_access absl_bad_variant_access absl_base
@@ -72,22 +65,18 @@ WANTLIB += absl_strings absl_strings_internal absl_symbolize absl_synchronizatio
 WANTLIB += absl_throw_delegate absl_time absl_time_zone crypto
 WANTLIB += execinfo pcre2-8 protobuf protobuf-c sqlite3 ssl utf8_range
 WANTLIB += utf8_validity websockets z atomic usb-1.0
-LIB_DEPENDS=		devel/pcre \
-			devel/protobuf-c \
+WANTLIB += absl_log_internal_fnmatch absl_vlog_config_internal
+WANTLIB += mosquitto
+LIB_DEPENDS=		devel/protobuf-c \
 			lang/gcc/8,-libs \
+			net/mosquitto \
 			www/libwebsockets
 RUN_DEPENDS=		comms/rtl-sdr \
+			devel/py-protobuf${MODPY_FLAVOR} \
 			net/wireshark,-text \
 			net/py-websockets
 
 .include <bsd.port.arch.mk>
-
-post-patch:
-	cp -r ${FILESDIR}/capture_openbsd_wifi ${WRKSRC}
-	find ${WRKSRC}/capture_openbsd_wifi -name CVS -type d -exec rm -rf {} \; || true
-
-post-configure:
-	${SUBST_CMD} ${WRKSRC}/conf/kismet_logging.conf
 
 post-install:
 	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/kismet
