@@ -26,7 +26,7 @@ WANTLIB +=		ewf vslvm
 COMPILER =		base-clang ports-gcc
 
 MODULES=		java
-MODJAVA_VER=		11+
+MODJAVA_VER=		17+
 
 AUTOCONF_VERSION =	2.69
 AUTOMAKE_VERSION =	1.15
@@ -41,10 +41,11 @@ CONFIGURE_ARGS += 	--mandir='${PREFIX}/man' \
 
 CONFIGURE_ENV =		ac_cv_path_CPPUNIT_CONFIG=no \
 			ac_cv_header_postgresql_libpq_fe_h=no \
-			PATH=${PATH}:${JAVA_HOME}/bin
+			PATH=${PATH}:${JAVA_HOME}/bin \
+			CXXFLAGS=-I${JAVA_HOME}/include/openbsd
+BUILD_DEPENDS = 	devel/apache-ant
 RUN_DEPENDS =		converters/p5-DateManip
 LIB_DEPENDS =		databases/sqlite3 \
-			devel/apache-ant \
 			devel/libbfio \
 			sysutils/libvhdi \
 			sysutils/libvmdk \
