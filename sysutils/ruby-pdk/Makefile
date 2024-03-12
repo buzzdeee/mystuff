@@ -19,6 +19,7 @@ RUN_DEPENDS += archivers/ruby-minitar,${MODRUBY_FLAVOR}>=0.9,<1 \
 		devel/ruby-diff-lcs,${MODRUBY_FLAVOR}>=1.3 \
 		devel/ruby-ffi,${MODRUBY_FLAVOR}>=1.15.5,<2 \
 		devel/ruby-hitimes,${MODRUBY_FLAVOR}=2.0.0 \
+		devel/ruby-json_pure,${MODRUBY_FLAVOR}>=2.7,<3 \
 		devel/ruby-json-schema,${MODRUBY_FLAVOR}>=4,<5 \
 		devel/ruby-pathspec,${MODRUBY_FLAVOR}>=1.1,<2 \
 		sysutils/ruby-facter,${MODRUBY_FLAVOR}>=4,<5 \

@@ -18,15 +18,15 @@ Index: .metadata
  - !ruby/object:Gem::Dependency
    name: ffi
    requirement: !ruby/object:Gem::Requirement
-@@ -113,7 +113,7 @@ dependencies:
+@@ -112,7 +112,7 @@ dependencies:
+     requirements:
      - - "~>"
        - !ruby/object:Gem::Version
-         version: 2.6.3
--  type: :runtime
-+  type: :development
+-        version: 2.6.3
++        version: 2.7.0
+   type: :runtime
    prerelease: false
    version_requirements: !ruby/object:Gem::Requirement
-     requirements:
 @@ -208,14 +208,14 @@ dependencies:
    name: concurrent-ruby
    requirement: !ruby/object:Gem::Requirement
