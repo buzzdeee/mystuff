@@ -1,0 +1,13 @@
+Index: config/jvm.options
+--- config/jvm.options.orig
++++ config/jvm.options
+@@ -73,7 +73,7 @@
+ -XX:HeapDumpPath=data
+ 
+ # specify an alternative path for JVM fatal error logs
+--XX:ErrorFile=logs/hs_err_pid%p.log
++-XX:ErrorFile=${VARBASE}/log/elasticsearch/hs_err_pid%p.log
+ 
+ ## GC logging
+--Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,level,pid,tags:filecount=32,filesize=64m
++-Xlog:gc*,gc+age=trace,safepoint:file=${VARBASE}/log/elasticsearch/gc:utctime,level,pid,tags:filecount=32,filesize=64m
