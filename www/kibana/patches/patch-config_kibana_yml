@@ -1,0 +1,20 @@
+Index: config/kibana.yml
+--- config/kibana.yml.orig
++++ config/kibana.yml
+@@ -101,14 +101,14 @@
+ # Enables you to specify a file where Kibana stores log output.
+ #logging.appenders.default:
+ #  type: file
+-#  fileName: /var/logs/kibana.log
++#  fileName: /var/log/kibana/kibana.log
+ #  layout:
+ #    type: json
+ 
+ # Example with size based log rotation
+ #logging.appenders.default:
+ #  type: rolling-file
+-#  fileName: /var/logs/kibana.log
++#  fileName: /var/log/kibana/kibana.log
+ #  policy:
+ #    type: size-limit
+ #    size: 256mb
