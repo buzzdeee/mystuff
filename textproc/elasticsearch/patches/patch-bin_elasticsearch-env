@@ -1,17 +1,16 @@
 Index: bin/elasticsearch-env
 --- bin/elasticsearch-env.orig
 +++ bin/elasticsearch-env
-@@ -3,7 +3,8 @@
+@@ -3,7 +3,7 @@
  set -e -o pipefail
  
  CDPATH=""
 -
-+JAVA_HOME="$(${TRUEPREFIX}/bin/javaPathHelper -h elasticsearch)"
-+ES_JAVA_HOME=${JAVA_HOME}
++ES_JAVA_HOME="$(${TRUEPREFIX}/bin/javaPathHelper -h elasticsearch)"
  SCRIPT="$0"
  
  # SCRIPT might be an arbitrarily deep series of symbolic links; loop until we
-@@ -75,7 +76,7 @@ fi
+@@ -75,7 +75,7 @@ fi
  
  export HOSTNAME=$HOSTNAME
  

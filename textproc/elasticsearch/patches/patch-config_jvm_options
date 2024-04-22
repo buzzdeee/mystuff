@@ -1,6 +1,17 @@
 Index: config/jvm.options
 --- config/jvm.options.orig
 +++ config/jvm.options
+@@ -29,8 +29,8 @@
+ ## heap to 4 GB, create a new file in the jvm.options.d
+ ## directory containing these lines:
+ ##
+-## -Xms4g
+-## -Xmx4g
++-Xms1g
++-Xmx1g
+ ##
+ ## See https://www.elastic.co/guide/en/elasticsearch/reference/8.13/heap-size.html
+ ## for more information
 @@ -73,7 +73,7 @@
  -XX:HeapDumpPath=data
  
