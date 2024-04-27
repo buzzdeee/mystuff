@@ -1,0 +1,15 @@
+X NEW direct devel/ruby-childprocess 4.1.0
+X NEW direct devel/ruby-hitimes 2.0.0
+X NEW direct devel/ruby-json_pure 2.7.2
+X NEW direct devel/ruby-json-schema 4.3.0
+X NEW direct devel/ruby-pathspec 1.1.3
+X NEW direct sysutils/ruby-tty-prompt 0.23.1
+X NEW direct sysutils/ruby-tty-spinner 0.9.3
+X NEW direct sysutils/ruby-tty-which 0.5.0
+X NEW indirect devel/ruby-pastel 0.8.0
+X NEW indirect sysutils/ruby-tty-reader 0.9.0
+X NEW indirect sysutils/ruby-tty-color 0.6.0
+X NEW indirect sysutils/ruby-tty-cursor 0.7.1
+X NEW indirect sysutils/ruby-tty-screen 0.8.2
+X NEW indirect devel/ruby-wisper 2.0.1
+X NEW MAIN sysutils/ruby-pdk 3.0.1
