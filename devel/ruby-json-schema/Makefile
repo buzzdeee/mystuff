@@ -1,6 +1,6 @@
 COMMENT =		json schema validator
 
-DISTNAME =		json-schema-4.1.1
+DISTNAME =		json-schema-4.3.0
 CATEGORIES =		devel
 HOMEPAGE =		http://github.com/voxpupuli/json-schema/
 MAINTAINER =		Sebastian Reitenbach <sebastia@openbsd.org>
