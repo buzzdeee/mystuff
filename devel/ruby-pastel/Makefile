@@ -13,6 +13,6 @@ MODULES =		lang/ruby
 CONFIGURE_STYLE = 	ruby gem
 
 BUILD_DEPENDS +=	${RUN_DEPENDS}
-RUN_DEPENDS +=	sysutils/ruby-tty-color,${MODRUBY_FLAVOR}>=0.5,<1
+RUN_DEPENDS +=		sysutils/ruby-tty-color,${MODRUBY_FLAVOR}>=0.5,<1
 
 .include <bsd.port.mk>
