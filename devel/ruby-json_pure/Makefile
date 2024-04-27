@@ -3,7 +3,7 @@ COMMENT=		JSON implementation for Ruby
 DISTNAME=		json_pure-2.7.2
 CATEGORIES=		devel
 
-HOMEPAGE=		http://flori.github.com/json/
+HOMEPAGE=		https://github.com/flori/json
 MAINTAINER=		Sebastian Reitenbach <sebastia@openbsd.org>
 
 # GPLv2
