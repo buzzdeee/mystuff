@@ -9,12 +9,6 @@ ${GEM_LIB}/gems/${DISTNAME}/exe/pdk
 ${GEM_LIB}/gems/${DISTNAME}/lib/
 ${GEM_LIB}/gems/${DISTNAME}/lib/pdk/
 ${GEM_LIB}/gems/${DISTNAME}/lib/pdk.rb
-${GEM_LIB}/gems/${DISTNAME}/lib/pdk/analytics/
-${GEM_LIB}/gems/${DISTNAME}/lib/pdk/analytics.rb
-${GEM_LIB}/gems/${DISTNAME}/lib/pdk/analytics/client/
-${GEM_LIB}/gems/${DISTNAME}/lib/pdk/analytics/client/google_analytics.rb
-${GEM_LIB}/gems/${DISTNAME}/lib/pdk/analytics/client/noop.rb
-${GEM_LIB}/gems/${DISTNAME}/lib/pdk/analytics/util.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/pdk/answer_file.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/pdk/bolt.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/pdk/cli/
@@ -69,7 +63,6 @@ ${GEM_LIB}/gems/${DISTNAME}/lib/pdk/cli/util/update_manager_printer.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/pdk/cli/validate.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/pdk/config/
 ${GEM_LIB}/gems/${DISTNAME}/lib/pdk/config.rb
-${GEM_LIB}/gems/${DISTNAME}/lib/pdk/config/analytics_schema.json
 ${GEM_LIB}/gems/${DISTNAME}/lib/pdk/config/errors.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/pdk/config/ini_file.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/pdk/config/ini_file_setting.rb
