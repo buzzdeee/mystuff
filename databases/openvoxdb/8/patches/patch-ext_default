@@ -6,7 +6,7 @@ Index: ext/default
  
  # Location of your Java binary (version 8)
 -JAVA_BIN="/usr/bin/java"
-+JAVA_BIN="$(javaPathHelper -c puppetdb)"
++JAVA_BIN="$(javaPathHelper -c openvoxdb)"
  
  # Modify this if you'd like to change the memory allocation, enable JMX, etc
  JAVA_ARGS="-Xmx192m -Djdk.tls.ephemeralDHKeySize=2048"

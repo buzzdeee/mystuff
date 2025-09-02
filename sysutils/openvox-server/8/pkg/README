@@ -9,8 +9,8 @@ dependencies usually bundled with Puppetserver have to be installed
 manually into Puppetserver:
 
 To install these Ruby gems into Puppetserver:
-# puppetserver gem install --no-document puppet hiera-eyaml \
-	hiera ipaddress msgpack facter
+# puppetserver gem install --no-document openvox hiera-eyaml \
+	hiera ipaddress msgpack openfact
 
 You may not need hiera-eyaml, or ipaddress gem, on the
 other hand, your Puppet modules might rely on other gems.
@@ -19,4 +19,4 @@ If you're using PuppetDB, you have to copy over the PuppetDB termini
 into Puppetservers Puppet lib directory:
 
 cp -r ${LOCALBASE}/share/puppetlabs/puppet/puppet/ \
-	${LOCALSTATEDIR}/puppetlabs/puppetserver/data/jruby-gems/gems/puppet-8*/lib/
+	${LOCALSTATEDIR}/puppetlabs/puppetserver/data/jruby-gems/gems/openvox-8*/lib/

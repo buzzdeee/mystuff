@@ -6,7 +6,7 @@ Index: ext/default
  
  # Location of your Java binary (version 8)
 -JAVA_BIN="/usr/bin/java"
-+JAVA_BIN="$(/usr/local/bin/javaPathHelper -c puppetserver)"
++JAVA_BIN="$(/usr/local/bin/javaPathHelper -c openvox-server)"
  
  # Modify this if you'd like to change the memory allocation, enable JMX, etc
  JAVA_ARGS="-Xms2g -Xmx2g -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger"
