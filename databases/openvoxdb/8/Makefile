@@ -6,6 +6,7 @@ DISTNAME=	openvoxdb-$V
 PKGNAME-plugin= openvoxdb-termini-$V
 CATEGORIES=	databases
 
+HOMEPAGE=	https://voxpupuli.org/openvox/
 MAINTAINER=	Sebastian Reitenbach <sebastia@openbsd.org>
 
 SITES=		https://s3.osuosl.org/openvox-artifacts/openvoxdb/${V}/
