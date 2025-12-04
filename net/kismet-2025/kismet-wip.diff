@@ -1,0 +1,802 @@
+? Kismet-20240227-07-44-27-1.kismet
+? Kismet-20240227-07-44-27-1.kismet-journal
+? Kismet-20240227-07-45-02-1.kismet
+? Kismet-20240227-07-45-02-1.kismet-journal
+? kismet-wip.diff
+Index: Makefile
+===================================================================
+RCS file: /cvs/ports/net/kismet/Makefile,v
+diff -u -p -u -r1.53 Makefile
+--- Makefile	27 Sep 2023 14:18:12 -0000	1.53
++++ Makefile	28 Feb 2024 20:02:43 -0000
+@@ -1,20 +1,17 @@
+-# Much help came from Alexandre Anriot, Robert Nagy, Bernd Ahlers,
+-# and, last but not least, Pedro la Peu.
+-
+ COMMENT=	802.11 layer2 wireless network detector, sniffer, and IDS
+ 
+ # No wireless capabilities
+ NOT_FOR_ARCHS=	m88k
+ 
+-V=		2016-07-R1
++V=		2024-02-R1
++GH_ACCOUNT=	kismetwireless
++GH_PROJECT=	kismet
++GH_COMMIT=	ccd95cefba3fc31d1385a5766e1e2a135dd8b45f
+ DISTNAME=	kismet-${V}
+ PKGNAME=	kismet-${V:S,-,,g}
+ CATEGORIES=	net security
+-REVISION=	1
+ 
+ HOMEPAGE=	https://www.kismetwireless.net/
+-SITES=		${HOMEPAGE}code/
+-EXTRACT_SUFX=	.tar.xz
+ 
+ MAINTAINER=	Sebastian Reitenbach <sebastia@openbsd.org>
+ 
+@@ -22,6 +19,7 @@ MAINTAINER=	Sebastian Reitenbach <sebast
+ PERMIT_PACKAGE=	Yes
+ 
+ COMPILER =		base-clang ports-gcc base-gcc
++MODULES =		lang/python
+ 
+ # "old" is required for setting --sysconfdir
+ CONFIGURE_STYLE=	gnu old
+@@ -31,7 +29,8 @@ SUBST_VARS+=		CONFDIR
+ 
+ CONFIGURE_ARGS=		--sysconfdir=${CONFDIR} \
+ 			--mandir=${PREFIX}/man \
+-			--with-suidgroup=_kismet
++			--with-suidgroup=_kismet \
++			--disable-wifi-coconut
+ 
+ CONFIGURE_ENV=		CPPFLAGS="-I${X11BASE}/include -I${LOCALBASE}/include" \
+ 			LDFLAGS="-L${X11BASE}/lib -L${LOCALBASE}/lib"
+@@ -41,23 +40,47 @@ USE_GMAKE=		Yes
+ SAMPLES_DIR=		${DESTDIR}${LOCALBASE}/share/examples/kismet
+ FAKE_FLAGS+=		ETC=${SAMPLES_DIR}
+ 
+-# They don't have tests.
+-NO_TEST=		Yes
+-
+-WANTLIB+=		c m panel pcap ${COMPILER_LIBCXX} curses util pcre
+-LIB_DEPENDS=		devel/pcre
+-RUN_DEPENDS=		net/wireshark,-text
++WANTLIB+=		c m pcap ${COMPILER_LIBCXX} util
++WANTLIB += absl_bad_optional_access absl_bad_variant_access absl_base
++WANTLIB += absl_city absl_civil_time absl_cord absl_cord_internal
++WANTLIB += absl_cordz_functions absl_cordz_handle absl_cordz_info
++WANTLIB += absl_crc32c absl_crc_cord_state absl_crc_cpu_detect
++WANTLIB += absl_crc_internal absl_debugging_internal absl_demangle_internal
++WANTLIB += absl_die_if_null absl_examine_stack absl_exponential_biased
++WANTLIB += absl_flags_commandlineflag absl_flags_commandlineflag_internal
++WANTLIB += absl_flags_config absl_flags_internal absl_flags_marshalling
++WANTLIB += absl_flags_private_handle_accessor absl_flags_program_name
++WANTLIB += absl_flags_reflection absl_graphcycles_internal absl_hash
++WANTLIB += absl_hashtablez_sampler absl_int128 absl_kernel_timeout_internal
++WANTLIB += absl_log_entry absl_log_globals absl_log_initialize
++WANTLIB += absl_log_internal_check_op absl_log_internal_conditions
++WANTLIB += absl_log_internal_format absl_log_internal_globals
++WANTLIB += absl_log_internal_log_sink_set absl_log_internal_message
++WANTLIB += absl_log_internal_nullguard absl_log_internal_proto
++WANTLIB += absl_log_severity absl_log_sink absl_low_level_hash
++WANTLIB += absl_malloc_internal absl_raw_hash_set absl_raw_logging_internal
++WANTLIB += absl_spinlock_wait absl_stacktrace absl_status absl_statusor
++WANTLIB += absl_str_format_internal absl_strerror absl_string_view
++WANTLIB += absl_strings absl_strings_internal absl_symbolize absl_synchronization
++WANTLIB += absl_throw_delegate absl_time absl_time_zone crypto
++WANTLIB += execinfo pcre2-8 protobuf protobuf-c sqlite3 ssl utf8_range
++WANTLIB += utf8_validity websockets z atomic usb-1.0
++WANTLIB += absl_log_internal_fnmatch absl_vlog_config_internal
++WANTLIB += mosquitto
++LIB_DEPENDS=		devel/protobuf-c \
++			lang/gcc/8,-libs \
++			net/mosquitto \
++			www/libwebsockets
++RUN_DEPENDS=		comms/rtl-sdr \
++			devel/py-protobuf${MODPY_FLAVOR} \
++			net/wireshark,-text \
++			net/py-websockets
+ 
+ .include <bsd.port.arch.mk>
+ 
+-post-configure:
+-	${SUBST_CMD} ${WRKSRC}/conf/kismet.conf \
+-			${WRKSRC}/man/kismet_drone.conf.5
+-	cd ${WRKSRC} && ${GMAKE} depend
+-
+ post-install:
+ 	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/kismet
+-	${INSTALL_DATA} ${WRKSRC}/README \
++	${INSTALL_DATA} ${WRKSRC}/README.SSL \
+ 			${PREFIX}/share/doc/kismet
+ 	@cd ${WRKSRC} && ${GMAKE} binsuidinstall
+ 
+Index: distinfo
+===================================================================
+RCS file: /cvs/ports/net/kismet/distinfo,v
+diff -u -p -u -r1.9 distinfo
+--- distinfo	3 Mar 2019 23:11:04 -0000	1.9
++++ distinfo	28 Feb 2024 20:02:43 -0000
+@@ -1,2 +1,2 @@
+-SHA256 (kismet-2016-07-R1.tar.xz) = vbIfFTMR8f87FmIb8NZ0D2Y2m/CYKwoonJoSr4hH4jc=
+-SIZE (kismet-2016-07-R1.tar.xz) = 709364
++SHA256 (kismet-2024-02-R1-ccd95cef.tar.gz) = OgSsCUcpqbUx1lZky1YUjbBUdxLnAHEJmsiWrnbmrRw=
++SIZE (kismet-2024-02-R1-ccd95cef.tar.gz) = 13382995
+Index: patches/patch-conf_kismet_conf_in
+===================================================================
+RCS file: patches/patch-conf_kismet_conf_in
+diff -N patches/patch-conf_kismet_conf_in
+--- patches/patch-conf_kismet_conf_in	11 Mar 2022 19:46:11 -0000	1.8
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,44 +0,0 @@
+-Index: conf/kismet.conf.in
+---- conf/kismet.conf.in.orig
+-+++ conf/kismet.conf.in
+-@@ -11,7 +11,7 @@ version=2009-newcore
+- # servername=Kismet Server
+- 
+- # Prefix of where we log (as used in the logtemplate later)
+--# logprefix=/some/path/to/logs
+-+logprefix=${LOCALSTATEDIR}/log/kismet
+- 
+- # Do we process the contents of data frames?  If this is enabled, data
+- # frames will be truncated to the headers only immediately after frame type
+-@@ -30,6 +30,8 @@ allowplugins=true
+- # ncsource=wlan0
+- # ncsource=wifi0:type=madwifi
+- # ncsource=wlan0:name=intel,hop=false,channel=11
+-+# Generic OpenBSD example
+-+# ncsource=rum0:type=radiotap_bsd
+- 
+- # Comma-separated list of sources to enable.  This is only needed if you defined
+- # multiple sources and only want to enable some of them.  By default, all defined
+-@@ -122,10 +124,7 @@ maxbacklog=5000
+- # OUI file, expected format 00:11:22<tab>manufname
+- # IEEE OUI file used to look up manufacturer info.  We default to the
+- # wireshark one since most people have that.
+--ouifile=/etc/manuf
+--ouifile=/usr/share/wireshark/wireshark/manuf
+--ouifile=/usr/share/wireshark/manuf
+--ouifile=/Applications/Wireshark.app/Contents/Resources/share/wireshark/manuf
+-+ouifile=${LOCALBASE}/share/wireshark/manuf
+- 
+- # Do we have a GPS?
+- gps=true
+-@@ -278,8 +277,8 @@ alertbacklog=50
+- logtypes=pcapdump,gpsxml,netxml,nettxt,alert
+- 
+- # Format of the pcap dump (PPI or 80211)
+--pcapdumpformat=ppi
+--# pcapdumpformat=80211
+-+# pcapdumpformat=ppi
+-+pcapdumpformat=80211
+- 
+- # Default log title
+- logdefault=Kismet
+Index: patches/patch-config_h_in
+===================================================================
+RCS file: patches/patch-config_h_in
+diff -N patches/patch-config_h_in
+--- patches/patch-config_h_in	11 Mar 2022 19:46:11 -0000	1.3
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,14 +0,0 @@
+-shut up:
+-warning: using directive refers to implicitly-defined namespace 'std'
+-
+-Index: config.h.in
+---- config.h.in.orig
+-+++ config.h.in
+-@@ -317,6 +317,7 @@
+- 
+- /* Namespace (on non-obj-c files) */
+- #ifndef __IN_OBJC_FILE__
+-+#include <iosfwd>
+- using namespace std;
+- #define __STL_USE_NAMESPACES
+- #endif
+Index: patches/patch-kis_panel_widgets_cc
+===================================================================
+RCS file: patches/patch-kis_panel_widgets_cc
+diff -N patches/patch-kis_panel_widgets_cc
+--- patches/patch-kis_panel_widgets_cc	11 Mar 2022 19:46:11 -0000	1.2
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,14 +0,0 @@
+-explicitly cast
+-
+-Index: kis_panel_widgets.cc
+---- kis_panel_widgets.cc.orig
+-+++ kis_panel_widgets.cc
+-@@ -2582,7 +2582,7 @@ int Kis_Single_Input::KeyPress(int in_key) {
+- 	// and if we have room, insert it and scroll to the right
+- 	if ((int) text.length() < max_len && 
+- 		filter_map.find(in_key) != filter_map.end()) {
+--		char ins[2] = { in_key, 0 };
+-+		char ins[2] = { (char)in_key, 0 };
+- 		text.insert(inp_pos, ins);
+- 		inp_pos++;
+- 
+Index: patches/patch-macaddr_h
+===================================================================
+RCS file: patches/patch-macaddr_h
+diff -N patches/patch-macaddr_h
+--- patches/patch-macaddr_h	11 Mar 2022 19:46:11 -0000	1.5
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,14 +0,0 @@
+-silence clan warning
+-
+-Index: macaddr.h
+---- macaddr.h.orig
+-+++ macaddr.h
+-@@ -185,7 +185,7 @@ struct mac_addr {
+- 	}
+- 
+-     inline mac_addr(int in) {
+--		in = in; // Silence gcc
+-+	static_cast<void>(in);
+-         longmac = 0;
+-         longmask = 0;
+-         error = 0;
+Index: patches/patch-man_kismet_drone_conf_5
+===================================================================
+RCS file: patches/patch-man_kismet_drone_conf_5
+diff -N patches/patch-man_kismet_drone_conf_5
+--- patches/patch-man_kismet_drone_conf_5	11 Mar 2022 19:46:11 -0000	1.2
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,12 +0,0 @@
+-Index: man/kismet_drone.conf.5
+---- man/kismet_drone.conf.5.orig
+-+++ man/kismet_drone.conf.5
+-@@ -6,7 +6,7 @@
+- .SH DESCRIPTION
+- kismet_drone uses a minimalized configuration file, similar in options to the
+- main kismet server configuration file.  By default, the drone config is in
+--/usr/local/etc/kismet.conf.  A default configuration is included with Kismet but
+-+${SYSCONFDIR}/kismet/kismet.conf.  A default configuration is included with Kismet but
+- it is likely you will need to modify it to suit your hardware and preferences.
+- .SH CONFIGURATION FILE FORMAT
+- All entries are of the format directive = value
+Index: patches/patch-netracker_h
+===================================================================
+RCS file: patches/patch-netracker_h
+diff -N patches/patch-netracker_h
+--- patches/patch-netracker_h	11 Mar 2022 19:46:11 -0000	1.2
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,15 +0,0 @@
+-it's forward declared twice
+-
+-Index: netracker.h
+---- netracker.h.orig
+-+++ netracker.h
+-@@ -306,9 +306,6 @@ class Netracker { (public)
+- 		int dirty;
+- 	};
+- 
+--	// Fwd def for our map
+--	class tracked_client;
+--
+- 	class ssid_alert_data {
+- 	public:
+- 		ssid_alert_data() {
+Index: patches/patch-packetsource_bsdrt_cc
+===================================================================
+RCS file: patches/patch-packetsource_bsdrt_cc
+diff -N patches/patch-packetsource_bsdrt_cc
+--- patches/patch-packetsource_bsdrt_cc	11 Mar 2022 19:46:11 -0000	1.2
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,36 +0,0 @@
+-IFM_MAKEMODE is not defined on OpenBSD, just copying it from Linux
+-doesn't help, since our IFM_MSHIFT etc. operate on ULL, but mode
+-apparently only is of type int
+-
+-Index: packetsource_bsdrt.cc
+---- packetsource_bsdrt.cc.orig
+-+++ packetsource_bsdrt.cc
+-@@ -138,7 +138,7 @@ int Radiotap_BSD_Controller::GetMediaOpt(int& options,
+- int Radiotap_BSD_Controller::SetMediaOpt(int options, int mode) {
+- 	struct ifmediareq ifmr;
+- 	struct ifreq ifr;
+--	int *mwords;
+-+	uint64_t *mwords;
+- 
+- 	if (CheckSocket() == 0)
+- 		return 0;
+-@@ -160,7 +160,7 @@ int Radiotap_BSD_Controller::SetMediaOpt(int options, 
+- 		return 0;
+- 	}
+- 
+--	mwords = new int[ifmr.ifm_count];
+-+	mwords = new uint64_t[ifmr.ifm_count];
+- 	if (mwords == NULL) {
+- 		_MSG("BSD interface control cannot malloc interface array, out of "
+- 			 "memory or other badness.", MSGFLAG_PRINTERROR);
+-@@ -179,6 +179,10 @@ int Radiotap_BSD_Controller::SetMediaOpt(int options, 
+- 	memset(&ifr, 0, sizeof(ifr));
+- 	strncpy(ifr.ifr_name, dev.c_str(), sizeof(ifr.ifr_name));
+- 	ifr.ifr_media = (ifmr.ifm_current &~ IFM_OMASK) | options;
+-+#ifndef IFM_MAKEMODE
+-+#define IFM_MAKEMODE(mode) \
+-+	((((unsigned long long)mode) << IFM_MSHIFT) & IFM_MMASK)
+-+#endif
+- 	ifr.ifr_media = (ifr.ifr_media &~ IFM_MMASK) | IFM_MAKEMODE(mode);
+- 
+- 	if (ioctl(sock, SIOCSIFMEDIA, (caddr_t) &ifr) < 0) {
+Index: patches/patch-packetsource_pcap_cc
+===================================================================
+RCS file: patches/patch-packetsource_pcap_cc
+diff -N patches/patch-packetsource_pcap_cc
+--- patches/patch-packetsource_pcap_cc	11 Mar 2022 19:46:11 -0000	1.2
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,14 +0,0 @@
+-Index: packetsource_pcap.cc
+---- packetsource_pcap.cc.orig
+-+++ packetsource_pcap.cc
+-@@ -60,6 +60,10 @@ extern "C" {
+- #include <netinet/if_ether.h>
+- #include <dev/ic/if_wi_ieee.h>
+- 
+-+#ifndef IEEE80211_CHAN_TURBO
+-+#define IEEE80211_CHAN_TURBO 0x0010
+-+#endif
+-+
+- #ifdef HAVE_RADIOTAP
+- #include <net80211/ieee80211.h>
+- #include <net80211/ieee80211_ioctl.h>
+Index: patches/patch-tcpclient_cc
+===================================================================
+RCS file: patches/patch-tcpclient_cc
+diff -N patches/patch-tcpclient_cc
+--- patches/patch-tcpclient_cc	11 Mar 2022 19:46:11 -0000	1.5
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,21 +0,0 @@
+-Index: tcpclient.cc
+---- tcpclient.cc.orig
+-+++ tcpclient.cc
+-@@ -75,7 +75,7 @@ int TcpClient::Connect(const char *in_remotehost, shor
+-     local_sock.sin_addr.s_addr = htonl(INADDR_ANY);
+-     local_sock.sin_port = htons(0);
+- 
+--    if (bind(cli_fd, (struct sockaddr *) &local_sock, sizeof(local_sock)) < 0) {
+-+    if (::bind(cli_fd, (struct sockaddr *) &local_sock, sizeof(local_sock)) < 0) {
+-         snprintf(errstr, 1024, "TCP client bind() failed: %s", strerror(errno));
+-         globalreg->messagebus->InjectMessage(errstr, MSGFLAG_ERROR);
+- 		close(cli_fd);
+-@@ -170,7 +170,7 @@ int TcpClient::ConnectSync(const char *in_remotehost, 
+-     local_sock.sin_addr.s_addr = htonl(INADDR_ANY);
+-     local_sock.sin_port = htons(0);
+- 
+--    if (bind(cli_fd, (struct sockaddr *) &local_sock, sizeof(local_sock)) < 0) {
+-+    if (::bind(cli_fd, (struct sockaddr *) &local_sock, sizeof(local_sock)) < 0) {
+-         snprintf(errstr, 1024, "TCP client bind() failed: %s", strerror(errno));
+-         globalreg->messagebus->InjectMessage(errstr, MSGFLAG_ERROR);
+- 		close(cli_fd);
+Index: patches/patch-tcpserver_cc
+===================================================================
+RCS file: patches/patch-tcpserver_cc
+diff -N patches/patch-tcpserver_cc
+--- patches/patch-tcpserver_cc	11 Mar 2022 19:46:11 -0000	1.6
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,12 +0,0 @@
+-Index: tcpserver.cc
+---- tcpserver.cc.orig
+-+++ tcpserver.cc
+-@@ -84,7 +84,7 @@ int TcpServer::EnableServer() {
+-     }
+- 
+-     // Bind the socket
+--    if (bind(serv_fd, (struct sockaddr *) &serv_sock, sizeof(serv_sock)) < 0) {
+-+    if (::bind(serv_fd, (struct sockaddr *) &serv_sock, sizeof(serv_sock)) < 0) {
+-         snprintf(errstr, STATUS_MAX, "TCP server bind() failed: %s",
+-                  strerror(errno));
+-         globalreg->messagebus->InjectMessage(errstr, MSGFLAG_ERROR);
+Index: patches/patch-unixdomainserver_cc
+===================================================================
+RCS file: patches/patch-unixdomainserver_cc
+diff -N patches/patch-unixdomainserver_cc
+--- patches/patch-unixdomainserver_cc	11 Mar 2022 19:46:11 -0000	1.2
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,12 +0,0 @@
+-Index: unixdomainserver.cc
+---- unixdomainserver.cc.orig
+-+++ unixdomainserver.cc
+-@@ -64,7 +64,7 @@ int UnixDomainServer::EnableServer() {
+-     }
+- 
+-     // Bind the socket
+--    if (bind(serv_fd, (struct sockaddr *) &serv_sock, sizeof(serv_sock)) < 0) {
+-+    if (::bind(serv_fd, (struct sockaddr *) &serv_sock, sizeof(serv_sock)) < 0) {
+-         _MSG("Unix domain server bind() failed: " + string(strerror(errno)),
+-              MSGFLAG_ERROR);
+-         return -1;
+Index: patches/patch-uuid_h
+===================================================================
+RCS file: patches/patch-uuid_h
+diff -N patches/patch-uuid_h
+--- patches/patch-uuid_h	11 Mar 2022 19:46:11 -0000	1.2
++++ /dev/null	1 Jan 1970 00:00:00 -0000
+@@ -1,16 +0,0 @@
+-silence warnings
+-
+-Index: uuid.h
+---- uuid.h.orig
+-+++ uuid.h
+-@@ -113,7 +113,9 @@ class uuid { (public)
+- 		char ids[38];
+- 		snprintf(ids, 38, "%08x-%04hx-%04hx-%04hx-%02hx%02hx%02hx%02hx%02hx%02hx",
+- 				 (unsigned int) *time_low, *time_mid, *time_hi, *clock_seq,
+--				 node[0], node[1], node[2], node[3], node[4], node[5]);
+-+				 (unsigned short)node[0], (unsigned short)node[1],
+-+				 (unsigned short)node[2], (unsigned short)node[3],
+-+				 (unsigned short)node[4], (unsigned short)node[5]);
+- 		return string(ids);
+- 	}
+- 
+Index: pkg/MESSAGE
+===================================================================
+RCS file: /cvs/ports/net/kismet/pkg/MESSAGE,v
+diff -u -p -u -r1.3 MESSAGE
+--- pkg/MESSAGE	3 Mar 2019 23:11:04 -0000	1.3
++++ pkg/MESSAGE	28 Feb 2024 20:02:43 -0000
+@@ -1,4 +1,4 @@
+-${PREFIX}/bin/kismet_capture has been installed setuid root, with read/execute
++${PREFIX}/bin/kismet_cap_* have been installed setuid root, with read/execute
+ access granted only to users in the _kismet group. For normal interactive
+ use of Kismet, add your username to this group:
+ 
+Index: pkg/PLIST
+===================================================================
+RCS file: /cvs/ports/net/kismet/pkg/PLIST,v
+diff -u -p -u -r1.5 PLIST
+--- pkg/PLIST	8 Nov 2022 11:14:58 -0000	1.5
++++ pkg/PLIST	28 Feb 2024 20:02:43 -0000
+@@ -1,44 +1,330 @@
++@conflict kismet-gpsmap-*
+ @pkgpath net/kismet
+ @pkgpath net/kismet,-main
+ @pkgpath net/kismet,-gpsmap
+-@conflict kismet-gpsmap-*
+ @newgroup _kismet:547
+ @newuser _kismet:547:_kismet::Kismet WLAN detector:/nonexistent:/sbin/nologin
+-bin/kismet
++@bin bin/kismet
+ @mode 4550
+ @group _kismet
+-@bin bin/kismet_capture
++bin/kismet_cap_freaklabs_zigbee
++@bin bin/kismet_cap_kismetdb
++@bin bin/kismet_cap_nrf_51822
++@bin bin/kismet_cap_nrf_52840
++@bin bin/kismet_cap_nrf_mousejack
++@bin bin/kismet_cap_nxp_kw41z
++@bin bin/kismet_cap_openbsd_wifi
++@bin bin/kismet_cap_pcapfile
++@bin bin/kismet_cap_rz_killerbee
++bin/kismet_cap_sdr_rtl433
++bin/kismet_cap_sdr_rtladsb
++bin/kismet_cap_sdr_rtlamr
++@bin bin/kismet_cap_ti_cc_2531
++@bin bin/kismet_cap_ti_cc_2540
+ @mode
+ @group
+-@bin bin/kismet_client
+-@bin bin/kismet_drone
+-@bin bin/kismet_server
+-@man man/man1/kismet.1
+-@man man/man1/kismet_drone.1
+-@man man/man5/kismet.conf.5
+-@man man/man5/kismet_drone.conf.5
++@bin bin/kismet_discovery
++bin/kismet_server
++@bin bin/kismetdb_clean
++@bin bin/kismetdb_dump_devices
++@bin bin/kismetdb_statistics
++@bin bin/kismetdb_strip_packets
++@bin bin/kismetdb_to_gpx
++@bin bin/kismetdb_to_kml
++@bin bin/kismetdb_to_pcap
++@bin bin/kismetdb_to_wiglecsv
++lib/pkgconfig/kismet.pc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee-2018.7.0-py${MODPY_VERSION}.egg-info/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee-2018.7.0-py${MODPY_VERSION}.egg-info/PKG-INFO
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee-2018.7.0-py${MODPY_VERSION}.egg-info/SOURCES.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee-2018.7.0-py${MODPY_VERSION}.egg-info/dependency_links.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee-2018.7.0-py${MODPY_VERSION}.egg-info/entry_points.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee-2018.7.0-py${MODPY_VERSION}.egg-info/requires.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee-2018.7.0-py${MODPY_VERSION}.egg-info/top_level.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/__init__.py
++${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/${MODPY_PYCACHE}/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/${MODPY_PYCACHE}kismet_cap_freaklabs_zigbee.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/kismet_cap_freaklabs_zigbee.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/kismetexternal/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/kismetexternal/__init__.py
++${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/kismetexternal/${MODPY_PYCACHE}/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/kismetexternal/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/kismetexternal/${MODPY_PYCACHE}datasource_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/kismetexternal/${MODPY_PYCACHE}eventbus_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/kismetexternal/${MODPY_PYCACHE}http_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/kismetexternal/${MODPY_PYCACHE}kismet_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/kismetexternal/${MODPY_PYCACHE}linuxbluetooth_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/kismetexternal/datasource_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/kismetexternal/eventbus_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/kismetexternal/http_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/kismetexternal/kismet_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureFreaklabsZigbee/kismetexternal/linuxbluetooth_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433-2020.10.1-py${MODPY_VERSION}.egg-info/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433-2020.10.1-py${MODPY_VERSION}.egg-info/PKG-INFO
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433-2020.10.1-py${MODPY_VERSION}.egg-info/SOURCES.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433-2020.10.1-py${MODPY_VERSION}.egg-info/dependency_links.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433-2020.10.1-py${MODPY_VERSION}.egg-info/entry_points.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433-2020.10.1-py${MODPY_VERSION}.egg-info/requires.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433-2020.10.1-py${MODPY_VERSION}.egg-info/top_level.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/__init__.py
++${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/${MODPY_PYCACHE}/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/${MODPY_PYCACHE}kismet_cap_sdr_rtl433.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/kismet_cap_sdr_rtl433.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/kismetexternal/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/kismetexternal/__init__.py
++${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/kismetexternal/${MODPY_PYCACHE}/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/kismetexternal/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/kismetexternal/${MODPY_PYCACHE}datasource_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/kismetexternal/${MODPY_PYCACHE}eventbus_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/kismetexternal/${MODPY_PYCACHE}http_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/kismetexternal/${MODPY_PYCACHE}kismet_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/kismetexternal/${MODPY_PYCACHE}linuxbluetooth_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/kismetexternal/datasource_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/kismetexternal/eventbus_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/kismetexternal/http_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/kismetexternal/kismet_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtl433/kismetexternal/linuxbluetooth_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb-2020.10.1-py${MODPY_VERSION}.egg-info/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb-2020.10.1-py${MODPY_VERSION}.egg-info/PKG-INFO
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb-2020.10.1-py${MODPY_VERSION}.egg-info/SOURCES.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb-2020.10.1-py${MODPY_VERSION}.egg-info/dependency_links.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb-2020.10.1-py${MODPY_VERSION}.egg-info/entry_points.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb-2020.10.1-py${MODPY_VERSION}.egg-info/requires.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb-2020.10.1-py${MODPY_VERSION}.egg-info/top_level.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/__init__.py
++${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/${MODPY_PYCACHE}/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/${MODPY_PYCACHE}kismet_cap_sdr_rtladsb.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/kismet_cap_sdr_rtladsb.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/kismetexternal/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/kismetexternal/__init__.py
++${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/kismetexternal/${MODPY_PYCACHE}/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/kismetexternal/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/kismetexternal/${MODPY_PYCACHE}datasource_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/kismetexternal/${MODPY_PYCACHE}eventbus_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/kismetexternal/${MODPY_PYCACHE}http_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/kismetexternal/${MODPY_PYCACHE}kismet_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/kismetexternal/${MODPY_PYCACHE}linuxbluetooth_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/kismetexternal/datasource_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/kismetexternal/eventbus_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/kismetexternal/http_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/kismetexternal/kismet_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/kismetexternal/linuxbluetooth_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/rtlsdr/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/rtlsdr/__init__.py
++${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/rtlsdr/${MODPY_PYCACHE}/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtladsb/rtlsdr/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr-2020.10.1-py${MODPY_VERSION}.egg-info/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr-2020.10.1-py${MODPY_VERSION}.egg-info/PKG-INFO
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr-2020.10.1-py${MODPY_VERSION}.egg-info/SOURCES.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr-2020.10.1-py${MODPY_VERSION}.egg-info/dependency_links.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr-2020.10.1-py${MODPY_VERSION}.egg-info/entry_points.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr-2020.10.1-py${MODPY_VERSION}.egg-info/requires.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr-2020.10.1-py${MODPY_VERSION}.egg-info/top_level.txt
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/__init__.py
++${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/${MODPY_PYCACHE}/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/${MODPY_PYCACHE}kismet_cap_sdr_rtlamr.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/kismet_cap_sdr_rtlamr.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/kismetexternal/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/kismetexternal/__init__.py
++${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/kismetexternal/${MODPY_PYCACHE}/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/kismetexternal/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/kismetexternal/${MODPY_PYCACHE}datasource_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/kismetexternal/${MODPY_PYCACHE}eventbus_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/kismetexternal/${MODPY_PYCACHE}http_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/kismetexternal/${MODPY_PYCACHE}kismet_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/kismetexternal/${MODPY_PYCACHE}linuxbluetooth_pb2.${MODPY_PYC_MAGIC_TAG}pyc
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/kismetexternal/datasource_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/kismetexternal/eventbus_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/kismetexternal/http_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/kismetexternal/kismet_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/kismetexternal/linuxbluetooth_pb2.py
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/rtlsdr/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/rtlsdr/__init__.py
++${MODPY_COMMENT}lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/rtlsdr/${MODPY_PYCACHE}/
++lib/python${MODPY_VERSION}/site-packages/KismetCaptureRtlamr/rtlsdr/${MODPY_PYCACHE}__init__.${MODPY_PYC_MAGIC_TAG}pyc
+ share/doc/kismet/
+-share/doc/kismet/README
++share/doc/kismet/README.SSL
+ share/examples/kismet/
+ @mode 770
+ @sample ${CONFDIR}/
+ @mode
+ share/examples/kismet/kismet.conf
+ @sample ${CONFDIR}/kismet.conf
+-share/examples/kismet/kismet_drone.conf
+-@sample ${CONFDIR}/kismet_drone.conf
++share/examples/kismet/kismet_80211.conf
++@sample ${CONFDIR}/kismet_80211.conf
++share/examples/kismet/kismet_alerts.conf
++@sample ${CONFDIR}/kismet_alerts.conf
++share/examples/kismet/kismet_filter.conf
++@sample ${CONFDIR}/kismet_filter.conf
++share/examples/kismet/kismet_httpd.conf
++@sample ${CONFDIR}/kismet_httpd.conf
++share/examples/kismet/kismet_logging.conf
++@sample ${CONFDIR}/kismet_logging.conf
++share/examples/kismet/kismet_memory.conf
++@sample ${CONFDIR}/kismet_memory.conf
++share/examples/kismet/kismet_uav.conf
++@sample ${CONFDIR}/kismet_uav.conf
++share/examples/kismet/kismet_wardrive.conf
++@sample ${CONFDIR}/kismet_wardrive.conf
+ share/kismet/
+-share/kismet/wav/
+-share/kismet/wav/alert.wav
+ @mode 770
+ @owner _kismet
+ @group _kismet
+ @sample /var/log/kismet/
++@extraunexec rm -rf ${LOCALSTATEDIR}/log/kismet
+ @mode
+ @owner
+ @group
+-share/kismet/wav/gpslock.wav
+-share/kismet/wav/gpslost.wav
+-share/kismet/wav/new.wav
+-share/kismet/wav/packet.wav
+-@extraunexec rm -rf ${LOCALSTATEDIR}/log/kismet
++share/kismet/httpd/
++share/kismet/httpd/adsb_map_panel.html
++share/kismet/httpd/channels.html
++share/kismet/httpd/credit.html
++share/kismet/httpd/css/
++share/kismet/httpd/css/Control.Loading.css
++share/kismet/httpd/css/dark.css
++share/kismet/httpd/css/fontawesome.min.css
++share/kismet/httpd/css/grid.css
++share/kismet/httpd/css/ie.css
++share/kismet/httpd/css/ie6.css
++share/kismet/httpd/css/images/
++share/kismet/httpd/css/images/collapsed.gif
++share/kismet/httpd/css/images/expanded.gif
++share/kismet/httpd/css/images/ui-icons_222222_256x240.png
++share/kismet/httpd/css/images/ui-icons_444444_256x240.png
++share/kismet/httpd/css/images/ui-icons_4b8e0b_256x240.png
++share/kismet/httpd/css/images/ui-icons_555555_256x240.png
++share/kismet/httpd/css/images/ui-icons_777620_256x240.png
++share/kismet/httpd/css/images/ui-icons_777777_256x240.png
++share/kismet/httpd/css/images/ui-icons_a83300_256x240.png
++share/kismet/httpd/css/images/ui-icons_cc0000_256x240.png
++share/kismet/httpd/css/images/ui-icons_cccccc_256x240.png
++share/kismet/httpd/css/images/ui-icons_ffffff_256x240.png
++share/kismet/httpd/css/images/uiTabsArrow.png
++share/kismet/httpd/css/jquery-ui.min.css
++share/kismet/httpd/css/jquery.contextMenu.min.css
++share/kismet/httpd/css/jquery.jspanel.min.css
++share/kismet/httpd/css/jquery.kismet.alert.css
++share/kismet/httpd/css/jquery.kismet.auth.css
++share/kismet/httpd/css/jquery.kismet.battery.css
++share/kismet/httpd/css/jquery.kismet.channeldisplay.css
++share/kismet/httpd/css/jquery.kismet.gps.css
++share/kismet/httpd/css/jquery.kismet.messagebus.css
++share/kismet/httpd/css/jqueryui-editable.css
++share/kismet/httpd/css/kismet-dark.css
++share/kismet/httpd/css/kismet.css
++share/kismet/httpd/css/kismet.ui.base.css
++share/kismet/httpd/css/kismet.ui.datasources.css
++share/kismet/httpd/css/kismet.ui.gadgets.css
++share/kismet/httpd/css/kismet.ui.iconbar.css
++share/kismet/httpd/css/kismet.ui.settings.css
++share/kismet/httpd/css/kismet.ui.sidebar.css
++share/kismet/httpd/css/kismet.ui.tabpane.css
++share/kismet/httpd/css/layout-default-1.4.0.css
++share/kismet/httpd/css/layout.css
++share/kismet/httpd/css/leaflet.css
++share/kismet/httpd/css/light.css
++share/kismet/httpd/css/morris.css
++share/kismet/httpd/css/nav.css
++share/kismet/httpd/css/pushmenu.css
++share/kismet/httpd/css/regular.min.css
++share/kismet/httpd/css/reset.css
++share/kismet/httpd/css/solid.min.css
++share/kismet/httpd/css/spectrum.css
++share/kismet/httpd/css/tabulator.min.css
++share/kismet/httpd/css/tabulator_midnight.min.css
++share/kismet/httpd/css/text.css
++share/kismet/httpd/css/tooltipster.bundle.min.css
++share/kismet/httpd/css/v4-font-face.min.css
++share/kismet/httpd/css/v4-shims.min.css
++share/kismet/httpd/favicon.ico
++share/kismet/httpd/fonts/
++share/kismet/httpd/fonts/jsglyph.eot
++share/kismet/httpd/fonts/jsglyph.svg
++share/kismet/httpd/fonts/jsglyph.ttf
++share/kismet/httpd/fonts/jsglyph.woff
++share/kismet/httpd/images/
++share/kismet/httpd/images/collapsed.gif
++share/kismet/httpd/images/expanded.gif
++share/kismet/httpd/images/icon_no_battery_power.svg
++share/kismet/httpd/images/sort_asc.png
++share/kismet/httpd/images/sort_asc_disabled.png
++share/kismet/httpd/images/sort_both.png
++share/kismet/httpd/images/sort_desc.png
++share/kismet/httpd/images/sort_desc_disabled.png
++share/kismet/httpd/images/uiTabsArrow.png
++share/kismet/httpd/index.html
++share/kismet/httpd/js/
++share/kismet/httpd/js/Control.Loading.js
++share/kismet/httpd/js/Leaflet.MultiOptionsPolyline.min.js
++share/kismet/httpd/js/chart.umd.js
++share/kismet/httpd/js/chroma.min.js
++share/kismet/httpd/js/clipboard.min.js
++share/kismet/httpd/js/d3.v3.min.js
++share/kismet/httpd/js/jcanvas.min.js
++share/kismet/httpd/js/jquery-3.1.0.min.js
++share/kismet/httpd/js/jquery-fluid16.js
++share/kismet/httpd/js/jquery-ui.min.js
++share/kismet/httpd/js/jquery.ajax.binary.js
++share/kismet/httpd/js/jquery.contextMenu.min.js
++share/kismet/httpd/js/jquery.debounce.min.js
++share/kismet/httpd/js/jquery.jspanel-compiled.min.js
++share/kismet/httpd/js/jquery.kismet.alert.js
++share/kismet/httpd/js/jquery.kismet.battery.js
++share/kismet/httpd/js/jquery.kismet.channeldisplay.js
++share/kismet/httpd/js/jquery.kismet.devicedata.js
++share/kismet/httpd/js/jquery.kismet.gps.js
++share/kismet/httpd/js/jquery.kismet.messagebus.js
++share/kismet/httpd/js/jquery.kismet.packetrate.js
++share/kismet/httpd/js/jquery.layout-latest.js
++share/kismet/httpd/js/jquery.sparkline.min.js
++share/kismet/httpd/js/jquery.storageapi.min.js
++share/kismet/httpd/js/jquery.ui.position.min.js
++share/kismet/httpd/js/jquery.ui.touch-punch.min.js
++share/kismet/httpd/js/jqueryui-editable.min.js
++share/kismet/httpd/js/js.storage.min.js
++share/kismet/httpd/js/kismet.ui.adsb.js
++share/kismet/httpd/js/kismet.ui.alerts.js
++share/kismet/httpd/js/kismet.ui.base.js
++share/kismet/httpd/js/kismet.ui.bluetooth.js
++share/kismet/httpd/js/kismet.ui.btle.js
++share/kismet/httpd/js/kismet.ui.datasources.js
++share/kismet/httpd/js/kismet.ui.dot11.js
++share/kismet/httpd/js/kismet.ui.gadgets.js
++share/kismet/httpd/js/kismet.ui.iconbar.js
++share/kismet/httpd/js/kismet.ui.js
++share/kismet/httpd/js/kismet.ui.meter.js
++share/kismet/httpd/js/kismet.ui.sensor.js
++share/kismet/httpd/js/kismet.ui.settings.js
++share/kismet/httpd/js/kismet.ui.sidebar.js
++share/kismet/httpd/js/kismet.ui.tabpane.js
++share/kismet/httpd/js/kismet.ui.theme.js
++share/kismet/httpd/js/kismet.ui.uav.js
++share/kismet/httpd/js/kismet.ui.walkthrough.js
++share/kismet/httpd/js/kismet.ui.zwave.js
++share/kismet/httpd/js/kismet.units.js
++share/kismet/httpd/js/kismet.utils.js
++share/kismet/httpd/js/leaflet.js
++share/kismet/httpd/js/msgpack.js
++share/kismet/httpd/js/pushmenu.js
++share/kismet/httpd/js/raphael.min.js
++share/kismet/httpd/js/simple-expand.min.js
++share/kismet/httpd/js/spectrum.js
++share/kismet/httpd/js/tabulator.min.js
++share/kismet/httpd/js/tooltipster.bundle.min.js
++share/kismet/httpd/webfonts/
++share/kismet/httpd/webfonts/fa-regular-400.ttf
++share/kismet/httpd/webfonts/fa-regular-400.woff2
++share/kismet/httpd/webfonts/fa-solid-900.ttf
++share/kismet/httpd/webfonts/fa-solid-900.woff2
++share/kismet/httpd/webfonts/fa-v4compatibility.ttf
++share/kismet/httpd/webfonts/fa-v4compatibility.woff2
++share/kismet/kismet_adsb_icao.txt.gz
++share/kismet/kismet_manuf.txt.gz
