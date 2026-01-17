@@ -17,8 +17,6 @@ MODULES=	devel/cmake
 LIB_DEPENDS=	comms/rtl-sdr \
 		devel/libusb1
 
-CONFIGURE_ARGS += -DINSTALL_SYSCONFDIR=share/examples/rtl_433
 CONFIGURE_ARGS += -DCMAKE_INSTALL_SYSCONFDIR=share/examples/rtl_433
-CONFIGURE_ARGS += -DSYSCONFDIR=share/examples/rtl_433
 
 .include <bsd.port.mk>
