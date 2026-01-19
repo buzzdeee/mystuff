@@ -1,5 +1,6 @@
 COMMENT=	GNUstep gui backend
 
+REVISION=	0
 GH_TAGNAME=     0.32.0
 GH_ACCOUNT=     gnustep
 GH_PROJECT=     libs-back
@@ -16,7 +17,7 @@ MODGNUSTEP_NEEDS_BACK=	No
 
 WANTLIB += 	Xft Xrender cairo Xfixes Xcursor fontconfig
 WANTLIB += 	freetype GL X11 Xext Xmu Xt Xrandr
-WANTLIB += ${COMPILER_LIBCXX}
+WANTLIB += 	${COMPILER_LIBCXX}
 
 LIB_DEPENDS=	graphics/cairo
 

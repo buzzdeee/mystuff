@@ -38,13 +38,13 @@ MAKE_FLAGS +=	LIBOBJCLIBNAME=objc2 \
 		VERSION=${LIBobjc2_VERSION} \
 		SILENT=""
 
-CONFIGURE_ARGS +=       -DLIBOBJC_NAME=objc2 -DINCLUDE_DIRECTORY=gnustep/objc \
+CONFIGURE_ARGS +=	-DLIBOBJC_NAME=objc2 -DINCLUDE_DIRECTORY=gnustep/objc \
 			-DCMAKE_MODULE_PATH=${PREFIX}/share/llvm/cmake \
-                        -DBUILD_STATIC_LIBOBJC=On \
+			-DBUILD_STATIC_LIBOBJC=On \
 			-DEMBEDDED_BLOCKS_RUNTIME=Off \
 			-DOLDABI_COMPAT=Off \
-                        -DLLVM_OPTS=Off \
-                        -DTESTS=Off \
+			-DLLVM_OPTS=Off \
+			-DTESTS=Off \
 			-DHAVE_BLOCK_USE_RR2=1 \
 			-DCMAKE_C_FLAGS="${CFLAGS} -I${WRKSRC}/libdispatch/BlocksRuntime -I${LOCALBASE}/include" \
 			-DCMAKE_CXX_FLAGS="${CXXFLAGS} -I${WRKSRC}/libdispatch/BlocksRuntime -I${LOCALBASE}/include" \
@@ -54,6 +54,7 @@ CONFIGURE_ARGS +=       -DLIBOBJC_NAME=objc2 -DINCLUDE_DIRECTORY=gnustep/objc \
 post-extract:
 	ln -s ${WRKDIR}/devel/libdispatch/swift-*/src/ ${WRKSRC}/libdispatch
 
+# This only builds all test, but doesn't run them
 test:
 	cd ${WRKSRC}/Test && \
 	cmake -DCMAKE_C_FLAGS="-I/home/ports/pobj/amd64/gnustep-libobjc2-2.3/build-amd64/objc -I${WRKSRC}" \

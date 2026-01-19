@@ -1,6 +1,6 @@
 COMMENT =	framework for reading different types of RSS formats
 
-REVISION =	15
+REVISION =	16
 DISTNAME =	RSSKit-0.4
 
 SHARED_LIBS +=	RSSKit	0.0
