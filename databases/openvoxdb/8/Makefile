@@ -1,7 +1,7 @@
 COMMENT-main=	fast, scalable, and reliable data warehouse for OpenVox
 COMMENT-plugin= OpenVoxDB terminus plugin
 
-V=		8.11.0
+V=		8.12.1
 DISTNAME=	openvoxdb-$V
 PKGNAME-plugin= openvoxdb-termini-$V
 CATEGORIES=	databases
@@ -38,6 +38,9 @@ NO_TEST=	Yes
 
 WRKDIST =	${WRKDIR}/puppetdb-${V}
 WRKSRC =	${WRKDIR}/puppetdb-${V}
+
+post-extract:
+	cp ${FILESDIR}/Makefile ${WRKSRC}/
 
 do-configure:
 	${SUBST_CMD} ${WRKSRC}/ext/bin/puppetdb \
