@@ -1,4 +1,4 @@
-@comment ${GEM_BIN}/puppetserver-ca${GEM_BIN_SUFFIX}
+@comment ${GEM_BIN}/puppetserver-ca
 ${GEM_LIB}/cache/${DISTNAME}.gem
 ${GEM_LIB}/gems/${DISTNAME}/
 ${GEM_LIB}/gems/${DISTNAME}/.github/

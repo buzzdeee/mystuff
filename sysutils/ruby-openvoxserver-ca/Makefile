@@ -9,10 +9,12 @@ MAINTAINER =	Sebastian Reitenbach <sebastia@openbsd.org>
 PERMIT_PACKAGE =	Yes
 
 MODULES =		lang/ruby
+MODRUBY_HANDLE_FLAVORS =No
+GEM_FLAGS =		--no-format-executable
 
-BUILD_DEPENDS +=	${RUN_DEPENDS}
+BUILD_DEPENDS =		${RUN_DEPENDS}
 
-RUN_DEPENDS += sysutils/ruby-openfact,${MODRUBY_FLAVOR}>=5,<6
+RUN_DEPENDS =		sysutils/ruby-openfact>=5,<6
 
 CONFIGURE_STYLE =	ruby gem
 
