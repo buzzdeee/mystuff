@@ -1,9 +1,9 @@
-prefix = /usr/local
-datadir = $(prefix)/share
-confdir = /etc
-rubylibdir = $(shell ruby -rrbconfig -e "puts RbConfig::CONFIG['sitelibdir']")
-rundir = /var/run
-bindir = /usr/bin
+prefix ?= /usr/local
+datadir ?= $(prefix)/share
+confdir ?= /etc
+rubylibdir ?= $(shell ruby -rrbconfig -e "puts RbConfig::CONFIG['sitelibdir']")
+rundir ?= /var/run
+bindir ?= /usr/bin
 
 install-puppetserver:
 	install -d -m 0755 "$(DESTDIR)$(datadir)/puppetserver"
