@@ -54,14 +54,30 @@ CONFIGURE_ARGS +=	-DLIBOBJC_NAME=objc2 -DINCLUDE_DIRECTORY=gnustep/objc \
 post-extract:
 	ln -s ${WRKDIR}/devel/libdispatch/swift-*/src/ ${WRKSRC}/libdispatch
 
-# This only builds all test, but doesn't run them
+# 95% tests passed, 5 tests failed out of 98
+TEST_WRKBUILD = ${WRKDIR}/tests-${ARCH}
 test:
-	cd ${WRKSRC}/Test && \
-	cmake -DCMAKE_C_FLAGS="-I/home/ports/pobj/amd64/gnustep-libobjc2-2.3/build-amd64/objc -I${WRKSRC}" \
-		-DCMAKE_OBJC_FLAGS="-I/home/ports/pobj/amd64/gnustep-libobjc2-2.3/build-amd64/objc -I${WRKSRC}" \
-		-DCMAKE_CXX_FLAGS="-I/home/ports/pobj/amd64/gnustep-libobjc2-2.3/build-amd64/objc -I${WRKSRC}" \
-		-DCMAKE_EXE_LINKER_FLAGS="-L/home/ports/pobj/amd64/gnustep-libobjc2-2.3/build-amd64 -lobjc2 -L/usr/local/lib -lBlocksRuntime -lpthread -lc++abi" \
-		-Wno-dev . && \
-	make VERBOSE=1
+	mkdir -p ${TEST_WRKBUILD}
+	cd ${TEST_WRKBUILD} && ${SETENV} ${MAKE_ENV} \
+		cmake \
+		-DLIBOBJC_NAME=objc2 \
+		-DINCLUDE_DIRECTORY=gnustep/objc \
+		-DCMAKE_MODULE_PATH=${PREFIX}/share/llvm/cmake \
+		-DBUILD_STATIC_LIBOBJC=On \
+		-DEMBEDDED_BLOCKS_RUNTIME=Off \
+		-DOLDABI_COMPAT=Off \
+		-DLLVM_OPTS=Off \
+		-DTESTS=On \
+		-DHAVE_BLOCK_USE_RR2=1 \
+		-DCMAKE_C_FLAGS="${CFLAGS} -I${WRKSRC}/libdispatch/BlocksRuntime -I${LOCALBASE}/include" \
+		-DCMAKE_CXX_FLAGS="${CXXFLAGS} -I${WRKSRC}/libdispatch/BlocksRuntime -I${LOCALBASE}/include" \
+		-DCMAKE_OBJC_FLAGS="${OBJCFLAGS} -I${WRKSRC}/libdispatch/BlocksRuntime -I${LOCALBASE}/include" \
+		-DCMAKE_OBJCXX_FLAGS="${OBJCXXFLAGS} -I${WRKSRC}/libdispatch/BlocksRuntime -I${LOCALBASE}/include" \
+		-DCMAKE_EXE_LINKER_FLAGS="-L${WRKBUILD} -lobjc2 -L/usr/local/lib -lBlocksRuntime -lpthread -lc++abi" \
+		${WRKSRC}
+	cd ${TEST_WRKBUILD} && ${SETENV} ${MAKE_ENV} \
+		cmake --build . ${_MAKE_VERBOSE} -j ${MAKE_JOBS} && \
+		cd ${TEST_WRKBUILD} && ${SETENV} ${MAKE_ENV} \
+			ctest --output-on-failure
 
 .include <bsd.port.mk>
