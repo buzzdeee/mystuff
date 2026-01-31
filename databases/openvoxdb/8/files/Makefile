@@ -52,27 +52,3 @@ install-puppetdb-termini:
 	install -Dm 0644 puppet/util/puppetdb/config.rb "$(DESTDIR)$(rubylibdir)/puppet/util/puppetdb/config.rb"
 	install -Dm 0644 puppet/reports/puppetdb.rb "$(DESTDIR)$(rubylibdir)/puppet/reports/puppetdb.rb"
 
-install-rpm-sysv-init: install-rpm-preinst
-	install -d -m 0755 "$(DESTDIR)$(initdir)"
-	install -m 0755 ext/redhat/init "$(DESTDIR)$(initdir)/puppetdb"
-	install -d -m 0755 "$(DESTDIR)$(defaultsdir)"
-	install -m 0644 ext/default "$(DESTDIR)$(defaultsdir)/puppetdb"
-	install -d -m 0755 "$(DESTDIR)$(rundir)"
-
-install-rpm-systemd: install-rpm-preinst
-	install -d -m 0755 "$(DESTDIR)$(defaultsdir)"
-	install -m 0644 ext/default "$(DESTDIR)$(defaultsdir)/puppetdb"
-	install -d -m 0755 "$(DESTDIR)$(unitdir)"
-	install -m 0755 ext/puppetdb.service "$(DESTDIR)$(unitdir)/puppetdb.service"
-
-install-rpm-preinst:
-
-install-deb-sysv-init: install-deb-preinst
-	install -d -m 0755 "$(DESTDIR)$(initdir)"
-	install -m 0755 ext/debian/puppetdb.init "$(DESTDIR)$(initdir)/puppetdb"
-	install -d -m 0755 "$(DESTDIR)$(defaultsdir)"
-	install -m 0644 ext/default "$(DESTDIR)$(defaultsdir)/puppetdb"
-	install -d -m 0755 "$(DESTDIR)$(rundir)"
-
-install-deb-preinst:
-

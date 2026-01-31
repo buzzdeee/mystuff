@@ -1,43 +1,43 @@
-COMMENT-main=	fast, scalable, and reliable data warehouse for OpenVox
-COMMENT-plugin= OpenVoxDB terminus plugin
+COMMENT-main =	fast, scalable, and reliable data warehouse for OpenVox
+COMMENT-plugin =OpenVoxDB terminus plugin
 
-V=		8.12.1
-DISTNAME=	openvoxdb-$V
-PKGNAME-plugin= openvoxdb-termini-$V
-CATEGORIES=	databases
+VERSION =	8.12.1
+DISTNAME =	openvoxdb-${VERSION}
+PKGNAME-plugin =openvoxdb-termini-${VERSION}
+CATEGORIES =	databases
 
-HOMEPAGE=	https://voxpupuli.org/openvox/
-MAINTAINER=	Sebastian Reitenbach <sebastia@openbsd.org>
+HOMEPAGE =	https://voxpupuli.org/openvox/
+MAINTAINER =	Sebastian Reitenbach <sebastia@openbsd.org>
 
-SITES=		https://s3.osuosl.org/openvox-artifacts/openvoxdb/${V}/
+SITES =		https://s3.osuosl.org/openvox-artifacts/openvoxdb/${VERSION}/
 
 # Apachev2
-PERMIT_PACKAGE=	Yes
+PERMIT_PACKAGE =Yes
 
-MODULES=	java \
+MODULES =	java \
 		lang/ruby
-MODJAVA_VER=	17
+MODJAVA_VER =	17
 
-MULTI_PACKAGES= -main -plugin
+MULTI_PACKAGES =-main -plugin
 
 BUILD_DEPENDS = sysutils/coreutils
-RUN_DEPENDS-plugin=sysutils/ruby-openvox/8>=8.0.0,<9.0.0v0
+RUN_DEPENDS-plugin =	sysutils/ruby-openvox/8>=8.0.0,<9.0.0v0
 
-RUN_DEPENDS-main=${MODJAVA_RUN_DEPENDS} \
+RUN_DEPENDS-main =${MODJAVA_RUN_DEPENDS} \
 		java/javaPathHelper \
 		shells/bash
 
-MAKE_FLAGS +=	confdir="share/examples/" \
+FAKE_FLAGS +=	confdir="share/examples/" \
 		datadir="share/puppetlabs" \
 		bindir="bin" \
 		rubylibdir="share/puppetlabs/puppet" \
 		DESTDIR="${PREFIX}/"
 
-NO_BUILD=	Yes
-NO_TEST=	Yes
+NO_BUILD =	Yes
+NO_TEST =	Yes
 
-WRKDIST =	${WRKDIR}/puppetdb-${V}
-WRKSRC =	${WRKDIR}/puppetdb-${V}
+WRKDIST =	${WRKDIR}/puppetdb-${VERSION}
+WRKSRC =	${WRKDIR}/puppetdb-${VERSION}
 
 post-extract:
 	cp ${FILESDIR}/Makefile ${WRKSRC}/
@@ -47,12 +47,12 @@ do-configure:
 		${WRKSRC}/ext/cli/ssl-setup \
 		${WRKSRC}/ext/default \
 		${WRKSRC}/ext/config/conf.d/*.ini
-	sed -i 's,/bin/bash,${LOCALBASE}/bin/bash,g;' \
+	sed -i 's,/bin/bash,env bash,g;' \
 		${WRKSRC}/ext/bin/puppetdb \
 		${WRKSRC}/ext/cli/*
 
 do-install:
-	cd ${WRKSRC} && ${MAKE_ENV} ${MAKE_PROGRAM} ${MAKE_FLAGS} \
+	cd ${WRKSRC} && ${MAKE_ENV} ${MAKE_PROGRAM} ${FAKE_FLAGS} \
 		install-puppetdb install-puppetdb-termini
 	${INSTALL_SCRIPT} ${WRKSRC}/ext/default \
 		${PREFIX}/share/puppetlabs/puppetdb/cli/cli-defaults.sh

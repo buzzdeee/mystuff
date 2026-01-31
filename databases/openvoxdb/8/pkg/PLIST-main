@@ -1,6 +1,5 @@
 @option is-branch
 @conflict puppetdb-*
-@pkgpath databases/puppetdb/7
 @newgroup _puppetdb:719
 @newuser _puppetdb:719:719::PuppetDB user:/nonexistent:/sbin/nologin
 @rcscript ${RCDIR}/puppetdb
