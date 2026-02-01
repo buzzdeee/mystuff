@@ -42,12 +42,12 @@ WRKSRC =	${WRKDIR}/puppetdb-${VERSION}
 post-extract:
 	cp ${FILESDIR}/Makefile ${WRKSRC}/
 
-do-configure:
+post-patch:
 	${SUBST_CMD} ${WRKSRC}/ext/bin/puppetdb \
 		${WRKSRC}/ext/cli/ssl-setup \
 		${WRKSRC}/ext/default \
 		${WRKSRC}/ext/config/conf.d/*.ini
-	sed -i 's,/bin/bash,env bash,g;' \
+	sed -i 's,/bin/bash,/usr/bin/env bash,g;' \
 		${WRKSRC}/ext/bin/puppetdb \
 		${WRKSRC}/ext/cli/*
 
