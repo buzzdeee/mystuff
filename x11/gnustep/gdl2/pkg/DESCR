@@ -1,5 +1,0 @@
-GNUstep Database Library 2 (GDL2) is a set of libraries to map
-Objective-C objects to rows of relational database management systems
-(RDBMS). It aims to be compatible with Enterprise Objects Framework
-(EOF) as released with WebObjects 4.5 from Apple Inc and is used in
-conjuction with GNUstepWeb.
