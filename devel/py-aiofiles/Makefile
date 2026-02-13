@@ -9,7 +9,7 @@ HOMEPAGE =		https://github.com/Tinche/aiofiles
 
 MAINTAINER =		Sebastian Reitenbach <sebastia@openbsd.org>
 
-# Apache v2
+# Apache 2.0
 PERMIT_PACKAGE =	Yes
 
 MODULES =		lang/python

@@ -2,8 +2,8 @@
 
 COMMENT =		AsyncIO version of the standard multiprocessing module
 
-MODPY_EGG_VERSION =	0.9.0
-DISTNAME =		aiomultiprocess-${MODPY_EGG_VERSION}
+MODPY_DISTV =	0.9.0
+DISTNAME =		aiomultiprocess-${MODPY_DISTV}
 PKGNAME =		py-${DISTNAME}
 
 CATEGORIES =		devel

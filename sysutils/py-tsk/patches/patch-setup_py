@@ -1,33 +1,15 @@
 Index: setup.py
 --- setup.py.orig
 +++ setup.py
-@@ -199,7 +199,7 @@ class BuildExtCommand(build_ext):
-     # pylint: disable=attribute-defined-outside-init
-     self.configure_source(compiler)
- 
--    libtsk_path = os.path.join("sleuthkit", "tsk")
-+    libtsk_path = os.path.join("${LOCALBASE}", "include", "tsk")
- 
-     if not os.access("pytsk3.cpp", os.R_OK):
-       # Generate the Python binding code (pytsk3.cpp).
-@@ -366,7 +366,7 @@ class ProjectBuilder(object):
-     self._argv = argv
- 
-     # The path to the sleuthkit/tsk directory.
--    self._libtsk_path = os.path.join("sleuthkit", "tsk")
-+    self._libtsk_path = os.path.join("${LOCALBASE}", "include", "tsk")
- 
-     # Paths under the sleuthkit/tsk directory which contain files we need
-     # to compile.
 @@ -374,12 +374,13 @@ class ProjectBuilder(object):
  
      # The args for the extension builder.
      self.extension_args = {
 -        "include_dirs": ["talloc", self._libtsk_path, "sleuthkit", "."],
 -        "library_dirs": []}
-+        "include_dirs": [".", os.path.join("${LOCALBASE}", "include")],
++        "include_dirs": [".", "sleuthkit", os.path.join("${LOCALBASE}", "include")],
 +        "library_dirs": [os.path.join("${LOCALBASE}","lib")],
-+        "libraries": ["tsk", "talloc"]}
++        "libraries": [ "talloc"]}
  
      # The sources to build.
      self._source_files = [
