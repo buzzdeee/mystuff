@@ -1,27 +1,24 @@
-COMMENT =		library and command-line utility for Shodan
+COMMENT =	library and command-line utility for Shodan
 
-MODPY_EGG_VERSION =	1.26.1
-DISTNAME =		shodan-${MODPY_EGG_VERSION}
-PKGNAME =		py-${DISTNAME}
+MODPY_DISTV =	1.26.1
+DISTNAME =	shodan-${MODPY_DISTV}
+PKGNAME =	py-${DISTNAME}
 
-CATEGORIES =		security
+CATEGORIES =	security
 
-MAINTAINER =		Sebastian Reitenbach <sebastia@openbsd.org>
+MAINTAINER =	Sebastian Reitenbach <sebastia@openbsd.org>
 
 # MIT
-PERMIT_PACKAGE =	Yes
+PERMIT_PACKAGE =Yes
 
-MODULES =		lang/python
-MODPY_PI =		Yes
-MODPY_PYBUILD =		setuptools
-MODPY_PYTEST =		Yes
+MODULES =	lang/python
+MODPY_PI =	Yes
+MODPY_PYBUILD =	setuptools
+MODPY_PYTEST =	Yes
 
-FLAVORS =		python3
-FLAVOR =		python3
-
-RUN_DEPENDS =		devel/py-click-plugins${MODPY_FLAVOR} \
-			devel/py-colorama${MODPY_FLAVOR} \
-			devel/py-xlsxwriter${MODPY_FLAVOR} \
-			www/py-requests${MODPY_FLAVOR}
+RUN_DEPENDS =	devel/py-click-plugins \
+		devel/py-colorama \
+		devel/py-xlsxwriter \
+		www/py-requests
 
 .include <bsd.port.mk>
