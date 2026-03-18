@@ -18,6 +18,8 @@ MODULES =		lang/python
 MODPY_PI =		Yes
 MODPY_PYBUILD =		poetry-core
 
+RUN_DEPENDS =		databases/py-limits
+
 # tests subdir isn't packaged
 NO_TEST =	Yes
 
