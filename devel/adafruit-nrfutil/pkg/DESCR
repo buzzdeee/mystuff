@@ -1,0 +1,12 @@
+adafruit-nrfutil is a Python package that includes the adafruit-nrfutil
+command line utility and the nordicsemi library.
+
+This package is derived from the Nordic Semiconductor ASA package
+pc-nrfutil, version 0.5.3. The code has been converted from Python 2 to
+Python 3.
+
+The executable nrfutil has been renamed to adafruit-nrfutil to
+distinguish it from the original executable.
+
+This tool can be used with the Adafruit nRF52 Feather to flash firmware
+images onto the device using the simple serial port.
