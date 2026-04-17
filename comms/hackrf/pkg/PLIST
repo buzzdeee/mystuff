@@ -1,0 +1,20 @@
+@bin bin/hackrf_biast
+@bin bin/hackrf_clock
+@bin bin/hackrf_cpldjtag
+@bin bin/hackrf_debug
+@bin bin/hackrf_info
+@bin bin/hackrf_operacake
+@bin bin/hackrf_spiflash
+@bin bin/hackrf_sweep
+@bin bin/hackrf_transfer
+include/libhackrf/
+include/libhackrf/hackrf.h
+lib/cmake/HackRF/
+lib/cmake/HackRF/FindLIBUSB.cmake
+lib/cmake/HackRF/HackRFConfig.cmake
+lib/cmake/HackRF/HackRFConfigVersion.cmake
+lib/cmake/HackRF/HackRFTargets${MODCMAKE_BUILD_SUFFIX}
+lib/cmake/HackRF/HackRFTargets.cmake
+@static-lib lib/libhackrf.a
+@lib lib/libhackrf.so.${LIBhackrf_VERSION}
+lib/pkgconfig/libhackrf.pc

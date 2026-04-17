@@ -1,0 +1,4 @@
+Unified gnuradio input/output block for a variety of SDR devices,
+including FUNcube Dongle, OsmoSDR, RTL-SDR, MSi2500, SDRplay, SDR-IQ,
+AirSpy, rad10, HackRF, bladeRF, USSRP/UHD, UMtrx, RedPitaya, FreeSRP,
+...
