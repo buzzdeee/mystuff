@@ -25,7 +25,6 @@ LIB_DEPENDS =		comms/hackrf \
 			comms/rtl-sdr \
 			devel/libvolk \
 			devel/libusb1 \
-			graphics/glew \
 			graphics/glfw \
 			math/fftw3,float \
 			audio/portaudio-svn \
