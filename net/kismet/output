@@ -1,0 +1,216 @@
+===>  Generating configure for kismet-202509R1p1
+Running autoreconf-2.71 in /home/ports/pobj/amd64/kismet-202509R1/kismet-2025-09-R1
+autoheader-2.71: warning: WARNING: Using auxiliary files such as 'acconfig.h', 'config.h.bot'
+autoheader-2.71: WARNING: and 'config.h.top', to define templates for 'config.h.in'
+autoheader-2.71: WARNING: is deprecated and discouraged.
+autoheader-2.71: 
+autoheader-2.71: WARNING: Using the third argument of 'AC_DEFINE_UNQUOTED' and
+autoheader-2.71: WARNING: 'AC_DEFINE' allows one to define a template without
+autoheader-2.71: WARNING: 'acconfig.h':
+autoheader-2.71: 
+autoheader-2.71: WARNING:   AC_DEFINE([NEED_FUNC_MAIN], 1,
+autoheader-2.71: 		[Define if a function 'main' is needed.])
+autoheader-2.71: 
+autoheader-2.71: WARNING: More sophisticated templates can also be produced, see the
+autoheader-2.71: WARNING: documentation.
+===>  Configuring for kismet-202509R1p1
+Using /home/ports/pobj/amd64/kismet-202509R1/config.site (generated)
+configure: WARNING: unrecognized options: --disable-silent-rules, --disable-gtk-doc
+configure: loading site script /home/ports/pobj/amd64/kismet-202509R1/config.site
+checking build system type... x86_64-unknown-openbsd7.9
+checking host system type... x86_64-unknown-openbsd7.9
+checking for gcc... cc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... (cached) o
+checking whether the compiler supports GNU C... (cached) yes
+checking whether cc accepts -g... (cached) yes
+checking for cc option to enable C11 features... none needed
+checking whether the compiler supports GNU C++... (cached) yes
+checking whether c++ accepts -g... (cached) yes
+checking for c++ option to enable C++11 features... none needed
+checking for a BSD-compatible install... /home/ports/pobj/amd64/kismet-202509R1/bin/install -c
+checking whether gmake sets $(MAKE)... yes
+checking how to run the C preprocessor... cc -E
+checking for platform-specific compiler flags... none needed
+checking gcc version... 19.1.7
+checking whether c++ supports C++20 features by default... no
+checking whether c++ supports C++20 features with -std=gnu++20... yes
+checking for stdio.h... (cached) yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking for inttypes.h... (cached) yes
+checking for stdint.h... (cached) yes
+checking for strings.h... (cached) yes
+checking for sys/stat.h... (cached) yes
+checking for sys/types.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking whether byte ordering is bigendian... no
+checking for dwarf_begin in -ldw... no
+checking for bfd_alloc in -lbfd... no
+checking for unwind.h... yes
+checking for execinfo.h... yes
+checking for stdint.h... (cached) yes
+checking for strerror_r() return... int
+checking for accept() addrlen type... socklen_t
+checking for pipe2... yes
+checking for special C compiler options needed for large files... no
+checking for _FILE_OFFSET_BITS value needed for large files... no
+checking for dlopen in -ldl... no
+configure: WARNING: libdl doesn't seem to be needed on this system
+checking for deflate in -lz... (cached) yes
+checking for pthread_mutex_timedlock... yes
+checking for libm math function in std libs... yes
+checking for group 'root'... no.  Using 'wheel'
+checking for setproctitle... (cached) yes
+checking for libutil.h... no
+checking for setproctitle in -lutil... yes
+checking for sqlite3_libversion in -lsqlite3... yes
+checking for sqlite3.h... yes
+checking for pkg-config... pkg-config
+checking whether compiling and linking against OpenSSL works... yes
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for libwebsockets >= 3.1.0... yes
+checking for lws_client_connect_via_info in -lwebsockets... yes
+checking for libepcap... yes
+checking for BSD net80211/radiotap support... yes
+checking for libusb-1.0... yes
+checking for btbb.h... no
+configure: WARNING: "btbb.h is missing"
+checking for btbb_init in -lbtbb... no
+configure: WARNING: "libbtbb is missing"
+configure: WARNING: missing libbtbb, ubertooth-one support will not be built
+configure: WARNING: missing one or more required libraries for ubertooth-one
+checking for librtlsdr... yes
+checking for libmosquitto... yes
+checking for mosquitto_lib_init in -lmosquitto... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating Makefile.inc
+config.status: WARNING:  'Makefile.inc.in' seems to ignore the --datarootdir setting
+config.status: creating packaging/kismet.pc
+config.status: creating packaging/systemd/kismet.service
+config.status: creating packaging/systemd/debug/kismet-debug.service
+config.status: creating capture_linux_bluetooth/Makefile
+config.status: creating capture_linux_wifi/Makefile
+config.status: creating capture_openbsd_wifi/Makefile
+config.status: creating capture_osx_corewlan_wifi/Makefile
+config.status: creating capture_nrf_mousejack/Makefile
+config.status: creating capture_sdr_rtl433_v2/Makefile
+config.status: creating capture_sdr_rtladsb_v2/Makefile
+config.status: creating capture_freaklabs_zigbee_v2/Makefile
+config.status: creating capture_ti_cc_2540/Makefile
+config.status: creating capture_ti_cc_2531/Makefile
+config.status: creating capture_ubertooth_one/Makefile
+config.status: creating capture_nrf_51822/Makefile
+config.status: creating capture_nxp_kw41z/Makefile
+config.status: creating capture_rz_killerbee/Makefile
+config.status: creating capture_bladerf_wiphy/Makefile
+config.status: creating capture_proxy_adsb/Makefile
+config.status: creating capture_nrf_52840/Makefile
+config.status: creating capture_hak5_wifi_coconut/Makefile
+config.status: creating capture_serial_radview/Makefile
+config.status: creating capture_radiacode/Makefile
+config.status: creating capture_antsdr_droneid/Makefile
+config.status: creating config.h
+configure: WARNING: unrecognized options: --disable-silent-rules, --disable-gtk-doc
+
+Configuration complete: 
+         Compiling for: openbsd7.9 (x86_64)
+           C++ Library: 
+      Protobuf Library: disabled
+   Installing as group: wheel
+       Installing into: /usr/local
+          Setuid group: _kismet        Prelude  SIEM : no
+            PCRE regex: libpcre2
+ Websocket datasources: yes
+LibCapability (enhanced
+   privilege dropping): n/a (only Linux)
+  Linux Wi-Fi capture : n/a (only Linux)
+         Linux Netlink: n/a (only Linux)
+  Linux NetworkManager: n/a (only Linux)
+   Linux HCI Bluetooth: n/a (only Linux)
+ OpenBSD Wi-Fi capture: yes
+   OSX/Darwin capture : n/a (only OSX/Darwin)
+         nRF MouseJack: yes
+       TI CC 2540 BTLE: yes
+     TI CC 2531 Zigbee: yes
+         Ubertooth One: no (libubertooth, libbtbb, or libusb-1.0 not available)
+         NRF51822 BTLE: yes
+       NRF52840 Zigbee: yes
+  NXP KW41Z BLE/Zigbee: yes
+   Freaklabs Zigbee V2: yes
+          RZ KILLERBEE: yes
+        RADVIEW Serial: yes
+         Radiacode USB: yes
+        Python Modules: no (deprecated)
+    RTL-SDR RTL_433 V2: yes
+       RTL-SDR ADSB V2: yes
+        ANTSDR DroneID: yes
+         bladeRF-wiphy: no (bladeRF support not explicitly enabled)
+     Hak5 WiFi Coconut: no (Hak5 WiFi Coconut not explicitly enabled)
+ lm-sensors monitoring: n/a (only Linux)
+        Built-in Debug: partial - Missing libdw or libbfd will not print full stacks on crash
+===>  Building for kismet-202509R1p1
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT util.cc.o util.cc -MF util.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT crc32.cc.o crc32.cc -MF crc32.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT macaddr.cc.o macaddr.cc -MF macaddr.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT uuid.cc.o uuid.cc -MF uuid.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT xxhash.cc.o xxhash.cc -MF xxhash.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT boost_like_hash.cc.o boost_like_hash.cc -MF boost_like_hash.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT sqlite3_cpp11.cc.o sqlite3_cpp11.cc -MF sqlite3_cpp11.cc.d
+cc -MM -MP -O2 -pipe -g -O0 -Wall -Wno-unknown-warning-option -Wno-format-truncation -Wno-unused-function -g -I. -fPIE   -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -pthread -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT mpack/mpack.c.o mpack/mpack.c -MF mpack/mpack.c.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT globalregistry.cc.o globalregistry.cc -MF globalregistry.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT eventbus.cc.o eventbus.cc -MF eventbus.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT packet.cc.o packet.cc -MF packet.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT configfile.cc.o configfile.cc -MF configfile.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT battery.cc.o battery.cc -MF battery.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT ipctracker_v2.cc.o ipctracker_v2.cc -MF ipctracker_v2.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT kis_external.cc.o kis_external.cc -MF kis_external.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT dlttracker.cc.o dlttracker.cc -MF dlttracker.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT antennatracker.cc.o antennatracker.cc -MF antennatracker.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT datasourcetracker.cc.o datasourcetracker.cc -MF datasourcetracker.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT kis_datasource.cc.o kis_datasource.cc -MF kis_datasource.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT datasource_linux_bluetooth.cc.o datasource_linux_bluetooth.cc -MF datasource_linux_bluetooth.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT datasource_rtl433.cc.o datasource_rtl433.cc -MF datasource_rtl433.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT datasource_rtlamr.cc.o datasource_rtlamr.cc -MF datasource_rtlamr.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT datasource_rtladsb.cc.o datasource_rtladsb.cc -MF datasource_rtladsb.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT datasource_ti_cc_2540.cc.o datasource_ti_cc_2540.cc -MF datasource_ti_cc_2540.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT datasource_ti_cc_2531.cc.o datasource_ti_cc_2531.cc -MF datasource_ti_cc_2531.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT datasource_ubertooth_one.cc.o datasource_ubertooth_one.cc -MF datasource_ubertooth_one.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT datasource_nrf_51822.cc.o datasource_nrf_51822.cc -MF datasource_nrf_51822.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT datasource_nxp_kw41z.cc.o datasource_nxp_kw41z.cc -MF datasource_nxp_kw41z.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT datasource_nrf_52840.cc.o datasource_nrf_52840.cc -MF datasource_nrf_52840.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT datasource_rz_killerbee.cc.o datasource_rz_killerbee.cc -MF datasource_rz_killerbee.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT datasource_scan.cc.o datasource_scan.cc -MF datasource_scan.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT datasource_bt_geiger.cc.o datasource_bt_geiger.cc -MF datasource_bt_geiger.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT datasource_mqtt.cc.o datasource_mqtt.cc -MF datasource_mqtt.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT kis_net_beast_httpd.cc.o kis_net_beast_httpd.cc -MF kis_net_beast_httpd.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT kis_httpd_registry.cc.o kis_httpd_registry.cc -MF kis_httpd_registry.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT system_monitor.cc.o system_monitor.cc -MF system_monitor.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT base64.cc.o base64.cc -MF base64.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT gpstracker.cc.o gpstracker.cc -MF gpstracker.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT kis_gps.cc.o kis_gps.cc -MF kis_gps.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT gpsnmea_v2.cc.o gpsnmea_v2.cc -MF gpsnmea_v2.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT gpsserial_v3.cc.o gpsserial_v3.cc -MF gpsserial_v3.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT gpstcp_v2.cc.o gpstcp_v2.cc -MF gpstcp_v2.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT gpsgpsd_v3.cc.o gpsgpsd_v3.cc -MF gpsgpsd_v3.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT gpsfake.cc.o gpsfake.cc -MF gpsfake.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT gpsweb.cc.o gpsweb.cc -MF gpsweb.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT gpsmeta.cc.o gpsmeta.cc -MF gpsmeta.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT packetchain.cc.o packetchain.cc -MF packetchain.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT packet_filter.cc.o packet_filter.cc -MF packet_filter.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT class_filter.cc.o class_filter.cc -MF class_filter.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT trackedelement.cc.o trackedelement.cc -MF trackedelement.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT trackedelement_workers.cc.o trackedelement_workers.cc -MF trackedelement_workers.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT trackedcomponent.cc.o trackedcomponent.cc -MF trackedcomponent.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT entrytracker.cc.o entrytracker.cc -MF entrytracker.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT trackedlocation.cc.o trackedlocation.cc -MF trackedlocation.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT devicetracker_component.cc.o devicetracker_component.cc -MF devicetracker_component.cc.d
+c++ -std=gnu++20 -MM -MP -Wall -Wno-unknown-warning-option -Wno-deprecated-declarations -Wno-format-truncation -Wno-unused-local-typedefs -Wno-unused-function -Wno-infinite-recursion -g -I. -fPIE -O2 -pipe -g -O0 -DKS_STR_ENCODING_NONE -I/usr/local/include/libpcap  -I/usr/X11R6/include -I/usr/local/include -I/usr/local/include -MT devicetracker_view.cc.o devicetracker_view.cc -MF devicetracker_view.cc.d
+gmake: *** [Makefile:889: devicetracker_view.cc.d] Interrupt
+*** Signal SIGINT in . (/home/ports/pobj/amd64/kismet-202509R1/.build_done)
+*** Error 1 in /home/ports/mystuff/net/kismet (/home/ports/infrastructure/mk/bsd.port.mk:2706 'all': @lock=kismet-202509R1p1;  export _LOCKS...)

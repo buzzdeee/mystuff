@@ -1,0 +1,211 @@
+- don't force -O3
+- GCC's libatomic should not be pulled in just because it exists
+- libstdc++ should not be explicitly linked (use "c++" as a linker instead)
+
+Index: configure.ac
+--- configure.ac.orig
++++ configure.ac
+@@ -228,9 +228,6 @@ AS_IF([test x"$GCC_MAJOR" = x"13" -o x"$GCC_MAJOR" = x
+ 
+ AC_SUBST(PLUGINLDFLAGS)
+ 
+-CXXFLAGS="$CXXFLAGS -O3"
+-CFLAGS="$CFLAGS -O3"
+-
+ AC_CONFIG_SRCDIR([kismet_server.cc])
+ AC_CONFIG_HEADERS([config.h])
+ 
+@@ -414,55 +411,55 @@ AS_IF([test "x$with_python_interpreter" != "x"],
+ AC_SUBST(PYTHON)
+ AC_SUBST(PYTHON_VERSION)
+ 
+-# HAVE_LIBHACKRF=0
+-# HAVE_LIBFFTW3=0
+-# HAVE_HACKRF_H=0
+-# HAVE_FFTW3_H=0
+-# BUILD_CAPTURE_HACKRF_SWEEP=0
+-# HACKRF_MISSING_REASON="Missing required libhack/libfftw3 libraries"
++HAVE_LIBHACKRF=0
++HAVE_LIBFFTW3=0
++HAVE_HACKRF_H=0
++HAVE_FFTW3_H=0
++BUILD_CAPTURE_HACKRF_SWEEP=0
++HACKRF_MISSING_REASON="Missing required libhack/libfftw3 libraries"
+ #
+-# AC_CHECK_HEADERS([libhackrf/hackrf.h],
+-#     HAVE_HACKRF_H=1,
+-#     AC_MSG_WARN("Missing hackrf.h from libhackrf"))
+-# AC_CHECK_HEADERS([fftw3.h],
+-#     HAVE_FFTW3_H=1,
+-#     AC_MSG_WARN("Missing fftw3.h from libfftw"))
++AC_CHECK_HEADERS([libhackrf/hackrf.h],
++    HAVE_HACKRF_H=1,
++    AC_MSG_WARN("Missing hackrf.h from libhackrf"))
++AC_CHECK_HEADERS([fftw3.h],
++    HAVE_FFTW3_H=1,
++    AC_MSG_WARN("Missing fftw3.h from libfftw"))
+ #
+-# if test "$HAVE_HACKRF_H" = 1; then
+-#     AC_CHECK_LIB([hackrf], [hackrf_init],
+-# 			HAVE_LIBHACKRF=1,
+-# 			 AC_MSG_WARN([libhackrf not available]))
+-# else
+-#     HACKRF_MISSING_REASON="Missing libhackrf/hackrf.h"
+-# fi
+-#
+-# if test "$HAVE_FFTW3_H" = 1; then
+-#     AC_CHECK_LIB([fftw3], [fftw_malloc],
+-#             HAVE_LIBFFTW3=1,
+-#             AC_MSG_WARN([libfftw3 not available]))
+-# else
+-#     HACKRF_MISSING_REASON="missing libfftw3.h"
+-# fi
+-#
+-# if test "$HAVE_LIBHACKRF" = 1 && test "$HAVE_LIBFFTW3" = 1; then
+-#     AC_LINK_IFELSE([AC_LANG_PROGRAM([[
+-#     		#include <libhackrf/hackrf.h>
+-#     		]], [[
+-#             int s = SAMPLES_PER_BLOCK;
+-#     		return 0;
+-#     		]])],[hackrfsweep=1],[hackrfsweep=0])
+-#     if test "$hackrfsweep" = 1; then
+-#         AC_DEFINE(BUILD_CAPTURE_HACKRF_SWEEP, 1, Able to build hackrf sweep source)
+-#         # BUILD_CAPTURE_HACKRF_SWEEP=1
+-#         # DATASOURCE_BINS="$DATASOURCE_BINS \$(CAPTURE_HACKRF_SWEEP)"
+-#     else
+-#         AC_MSG_WARN([Old version of libhack does not contain sweep code])
+-#         HACKRF_MISSING_REASON="old version of libhackrf found"
+-#     fi
+-# else
+-#     HACKRF_MISSING_REASON="missing libhackrf or libfftw3"
+-# fi
++if test "$HAVE_HACKRF_H" = 1; then
++    AC_CHECK_LIB([hackrf], [hackrf_init],
++			HAVE_LIBHACKRF=1,
++			 AC_MSG_WARN([libhackrf not available]))
++else
++    HACKRF_MISSING_REASON="Missing libhackrf/hackrf.h"
++fi
+ 
++if test "$HAVE_FFTW3_H" = 1; then
++    AC_CHECK_LIB([fftw3], [fftw_malloc],
++            HAVE_LIBFFTW3=1,
++            AC_MSG_WARN([libfftw3 not available]))
++else
++    HACKRF_MISSING_REASON="missing libfftw3.h"
++fi
++
++if test "$HAVE_LIBHACKRF" = 1 && test "$HAVE_LIBFFTW3" = 1; then
++    AC_LINK_IFELSE([AC_LANG_PROGRAM([[
++    		#include <libhackrf/hackrf.h>
++    		]], [[
++            int s = SAMPLES_PER_BLOCK;
++    		return 0;
++    		]])],[hackrfsweep=1],[hackrfsweep=0])
++    if test "$hackrfsweep" = 1; then
++        AC_DEFINE(BUILD_CAPTURE_HACKRF_SWEEP, 1, Able to build hackrf sweep source)
++        # BUILD_CAPTURE_HACKRF_SWEEP=1
++        # DATASOURCE_BINS="$DATASOURCE_BINS \$(CAPTURE_HACKRF_SWEEP)"
++    else
++        AC_MSG_WARN([Old version of libhack does not contain sweep code])
++        HACKRF_MISSING_REASON="old version of libhackrf found"
++    fi
++else
++    HACKRF_MISSING_REASON="missing libhackrf or libfftw3"
++fi
++
+ HAVE_LIBDW=0
+ HAVE_LIBBFD=0
+ 
+@@ -637,22 +634,6 @@ AC_CHECK_LIB([z], [deflate],
+              AC_MSG_ERROR([libz is required and could not be found]))
+ LIBS="$LIBS -lz"
+ 
+-# Do we need -latomic
+-AC_MSG_CHECKING([for libatomic])
+-OLIBS="$LIBS"
+-LIBS="$LIBS -latomic"
+-AC_LINK_IFELSE([AC_LANG_PROGRAM([[
+-                ]],
+-                [[
+-                 return 0;
+-                ]] )], [have_atomic=yes], [have_atomic=no])
+-if test "$have_atomic" = "yes"; then
+-    AC_MSG_RESULT([yes])
+-else
+-    AC_MSG_RESULT([no])
+-    LIBS="$OLIBS"
+-fi
+-
+ # We need threads
+ PTHREAD_CFLAGS="-pthread"
+ PTHREAD_LIBS="-lpthread"
+@@ -700,19 +681,7 @@ else
+     AC_SUBST(LIBMLIB)
+ fi
+ 
+-# Do we use libstdc++?
+-# We need to swap to the g++ compiler here
+-oCC="$CC"
+-CC="$CXX"
+-AC_CHECK_LIB([stdc++], [main],
+-        foundcxxl="stdc++" CXXLIBS="$CXXLIBS -lstdc++")
+-
+-AS_IF([test "$foundcxxl"x = "x" -a "$caponly"x != "yes"x],
+-      [
+-       AC_MSG_ERROR(No standard stdc++ libraries found.)
+-      ], []
+-)
+-CC="$oCC"
++CXXLIBS=
+ AC_SUBST(CXXLIBS)
+ 
+ # Does the compiler handle various std::foo namespaces properly?
+@@ -1187,20 +1156,20 @@ AC_SUBST(LIBWSLIBS)
+ AC_SUBST(LIBWSCFLAGS)
+ 
+ # Look for libpcap via pkg-config
+-have_libpcap=no
+-PKG_CHECK_MODULES([libpcap], [libpcap], [
+-    have_libpcap=yes
+-    AC_DEFINE(HAVE_LIBPCAP, 1, libpcap packet capture lib)
++have_libepcap=no
++PKG_CHECK_MODULES([libepcap], [libepcap], [
++    have_libepcap=yes
++    AC_DEFINE(HAVE_LIBPCAP, 1, libepcap packet capture lib)
+ 
+-    PCAPLIBS=`pkg-config --libs libpcap`
+-    PCAPCFLAGS=`pkg-config --cflags libpcap`
++    PCAPLIBS=`pkg-config --libs libepcap`
++    PCAPCFLAGS=`pkg-config --cflags libepcap`
+     pcap=yes
+     ], [
+-    AC_MSG_WARN(No libpcap found in pkg-config, will check system paths.)
++    AC_MSG_WARN(No libepcap found in pkg-config, will check system paths.)
+     ])
+ 
+ # Look for pcap using our legacy mode
+-if test "$have_libpcap"x != "yesx"; then
++if test "$have_libepcap"x != "yesx"; then
+     AC_CHECK_LIB([pcap], [pcap_open_live],
+         AC_DEFINE(HAVE_LIBPCAP, 1, libpcap packet capture lib) foundsyspcap=yes,
+         AC_MSG_ERROR(Libpcap required for proper operation))
+@@ -2308,12 +2277,12 @@ else
+ 	echo "no (will not be able to monitor system temperature, etc)";
+ fi
+ 
+-# printf "       HackRF spectrum: "
+-# if test "$BUILD_CAPTURE_HACKRF_SWEEP" -eq 1; then
+-# 	echo "yes (libhackrf and libfftw3 present)";
+-# else
+-# 	echo "no ($HACKRF_MISSING_REASON)";
+-# fi
++printf "       HackRF spectrum: "
++if test "$BUILD_CAPTURE_HACKRF_SWEEP" -eq 1; then
++	echo "yes (libhackrf and libfftw3 present)";
++else
++	echo "no ($HACKRF_MISSING_REASON)";
++fi
+ 
+ printf "        Built-in Debug: "
+ echo $BACKTRACE_WARNING
