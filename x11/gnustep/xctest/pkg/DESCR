@@ -1,0 +1,5 @@
+tools-xctest is a testing framework for Objective-C, providing
+functionalities identical to Apple's XCTest. It is designed for use with
+the GNUstep development environment. This framework allows developers to
+write and run unit tests for their Objective-C code in a way that is
+familiar to those accustomed to XCTest in Apple's ecosystem.

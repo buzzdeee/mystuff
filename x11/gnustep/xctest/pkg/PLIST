@@ -1,0 +1,7 @@
+@bin bin/xctest
+include/XCTest/
+include/XCTest/XCTest.h
+include/XCTest/XCTestAssertions.h
+include/XCTest/XCTestAssertionsImpl.h
+include/XCTest/XCTestCase.h
+@lib lib/libXCTest.so.${LIBXCTest_VERSION}
