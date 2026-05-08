@@ -5,13 +5,12 @@ GH_ACCOUNT =	homewsn
 GH_PROJECT =	whsniff
 GH_TAGNAME =	v${V}
 DISTNAME=	whsniff-${V}
-#PKGNAME=	whsniff-${V:S,-,,g}
 
 CATEGORIES=	net security
 
 MAINTAINER=	Sebastian Reitenbach <sebastia@openbsd.org>
 
-# GPLv2+
+# GPLv2
 PERMIT_PACKAGE=	Yes
 
 WANTLIB += c usb-1.0
