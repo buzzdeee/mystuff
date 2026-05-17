@@ -21,7 +21,7 @@ The following capture drivers are known to work:
     * Zigbee
     * use with:
        * -c nrf52840:type=nrf52840,device=/dev/cuaU0,name=niceNano
-       * note: haven't seen it reporting any packets
+       * note: haven't seen it reporting any packets yet using a nice!Nano
   * ti_cc_2531 (autodetected)
     * Zigbee
 

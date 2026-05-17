@@ -1,5 +1,5 @@
-
-FOR THE TIME BEING, IGNORE THIS ONE... 
+Not yet upstreamed, waiting for positive feedback
+that it actually works.
 
 Index: capture_nrf_52840/capture_nrf_52840.c
 --- capture_nrf_52840/capture_nrf_52840.c.orig

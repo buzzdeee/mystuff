@@ -37,12 +37,7 @@ CONFIGURE_ARGS=	--mandir=${PREFIX}/man \
 LDFLAGS_ports-gcc= -latomic
 LDFLAGS=	-L${X11BASE}/lib -L${LOCALBASE}/lib ${LDFLAGS_${CHOSEN_COMPILER}}
 
-PCAP_CFLAGS !=    pkg-config --cflags libepcap
-PCAP_LIBS !=      pkg-config --libs libepcap
-
 CONFIGURE_ENV=	CPPFLAGS="-I${X11BASE}/include -I${LOCALBASE}/include" \
-		libepcap_CFLAGS="${PCAP_CFLAGS}" \
-		libepcap_LIBS="${PCAP_LIBS}" \
 		LDFLAGS="${LDFLAGS}"
 
 NO_TEST=	Yes

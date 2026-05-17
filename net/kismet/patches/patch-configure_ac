@@ -59,18 +59,14 @@ Index: configure.ac
  AC_SUBST(CXXLIBS)
  
  # Does the compiler handle various std::foo namespaces properly?
-@@ -1187,20 +1156,20 @@ AC_SUBST(LIBWSLIBS)
- AC_SUBST(LIBWSCFLAGS)
+@@ -1188,12 +1157,12 @@ AC_SUBST(LIBWSCFLAGS)
  
  # Look for libpcap via pkg-config
--have_libpcap=no
+ have_libpcap=no
 -PKG_CHECK_MODULES([libpcap], [libpcap], [
--    have_libpcap=yes
--    AC_DEFINE(HAVE_LIBPCAP, 1, libpcap packet capture lib)
-+have_libepcap=no
 +PKG_CHECK_MODULES([libepcap], [libepcap], [
-+    have_libepcap=yes
-+    AC_DEFINE(HAVE_LIBPCAP, 1, libepcap packet capture lib)
+     have_libpcap=yes
+     AC_DEFINE(HAVE_LIBPCAP, 1, libpcap packet capture lib)
  
 -    PCAPLIBS=`pkg-config --libs libpcap`
 -    PCAPCFLAGS=`pkg-config --cflags libpcap`
@@ -78,13 +74,4 @@ Index: configure.ac
 +    PCAPCFLAGS=`pkg-config --cflags libepcap`
      pcap=yes
      ], [
--    AC_MSG_WARN(No libpcap found in pkg-config, will check system paths.)
-+    AC_MSG_WARN(No libepcap found in pkg-config, will check system paths.)
-     ])
- 
- # Look for pcap using our legacy mode
--if test "$have_libpcap"x != "yesx"; then
-+if test "$have_libepcap"x != "yesx"; then
-     AC_CHECK_LIB([pcap], [pcap_open_live],
-         AC_DEFINE(HAVE_LIBPCAP, 1, libpcap packet capture lib) foundsyspcap=yes,
-         AC_MSG_ERROR(Libpcap required for proper operation))
+     AC_MSG_WARN(No libpcap found in pkg-config, will check system paths.)

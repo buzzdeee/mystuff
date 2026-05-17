@@ -13,15 +13,15 @@ CATEGORIES =		misc x11
 HOMEPAGE =		https://www.rocrail.net/
 MAINTAINER =		Sebastian Reitenbach <sebastia@openbsd.org>
 
-# GPLv2
+# GPLv2+
 PERMIT_PACKAGE =		Yes
 
 COMPILER =		base-clang ports-gcc base-gcc
 
 MULTI_PACKAGES =	-main -gui
-WANTLIB +=		c pthread
-WANTLIB-gui +=		${WANTLIB} m ${COMPILER_LIBCXX}
-WANTLIB-gui +=		wx_baseu-3.2 wx_baseu_net-3.2 wx_baseu_xml-3.2 wx_gtk3u_adv-3.2
+WANTLIB +=		${COMPILER_LIBCXX} c m pthread
+WANTLIB-gui +=		${WANTLIB}
+WANTLIB-gui +=		wx_baseu-3.2 wx_baseu_net-3.2 wx_baseu_xml-3.2
 WANTLIB-gui +=		wx_gtk3u_core-3.2 wx_gtk3u_html-3.2 wx_gtk3u_qa-3.2
 WANTLIB-gui +=		wx_gtk3u_xrc-3.2
 
@@ -31,7 +31,7 @@ RUN_DEPENDS-gui +=	${PKGPATH},-main
 
 USE_GMAKE =		Yes
 MAKE_FILE =		makefile
-MAKE_FLAGS =		CC="${CC}" CXX="${CXX}" CPP="${CC}" LNK="${CXX}" LINKTOOL="${CXX}" PLATFORM="OPENBSD"
+MAKE_FLAGS =		CC="${CC}" CXX="${CXX}" CPP="${CC}" LNK="${CXX}" LINKTOOL="${CXX}"
 MAKE_FLAGS +=		PLATFORM="OPENBSD"
 ALL_TARGET =		offline
 WRKDIST =		${WRKDIR}/Rocrail-${GH_COMMIT}
