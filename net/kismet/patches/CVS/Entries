@@ -3,8 +3,8 @@
 /patch-capture_openbsd_wifi_capture_openbsd_wifi_c/1.1/Mon Jan 19 13:00:38 2026//
 /patch-capture_sdr_rtl433_v2_capture_sdr_rtl433_v2_c/1.1/Mon Jan 19 13:00:38 2026//
 /patch-capture_sdr_rtladsb_v2_capture_sdr_rtladsb_v2_c/1.1/Mon Jan 19 13:00:38 2026//
-/patch-configure_ac/1.1/Mon Jan 19 13:00:38 2026//
 /patch-kaitaistream_cc/1.1/Mon Jan 19 13:00:38 2026//
-/patch-capture_ti_cc_2531_capture_ti_cc_2531_c/0/dummy timestamp//
-/patch-capture_nrf_52840_capture_nrf_52840_c/0/dummy timestamp//
+/patch-capture_nrf_52840_capture_nrf_52840_c/1.1/Mon May 18 20:52:59 2026//
+/patch-capture_ti_cc_2531_capture_ti_cc_2531_c/1.1/Mon May 18 20:52:59 2026//
+/patch-configure_ac/1.2/Mon May 18 20:52:59 2026//
 D

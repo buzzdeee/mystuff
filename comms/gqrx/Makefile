@@ -22,6 +22,8 @@ WANTLIB += gnuradio-pmt spdlog Qt6Svg Qt6SvgWidgets
 
 #MASTER_SITES =		https://github.com/gqrx-sdr/gqrx/releases/download/v$V/
 
+COMPILER =		base-clang ports-gcc
+
 MODULES =		devel/cmake \
 			x11/qt6
 
@@ -33,18 +35,11 @@ LIB_DEPENDS =		comms/gnuradio \
 RUN_DEPENDS =		devel/desktop-file-utils
 #			x11/gtk+3
 
-# Use RelWithDebInfo to keep symbols but maintain performance
-# Set STRIP to empty to prevent OpenBSD from stripping symbols during install
-STRIP =
-CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
-			-DCMAKE_INSTALL_DO_STRIP=OFF \
-			-DLINUX_AUDIO_BACKEND=OFF \
+CONFIGURE_ARGS +=	-DLINUX_AUDIO_BACKEND=OFF \
 			-DPULSEAUDIO_FOUND=OFF
 
 # Help CMake find the gr-osmosdr you just built
 CONFIGURE_ARGS +=	-Dgr-osmosdr_DIR=${LOCALBASE}/lib/cmake/gr-osmosdr
 
-# GQRX requires C++17
-COMPILER =		base-clang ports-gcc
 
 .include <bsd.port.mk>

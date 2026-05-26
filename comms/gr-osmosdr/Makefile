@@ -6,7 +6,7 @@ GH_TAGNAME =		v0.2.6
 CATEGORIES =		comms
 
 HOMEPAGE =		https://osmocom.org/projects/gr-osmosdr/wiki
-MAINTAINER =		Your Name <you@example.com>
+MAINTAINER =		Sebastian Reitenbach <sebastia@openbsd.org>
 
 # GPLv3+
 PERMIT_PACKAGE =	Yes
@@ -21,16 +21,14 @@ WANTLIB += fmt gmp gmpxx gnuradio-pmt hackrf spdlog
 MODULES =		devel/cmake \
 			lang/python
 
+COMPILER =		base-clang ports-gcc
+
 LIB_DEPENDS =		comms/gnuradio \
 			comms/hackrf \
 			comms/rtl-sdr \
 			devel/libvolk \
 			devel/py-pybind11 \
 			x11/py-qt5
-			
-
-# Requires C++11 or higher
-COMPILER =		base-clang ports-gcc
 
 CONFIGURE_ARGS =	-Wno-dev \
 			-Dpybind11_DIR=${LOCALBASE}/lib/python${MODPY_VERSION}/site-packages/pybind11/share/cmake/pybind11
@@ -40,6 +38,6 @@ CONFIGURE_ARGS +=	-DCMAKE_CXX_STANDARD=17 \
 			-DSPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_OFF \
 			-DGR_DATA_LOGGER_ID=0
 
-CXXFLAGS += -DSPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_OFF \
-            -DGR_DATA_LOGGER_ID=0
+#CXXFLAGS += -DSPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_OFF \
+#            -DGR_DATA_LOGGER_ID=0
 .include <bsd.port.mk>
