@@ -1,6 +1,5 @@
 COMMENT =		Soapy SDR plugin for RTL-SDR
 
-#https://github.com/pothosware/SoapySDR.git
 V =			0.3.3
 GH_ACCOUNT =		pothosware
 GH_PROJECT =		SoapyRTLSDR
@@ -14,6 +13,8 @@ MAINTAINER =		Sebastian Reitenbach <sebastia@openbsd.org>
 # MIT
 PERMIT_PACKAGE =	Yes
 
+COMPILER =		base-clang ports-gcc
+
 WANTLIB += ${COMPILER_LIBCXX} m
 WANTLIB += SoapySDR rtlsdr
 
@@ -22,11 +23,5 @@ MODULES =		devel/cmake
 LIB_DEPENDS =		comms/rtl-sdr \
 			comms/soapysdr
 
-# Keep debug symbols for your porting process
-STRIP =
-CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=RelWithDebInfo
-
-# SDR++ requires a modern C++ compiler (C++17)
-COMPILER =		base-clang ports-gcc
 
 .include <bsd.port.mk>
