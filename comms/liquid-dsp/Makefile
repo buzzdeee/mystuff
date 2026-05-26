@@ -28,8 +28,10 @@ MODCMAKE_LDFLAGS =	-L${LOCALBASE}/lib
 
 CONFIGURE_ARGS +=	-DENABLE_SIMD=OFF
 
-#NO_TEST =		Yes
-
-#WRKSRC =		${WRKDIST}/host
+# test results:
+# 1:  WARNINGS : 57
+# 1: ==================================
+# 1:  PASSED ALL 716451 CHECKS
+# 1/1 Test #1: test .............................   Passed  106.46 sec
 
 .include <bsd.port.mk>

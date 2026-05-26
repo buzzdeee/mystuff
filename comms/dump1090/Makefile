@@ -7,6 +7,8 @@ GH_ACCOUNT =	antirez
 GH_PROJECT =	dump1090
 GH_COMMIT =	efe64db3c6ba1520291331628a33c1e208e851a6
 
+MAINTAINER =	Sebastian Reitenbach <sebastia@openbsd.org>
+
 # BSD
 PERMIT_PACKAGE =	Yes
 
