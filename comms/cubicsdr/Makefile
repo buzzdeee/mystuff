@@ -1,6 +1,5 @@
 COMMENT =		cross-platform Software-Defined Radio application
 
-#https://github.com/cjcliffe/CubicSDR.git
 V =			0.2.7
 GH_ACCOUNT =		cjcliffe
 GH_PROJECT =		CubicSDR
@@ -14,6 +13,8 @@ MAINTAINER =		Sebastian Reitenbach <sebastia@openbsd.org>
 # GPLv2.0
 PERMIT_PACKAGE =	Yes
 
+COMPILER =		base-clang ports-gcc
+
 WANTLIB += ${COMPILER_LIBCXX} c m
 WANTLIB += GL GLU SoapySDR liquid pulse pulse-simple wx_baseu-3.2
 WANTLIB += wx_gtk3u_core-3.2 wx_gtk3u_gl-3.2 wx_gtk3u_propgrid-3.2
@@ -25,12 +26,10 @@ LIB_DEPENDS =		audio/pulseaudio \
 			comms/soapysdr \
 			x11/wxWidgets
 
-# Keep debug symbols for your porting process
-STRIP =
-CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
-			-DCMAKE_POLICY_VERSION_MINIMUM=3.5
+RUN_DEPENDS =		comms/soapy-hackrf \
+			comms/soapy-rtlsdr
 
-# SDR++ requires a modern C++ compiler (C++17)
-COMPILER =		base-clang ports-gcc
+CONFIGURE_ARGS +=	-DCMAKE_POLICY_VERSION_MINIMUM=3.5
+
 
 .include <bsd.port.mk>

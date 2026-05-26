@@ -1,5 +1,4 @@
 @bin bin/CubicSDR
-share/applications/
 share/applications/CubicSDR.desktop
 share/cubicsdr/
 share/cubicsdr/CubicSDR.png
