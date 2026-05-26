@@ -16,17 +16,19 @@ SHARED_LIBS +=  SoapySDR                  0.0 # 0.0
 # BSL-1.0
 PERMIT_PACKAGE =	Yes
 
+COMPILER =		base-clang ports-gcc
+
 WANTLIB += ${COMPILER_LIBCXX} c m
 
 MODULES =		devel/cmake \
 			lang/python
 
-# Keep debug symbols for your porting process
-STRIP =
-CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
-			-DENABLE_PYTHON2=NO
+CONFIGURE_ARGS +=	-DENABLE_PYTHON2=NO \
+			-DENABLE_PYTHON3=YES
 
-# SDR++ requires a modern C++ compiler (C++17)
-COMPILER =		base-clang ports-gcc
+BUILD_DEPENDS =		devel/swig
+
+# test results
+# 100% tests passed, 0 tests failed out of 4
 
 .include <bsd.port.mk>

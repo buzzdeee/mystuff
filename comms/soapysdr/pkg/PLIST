@@ -32,6 +32,6 @@ share/cmake/
 share/cmake/SoapySDR/
 share/cmake/SoapySDR/SoapySDRConfig.cmake
 share/cmake/SoapySDR/SoapySDRConfigVersion.cmake
-share/cmake/SoapySDR/SoapySDRExport-relwithdebinfo.cmake
+share/cmake/SoapySDR/SoapySDRExport${MODCMAKE_BUILD_SUFFIX}
 share/cmake/SoapySDR/SoapySDRExport.cmake
 share/cmake/SoapySDR/SoapySDRUtil.cmake
