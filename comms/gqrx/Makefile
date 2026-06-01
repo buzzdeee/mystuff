@@ -33,12 +33,10 @@ LIB_DEPENDS =		comms/gnuradio \
 			x11/qt6/qtsvg
 
 RUN_DEPENDS =		devel/desktop-file-utils
-#			x11/gtk+3
 
 CONFIGURE_ARGS +=	-DLINUX_AUDIO_BACKEND=OFF \
 			-DPULSEAUDIO_FOUND=OFF
 
-# Help CMake find the gr-osmosdr you just built
 CONFIGURE_ARGS +=	-Dgr-osmosdr_DIR=${LOCALBASE}/lib/cmake/gr-osmosdr
 
 

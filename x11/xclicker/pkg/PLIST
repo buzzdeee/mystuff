@@ -1,0 +1,6 @@
+@bin bin/xclicker
+share/applications/
+share/applications/xclicker.desktop
+share/pixmaps/
+share/pixmaps/xclicker.png
+@tag update-desktop-database
