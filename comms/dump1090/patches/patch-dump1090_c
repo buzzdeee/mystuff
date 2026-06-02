@@ -1,5 +1,6 @@
 Clang says this abs should be llabs.
 Cherry pick quiet mode from PR #17.
+update error message to mention permissions
 
 Index: dump1090.c
 --- dump1090.c.orig
@@ -20,6 +21,15 @@ Index: dump1090.c
      Modes.aggressive = 0;
      Modes.interactive_rows = getTermRows();
      Modes.loop = 0;
+@@ -389,7 +391,7 @@ void modesInitRTLSDR(void) {
+ 
+     device_count = rtlsdr_get_device_count();
+     if (!device_count) {
+-        fprintf(stderr, "No supported RTLSDR devices found.\n");
++        fprintf(stderr, "No supported RTLSDR devices found or missing permissions on device nodes.\n");
+         exit(1);
+     }
+ 
 @@ -1808,7 +1810,7 @@ void useModesMessage(struct modesMessage *mm) {
              if (a && Modes.stat_sbs_connections > 0) modesSendSBSOutput(mm, a);  /* Feed SBS output clients. */
          }
