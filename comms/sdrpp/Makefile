@@ -13,14 +13,14 @@ MAINTAINER =		Sebastian Reitenbach <sebastia@openbsd.org>
 # GPLv3
 PERMIT_PACKAGE =	Yes
 
-# Standard OpenBSD wants list for a C++/OpenGL/SDR app
-WANTLIB += ${COMPILER_LIBS} GL glfw m fftw3f volk zstd
+WANTLIB += GL glfw m fftw3f volk zstd
 WANTLIB += rtlsdr portaudio usb-1.0
 WANTLIB += ${COMPILER_LIBCXX} GLU c hackrf
 
 MODULES =		devel/cmake
 
-# SDR++ uses its own internal version of ImGui, but needs these system libs
+COMPILER =		base-clang ports-gcc
+
 LIB_DEPENDS =		comms/hackrf \
 			comms/rtl-sdr \
 			devel/libvolk \
@@ -30,7 +30,6 @@ LIB_DEPENDS =		comms/hackrf \
 			audio/portaudio-svn \
 			archivers/zstd
 
-# SDR++ is a plugin-based system. We enable the ones most likely to work on BSD.
 CONFIGURE_ARGS +=	-DOPT_BUILD_AUDIO_SOURCE=OFF \
 			-DOPT_BUILD_AUDIO_SINK=OFF \
 			-DOPT_BUILD_SOAPY_SOURCE=OFF \
@@ -41,11 +40,5 @@ CONFIGURE_ARGS +=	-DOPT_BUILD_AUDIO_SOURCE=OFF \
 			-DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
 			-DCMAKE_INSTALL_PREFIX=${PREFIX}
 
-# Keep debug symbols for your porting process
-STRIP =
-CONFIGURE_ARGS +=	-DCMAKE_BUILD_TYPE=RelWithDebInfo
-
-# SDR++ requires a modern C++ compiler (C++17)
-COMPILER =		base-clang ports-gcc
 
 .include <bsd.port.mk>
