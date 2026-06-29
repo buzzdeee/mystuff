@@ -1,5 +1,6 @@
 COMMENT =	signal-processing toolkit for SDR (software-defined radio)
 
+#REVISION =	0
 GH_TAGNAME =	v3.10.12.0
 GH_ACCOUNT =	gnuradio
 GH_PROJECT =	gnuradio

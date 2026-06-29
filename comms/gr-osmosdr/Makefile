@@ -32,7 +32,8 @@ LIB_DEPENDS =		devel/boost \
 			devel/libvolk
 
 CONFIGURE_ARGS =	-Wno-dev \
-			-Dpybind11_DIR=${LOCALBASE}/lib/python${MODPY_VERSION}/site-packages/pybind11/share/cmake/pybind11
+			-Dpybind11_DIR=${LOCALBASE}/lib/python${MODPY_VERSION}/site-packages/pybind11/share/cmake/pybind11 \
+			-DBoost_NO_BOOST_CMAKE=ON
 
 CONFIGURE_ARGS +=	-DCMAKE_CXX_STANDARD=17 \
 			-DCMAKE_CXX_STANDARD_REQUIRED=ON \
