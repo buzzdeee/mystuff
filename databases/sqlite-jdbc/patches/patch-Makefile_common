@@ -1,0 +1,21 @@
+Index: Makefile.common
+--- Makefile.common.orig
++++ Makefile.common
+@@ -18,7 +18,7 @@ JAVA_CLASSPATH:=$(TARGET)/classpath/slf4j-api.jar
+ ifeq ("$(wildcard $(OSINFO_PROG))","")
+ $(info Building OSInfo tool)
+ $(shell mkdir -p $(TARGET)/classpath)
+-$(shell curl -L -f -o$(JAVA_CLASSPATH) https://search.maven.org/remotecontent?filepath=org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar)
++#$(shell curl -L -f -o$(JAVA_CLASSPATH) https://search.maven.org/remotecontent?filepath=org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar)
+ $(shell $(JAVAC) -cp $(JAVA_CLASSPATH) -sourcepath $(SRC) -d lib src/main/java/org/sqlite/util/OSInfo.java)
+ endif
+ 
+@@ -176,7 +176,7 @@ FreeBSD-aarch64_LINKFLAGS := -shared
+ FreeBSD-aarch64_LIBNAME   := libsqlitejdbc.so
+ FreeBSD-aarch64_SQLITE_FLAGS  :=
+ 
+-OpenBSD-x86_64_CC        := $(CROSS_PREFIX)gcc
++OpenBSD-x86_64_CC        := $(CROSS_PREFIX)clang
+ OpenBSD-x86_64_STRIP     := $(CROSS_PREFIX)strip
+ OpenBSD-x86_64_CCFLAGS   := -I$(JAVA_HOME)/include -Ilib/inc_linux -Os -fPIC -fvisibility=hidden
+ OpenBSD-x86_64_LINKFLAGS := -shared
