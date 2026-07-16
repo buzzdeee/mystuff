@@ -28,6 +28,7 @@ BUILD_DEPENDS=	devel/maven
 LIB_DEPENDS=	databases/sqlite3
 
 USE_GMAKE=	Yes
+SUBST_VARS +=	V
 
 # Direct the xerial build system to link against OpenBSD's native library files
 MAKE_FLAGS=	SQLITE_OBJ="${LOCALBASE}/lib/libsqlite3.a" \
@@ -55,6 +56,6 @@ do-install:
 	${INSTALL_DATA_DIR} ${JAR_DIR}
 	
 	cd ${WRKSRC}/dist && \
-		${JAVA_HOME}/bin/jar cfM ${JAR_DIR}/sqlite-jdbc.jar .
+		${JAVA_HOME}/bin/jar cfM ${JAR_DIR}/sqlite-jdbc-${V}.jar .
 
 .include <bsd.port.mk>

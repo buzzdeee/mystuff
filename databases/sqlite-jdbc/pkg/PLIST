@@ -1,2 +1,2 @@
 share/java/
-share/java/sqlite-jdbc.jar
+share/java/sqlite-jdbc-${V}.jar
