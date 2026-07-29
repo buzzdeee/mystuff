@@ -1,0 +1,19 @@
+Recent Activity
+ * Recent Activity had errors - see logs
+   * prefetch extractor 
+Embedded File Extractor
+ * Unable to initialize 7Zip libraries
+Android Analyzer (aLEAPP)
+ * aLeapp module requires windows
+Object Detection
+ * This module is only available on Windows
+Plaso
+ * Windows only - WIP ...
+YARA Analyzer
+ * The YARA ingest module is only available on 64bit Windows
+iOS Analyzer (iLEAPP)
+ * iLeapp module requires windows
+
+From CLI:
+ * WARNING [class org.icepdf.core.pobjects.Document]: PDF write support was not found on the class path
+   * Gemini says, nothing to worry about

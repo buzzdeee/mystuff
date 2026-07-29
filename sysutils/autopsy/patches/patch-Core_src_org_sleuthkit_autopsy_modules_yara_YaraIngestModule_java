@@ -1,0 +1,90 @@
+Index: Core/src/org/sleuthkit/autopsy/modules/yara/YaraIngestModule.java
+--- Core/src/org/sleuthkit/autopsy/modules/yara/YaraIngestModule.java.orig
++++ Core/src/org/sleuthkit/autopsy/modules/yara/YaraIngestModule.java
+@@ -78,14 +78,14 @@ public class YaraIngestModule extends FileIngestModule
+     }
+ 
+     @Messages({
+-        "YaraIngestModule_windows_error_msg=The YARA ingest module is only available on 64bit Windows.",})
++        "YaraIngestModule_windows_error_msg=The YARA ingest module is only available on 64bit Windows or OpenBSD.",})
+ 
+     @Override
+     public void startUp(IngestJobContext context) throws IngestModuleException {
+         this.context = context;
+         this.jobId = context.getJobId();
+ 
+-        if (!PlatformUtil.isWindowsOS() || !PlatformUtil.is64BitOS()) {
++        if (!PlatformUtil.isOpenBSDOS() || (!PlatformUtil.isWindowsOS() && !PlatformUtil.is64BitOS())) {
+             throw new IngestModule.IngestModuleException(Bundle.YaraIngestModule_windows_error_msg());
+         }
+ 
+@@ -125,8 +125,25 @@ public class YaraIngestModule extends FileIngestModule
+         }
+         
+         if (settings.onlyExecutableFiles()) {
+-            String extension = file.getNameExtension();
+-            if (!extension.equals("exe")) {
++            boolean isExecutable = false;
++
++            // 1. Check Unix / POSIX permission bits (User, Group, or Other execution bit)
++            boolean hasUnixExecBit = file.isModeSet(TskData.TSK_FS_META_MODE_ENUM.TSK_FS_META_MODE_IXUSR) ||
++                        file.isModeSet(TskData.TSK_FS_META_MODE_ENUM.TSK_FS_META_MODE_IXGRP) ||
++                        file.isModeSet(TskData.TSK_FS_META_MODE_ENUM.TSK_FS_META_MODE_IXOTH);
++
++            // 2. Check File Extension (expand beyond just .exe)
++            String ext = file.getNameExtension().toLowerCase();
++            boolean isExecExtension = ext.equals("exe") || ext.equals("dll") || ext.equals("sys") 
++                           || ext.equals("com") || ext.equals("bat") || ext.equals("ps1") 
++                           || ext.equals("elf") || ext.equals("bin") || ext.equals("sh");
++
++            // Combine checks
++            if (hasUnixExecBit || isExecExtension) {
++                isExecutable = true;
++            }
++
++            if (!isExecutable) {
+                 return ProcessResult.OK;
+             }
+         }
+@@ -138,6 +155,7 @@ public class YaraIngestModule extends FileIngestModule
+             return ProcessResult.OK;
+         }
+ 
++	//System.out.println("YaraIngestModule: going to process: " + file);
+         try {
+             List<BlackboardArtifact> artifacts = new ArrayList<>();
+             File ruleSetsDir = Paths.get(getTempDirectory(jobId).toString(), RULESET_DIR).toFile();
+@@ -146,26 +164,33 @@ public class YaraIngestModule extends FileIngestModule
+             // into a buffer, else make a local copy of the file.
+             if(file.getSize() < FILE_SIZE_THRESHOLD_BYTE) {
+                 byte[] fileBuffer = new byte[(int)file.getSize()];
++	        //System.out.println("YaraIngestModule: going to read file: " + file);
+                 
+                 int dataRead = file.read(fileBuffer, 0, file.getSize());
++	        //System.out.println("YaraIngestModule: read bytes: " + dataRead);
+                 if(dataRead != 0) {
+                     artifacts.addAll( YaraIngestHelper.scanFileForMatches(file, ruleSetsDir, fileBuffer, dataRead, YARA_SCAN_TIMEOUT_SEC));
+                 } 
+             } else {
++	       System.out.println("YaraIngestModule: creating file: " + file);
+                 File tempCopy = createLocalCopy(file);
+                 artifacts.addAll( YaraIngestHelper.scanFileForMatches(file, ruleSetsDir, tempCopy, YARA_SCAN_TIMEOUT_SEC));
+                 tempCopy.delete();
+             }
+             
++	    System.out.println("YaraIngestModule artificats: " + artifacts);
+             if(!artifacts.isEmpty()) {
+                 Blackboard blackboard = Case.getCurrentCaseThrows().getSleuthkitCase().getBlackboard();
+                 blackboard.postArtifacts(artifacts, YaraIngestModuleFactory.getModuleName(), context.getJobId());
+             }
+             
+         } catch (BlackboardException | NoCurrentCaseException | IngestModuleException | TskCoreException | YaraWrapperException ex) {
++	    System.out.println("YaraIngestModule BlackboardException or alike: " + ex);
+             logger.log(Level.SEVERE, String.format("YARA ingest module failed to process file id %d", file.getId()), ex);
+             return ProcessResult.ERROR;
+         } catch(IOException ex) {
++	    System.out.println("YaraIngestModule IOException or alike: " + ex);
++            logger.log(Level.SEVERE, String.format("YARA ingest module failed to process file id %d", file.getId()), ex);
+             logger.log(Level.SEVERE, String.format("YARA ingest module failed to make a local copy of given file id %d", file.getId()), ex);
+             return ProcessResult.ERROR;
+         }

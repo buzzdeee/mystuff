@@ -1,0 +1,37 @@
+Index: Core/src/org/sleuthkit/autopsy/coreutils/ExecUtil.java
+--- Core/src/org/sleuthkit/autopsy/coreutils/ExecUtil.java.orig
++++ Core/src/org/sleuthkit/autopsy/coreutils/ExecUtil.java
+@@ -232,6 +232,7 @@ public final class ExecUtil {
+      *                           terminating the process.
+      */
+     public static int execute(ProcessBuilder processBuilder, long terminationCheckInterval, TimeUnit units, ProcessTerminator terminator) throws SecurityException, IOException {
++        System.out.println("ExecUtil going to wait for processBuilder: " + processBuilder);
+         return waitForTermination(processBuilder.command().get(0), processBuilder.start(), terminationCheckInterval, units, terminator);
+     }
+ 
+@@ -263,12 +264,14 @@ public final class ExecUtil {
+      */
+     public static int waitForTermination(String processName, Process process, long terminationCheckInterval, TimeUnit units, ProcessTerminator terminator) throws IOException {
+         try {
++	    System.out.println("ExecUitl waitForTermination: " + processName);
+             return waitForProcess(processName, process, terminationCheckInterval, units, terminator);
+         } catch (InterruptedException ex) {
+             /*
+              * Reset the interrupted flag and wrap the exception in an
+              * IOException for backwards compatibility.
+              */
++	    System.out.println("ExecUitl waitForTermination: exception happened " + processName);
+             Thread.currentThread().interrupt();
+             throw new IOException(String.format("Interrupted executing %s", processName), ex); //NON-NLS
+         }
+@@ -298,8 +301,10 @@ public final class ExecUtil {
+     private static int waitForProcess(String processName, Process process, long terminationCheckInterval, TimeUnit units, ProcessTerminator terminator) throws IOException, InterruptedException {
+         do {
+             try {
++	    System.out.println("ExecUitl waitForProcess: " + processName);
+                 process.waitFor(terminationCheckInterval, units);
+             } catch (InterruptedException ex) {
++	    System.out.println("ExecUitl waitForProcess exception happened: " + processName);
+                 logger.log(Level.WARNING, String.format("Interrupted executing %s", processName), ex); //NON-NLS
+                 Thread.currentThread().interrupt();
+                 terminateProcess(processName, process);

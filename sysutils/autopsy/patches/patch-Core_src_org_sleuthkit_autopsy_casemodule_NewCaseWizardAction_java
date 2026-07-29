@@ -1,0 +1,25 @@
+Index: Core/src/org/sleuthkit/autopsy/casemodule/NewCaseWizardAction.java
+--- Core/src/org/sleuthkit/autopsy/casemodule/NewCaseWizardAction.java.orig
++++ Core/src/org/sleuthkit/autopsy/casemodule/NewCaseWizardAction.java
+@@ -118,6 +118,21 @@ final class NewCaseWizardAction extends CallableSystem
+                         AddImageAction addImageAction = SystemAction.get(AddImageAction.class);
+                         addImageAction.actionPerformed(null);
+                     } catch (InterruptedException | ExecutionException ex) {
++
++        // --- ADD THIS CODE TO PRINT THE UNWRAPPED ERROR TO STANDARD ERROR ---
++        Throwable rootCause = ex;
++        if (ex.getCause() != null) {
++            rootCause = ex.getCause();
++        }
++        System.err.println("--- ROOT CRASH CAUSE DETECTED ---");
++        rootCause.printStackTrace(System.err);
++        if (rootCause.getCause() != null) {
++            System.err.println("--- DIRECT UNDERLYING CAUSE ---");
++            rootCause.getCause().printStackTrace(System.err);
++        }
++        // --------------------------------------------------------------------
++
++
+                         if (null != ex.getCause() && !(ex.getCause() instanceof CaseActionCancelledException)) {
+                             logger.log(Level.SEVERE, String.format("Error creating case %s", wizardDescriptor.getProperty("caseName")), ex); //NON-NLS                                                
+                             JOptionPane.showMessageDialog(

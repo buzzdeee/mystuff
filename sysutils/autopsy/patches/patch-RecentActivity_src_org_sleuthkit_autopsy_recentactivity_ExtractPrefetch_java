@@ -1,0 +1,158 @@
+Index: RecentActivity/src/org/sleuthkit/autopsy/recentactivity/ExtractPrefetch.java
+--- RecentActivity/src/org/sleuthkit/autopsy/recentactivity/ExtractPrefetch.java.orig
++++ RecentActivity/src/org/sleuthkit/autopsy/recentactivity/ExtractPrefetch.java
+@@ -19,9 +19,15 @@
+  */
+ package org.sleuthkit.autopsy.recentactivity;
+ 
++import java.io.BufferedReader;
++import java.io.BufferedWriter;
+ import java.io.File;
+ import java.io.FileNotFoundException;
++import java.io.InputStreamReader;
+ import java.io.IOException;
++import java.nio.charset.StandardCharsets;
++import java.nio.file.Files;
++import java.nio.file.StandardOpenOption;
+ import java.nio.file.Path;
+ import java.nio.file.Paths;
+ import java.sql.ResultSet;
+@@ -74,9 +80,11 @@ final class ExtractPrefetch extends Extract {
+     private static final String PREFETCH_TOOL_NAME_X64_MACOS = "mm_artifact_parser_x64_macos"; //NON-NLS
+     private static final String PREFETCH_TOOL_NAME_AARCH64_LINUX = "mm_artifact_parser_aarch64_linux"; //NON-NLS
+     private static final String PREFETCH_TOOL_NAME_AARCH64_MACOS = "mm_artifact_parser_aarch64_macos"; //NON-NLS
++    private static final String PREFETCH_TOOL_NAME_OPENBSD = "prefetch-parser"; //NON-NLS
+     private static final String PREFETCH_OUTPUT_FILE_NAME = "Output.txt"; //NON-NLS
+     private static final String PREFETCH_ERROR_FILE_NAME = "Error.txt"; //NON-NLS
+     private static final String PREFETCH_PARSER_DB_FILE = "Autopsy_PF_DB.db3"; //NON-NLS
++    private static final String PREFETCH_PARSER_JSON_FILE = "Autopsy_PF_JSONL.jsonl"; //NON-NLS
+     private static final String PREFETCH_DIR_NAME = "prefetch"; //NON-NLS
+ 
+     @Messages({
+@@ -97,7 +105,11 @@ final class ExtractPrefetch extends Extract {
+      * @return The folder name
+      */
+     private String getPrefetchTempFolder(Content dataSource) {
+-        return dataSource.getId() + "-" + PREFETCH_PARSER_DB_FILE;
++        if (PlatformUtil.isOpenBSDOS()) {
++            return dataSource.getId() + "-" + PREFETCH_PARSER_JSON_FILE;
++        } else {
++            return dataSource.getId() + "-" + PREFETCH_PARSER_DB_FILE;
++        }
+     }
+ 
+     @Override
+@@ -197,14 +209,19 @@ final class ExtractPrefetch extends Extract {
+         final Path outputFilePath = Paths.get(tempOutPath, PREFETCH_OUTPUT_FILE_NAME);
+         final Path errFilePath = Paths.get(tempOutPath, PREFETCH_ERROR_FILE_NAME);
+ 
++        if (PlatformUtil.isOpenBSDOS()) {
++            parsePrefetchFilesOpenBSD(prefetchExePath, prefetchDir, tempOutFile, errFilePath);
++            return;
++        }
++
+         List<String> commandLine = new ArrayList<>();
+         commandLine.add(prefetchExePath);
+-        commandLine.add("-a");
+-        commandLine.add("prefetch");
+-        commandLine.add("-f");
+-        commandLine.add(prefetchDir);  //NON-NLS
+-        commandLine.add("-db");
+-        commandLine.add(tempOutFile);
++        commandLine.add("-a"); //NON-NLS
++        commandLine.add("prefetch"); //NON-NLS
++        commandLine.add("-f"); //NON-NLS
++        commandLine.add(prefetchDir); //NON-NLS
++        commandLine.add("-db"); //NON-NLS
++        commandLine.add(tempOutFile); //NON-NLS
+ 
+         ProcessBuilder processBuilder = new ProcessBuilder(commandLine);
+         processBuilder.redirectOutput(outputFilePath.toFile());
+@@ -213,6 +230,68 @@ final class ExtractPrefetch extends Extract {
+         ExecUtil.execute(processBuilder, new DataSourceIngestModuleProcessTerminator(context, true));
+     }
+ 
++    private void parsePrefetchFilesOpenBSD(String prefetchExePath, String prefetchDir, String tempOutFile, Path errFilePath) throws IOException {
++        File dir = new File(prefetchDir);
++	System.out.println("ExtractPrefetch checking dir: " + dir);
++        File[] pfFiles = dir.listFiles((d, name) -> name.toLowerCase().endsWith(".pf"));
++
++        if (pfFiles == null || pfFiles.length == 0) {
++	    System.out.println("ExtractPrefetch no .pf files in dir");
++            return;
++        }
++
++        com.google.gson.Gson compactGson = new com.google.gson.Gson();
++
++	Path targetPath = Paths.get(tempOutFile);
++	System.out.println("ExtractPrefetch tempOutFile: " + targetPath);
++        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(tempOutFile), 
++                StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
++
++		System.out.println("ExtractPrefetch writer: " + writer);
++            for (File pfFile : pfFiles) {
++                List<String> commandLine = Arrays.asList(prefetchExePath, "-f", pfFile.getAbsolutePath());
++	        System.out.println("ExtractPrefetch parsing: " + pfFile.getAbsolutePath());
++                ProcessBuilder pb = new ProcessBuilder(commandLine);
++                pb.redirectError(ProcessBuilder.Redirect.appendTo(errFilePath.toFile()));
++
++                Process process = pb.start();
++                
++                try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8))) {
++                    StringBuilder jsonBuffer = new StringBuilder();
++                    String line;
++                    
++                    while ((line = reader.readLine()) != null) {
++                        if (line.startsWith("******** Converting")) {
++	        	    System.out.println("ExtractPrefetch dropping **** line: " + line);
++                            continue;
++                        }
++                        jsonBuffer.append(line).append("\n");
++                    }
++
++                    String jsonText = jsonBuffer.toString().trim();
++	            //System.out.println("ExtractPrefetch got JSON: " + jsonText);
++                    if (!jsonText.isEmpty()) {
++                        com.google.gson.JsonElement parsedElement = com.google.gson.JsonParser.parseString(jsonText);
++                        String singleLineJson = compactGson.toJson(parsedElement);
++	                System.out.println("ExtractPrefetch got JSON: " + singleLineJson);
++                        
++                        writer.write(singleLineJson);
++                        writer.newLine();
++			System.out.println("ExtractPrefetch tempOutFile: " + targetPath);
++                    }
++                }
++
++                try {
++                    process.waitFor();
++                } catch (InterruptedException e) {
++                    Thread.currentThread().interrupt();
++                    break;
++                }
++		System.out.println("ExtractPrefetch tempOutFile: " + tempOutFile);
++            }
++        }
++    }
++
+     /**
+      * Get the path and executable for the parse_prefetch program. Checks for
+      * specific version of OS to get proper executable.
+@@ -237,6 +316,18 @@ final class ExtractPrefetch extends Extract {
+                 path = Paths.get(PREFETCH_TOOL_FOLDER, PREFETCH_TOOL_NAME_X64_MACOS);                
+             }
+             
++        } else if (PlatformUtil.isOpenBSDOS()) {
++            String pathEnv = System.getenv("PATH");
++            if (pathEnv != null) {
++                for (String dir : pathEnv.split(File.pathSeparator)) {
++                    File candidate = new File(dir, PREFETCH_TOOL_NAME_OPENBSD);
++                    if (candidate.isFile() && candidate.canExecute()) {
++			System.out.println("ExtractPrefetch: using prefetch parser: " + candidate.getAbsolutePath());
++                        return candidate.getAbsolutePath();
++                    }
++                }
++            }
++            return null;
+         }
+         File prefetchToolFile = InstalledFileLocator.getDefault().locate(path.toString(),
+                 ExtractPrefetch.class.getPackage().getName(), false);

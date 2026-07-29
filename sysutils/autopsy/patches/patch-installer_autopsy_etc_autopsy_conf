@@ -1,0 +1,30 @@
+Index: installer_autopsy/etc/autopsy.conf
+--- installer_autopsy/etc/autopsy.conf.orig
++++ installer_autopsy/etc/autopsy.conf
+@@ -1,4 +1,4 @@
+-#Thu, 15 Jun 2023 09:17:11 -0400
++#Sat, 11 Jul 2026 11:14:56 +0200
+ # Licensed to the Apache Software Foundation (ASF) under one
+ # or more contributor license agreements.  See the NOTICE file
+ # distributed with this work for additional information
+@@ -54,12 +54,12 @@
+ # would cause problems.
+ #
+ 
+-default_userdir=${DEFAULT_USERDIR_ROOT}
++default_userdir="${DEFAULT_USERDIR_ROOT}/dev"
+ default_cachedir="${DEFAULT_CACHEDIR_ROOT}/dev"
+ 
+ # options used by the launcher by default, can be overridden by explicit
+ # command line switches
+-default_options="--branding autopsy -J-Xms24m -J-XX:+UseStringDeduplication -J-Dprism.order=sw -J--add-opens=java.base/java.lang=ALL-UNNAMED -J--add-opens=java.base/java.net=ALL-UNNAMED -J--add-opens=java.desktop/javax.swing=ALL-UNNAMED -J--add-opens=javafx.controls/javafx.scene.control.skin=ALL-UNNAMED -J--add-exports=java.desktop/sun.awt=ALL-UNNAMED -J--add-exports=javafx.controls/com.sun.javafx.scene.control.inputmap=ALL-UNNAMED -J--add-exports=javafx.base/com.sun.javafx.event=ALL-UNNAMED"
++default_options="--branding autopsy -J-Xms24m -J-Xmx4G -J-XX:+UseStringDeduplication -J-Dprism.order=sw  -J--add-opens=java.base/java.lang=ALL-UNNAMED -J--add-opens=java.base/java.net=ALL-UNNAMED -J--add-opens=java.desktop/javax.swing=ALL-UNNAMED -J--add-exports=javafx.graphics/com.sun.javafx.application=ALL-UNNAMED -J--add-exports=javafx.base/com.sun.javafx.logging=ALL-UNNAMED -J--add-opens=javafx.controls/javafx.scene.control.skin=ALL-UNNAMED -J--add-exports=java.desktop/sun.awt=ALL-UNNAMED -J--add-exports=javafx.controls/com.sun.javafx.scene.control.inputmap=ALL-UNNAMED -J--add-exports=javafx.base/com.sun.javafx.event=ALL-UNNAMED -J-Djava.library.path=/home/ports/pobj/amd64/syslibs:/usr/local/lib -J-Dorg.sleuthkit.autopsy.corelibs.useSystemSleuthkit=true -J-Dsleuthkit.skipExtraction=true -J-Dorg.sqlite.lib.name=libsqlitejdbc.so -J--module-path=platform/javafx -J--add-modules=javafx.controls,javafx.fxml,javafx.web,javafx.media,javafx.swing"
+ # for development purposes you may wish to append: -J-Dnetbeans.logger.console=true -J-ea
+ 
+ # default location of JDK/JRE, can be overridden by using --jdkhome <dir> switch
+@@ -67,5 +67,3 @@ default_options="--branding autopsy -J-Xms24m -J-XX:+U
+ 
+ # clusters' paths separated by path.separator (semicolon on Windows, colon on Unices)
+ #extra_clusters=
+-
+-jdkhome="jre"
