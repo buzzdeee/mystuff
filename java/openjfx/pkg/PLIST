@@ -1,0 +1,16 @@
+share/java/
+share/java/openjfx/
+share/java/openjfx/javafx-base-${BASE_V}-openbsd.jar
+share/java/openjfx/javafx-base-${BASE_V}.jar
+share/java/openjfx/javafx-controls-${BASE_V}-openbsd.jar
+share/java/openjfx/javafx-controls-${BASE_V}.jar
+share/java/openjfx/javafx-fxml-${BASE_V}-openbsd.jar
+share/java/openjfx/javafx-fxml-${BASE_V}.jar
+share/java/openjfx/javafx-graphics-${BASE_V}-openbsd.jar
+share/java/openjfx/javafx-graphics-${BASE_V}.jar
+share/java/openjfx/javafx-media-${BASE_V}-openbsd.jar
+share/java/openjfx/javafx-media-${BASE_V}.jar
+share/java/openjfx/javafx-swing-${BASE_V}-openbsd.jar
+share/java/openjfx/javafx-swing-${BASE_V}.jar
+share/java/openjfx/javafx-web-${BASE_V}-openbsd.jar
+share/java/openjfx/javafx-web-${BASE_V}.jar
