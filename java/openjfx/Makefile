@@ -26,6 +26,7 @@ MODJAVA_VER =		21
 
 BUILD_DEPENDS =		java/gradle \
 			devel/apache-ant \
+			devel/gperf \
 			devel/ninja \
 			archivers/zip
 

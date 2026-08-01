@@ -39,7 +39,8 @@ MODJAVA_BUILD_TARGET_NAME =	build-zip
 
 BUILD_DEPENDS =		archivers/zip
 # C/C++ Forensic & Database Libraries
-LIB_DEPENDS =		multimedia/libde265 \
+LIB_DEPENDS =		java/openjfx \
+			multimedia/libde265 \
 			multimedia/libheif \
 			databases/postgresql,-main \
 			sysutils/afflib3 \
@@ -50,7 +51,8 @@ LIB_DEPENDS =		multimedia/libde265 \
 			sysutils/sleuthkit
 
 # Runtime applications and GStreamer pipelines
-RUN_DEPENDS =		sysutils/testdisk \
+RUN_DEPENDS =		sysutils/prefetch-parser \
+			sysutils/testdisk \
 			multimedia/gstreamer1/plugins-base \
 			multimedia/gstreamer1/plugins-good \
 			multimedia/gstreamer1/plugins-bad \

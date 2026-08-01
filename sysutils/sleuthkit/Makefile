@@ -61,6 +61,7 @@ USE_GMAKE =		Yes
 # not using MODJAVA_BUILD=ant on purpose
 BUILD_DEPENDS =		devel/apache-ant
 LIB_DEPENDS =		databases/sqlite3 \
+			databases/sqlite-jdbc \
 			devel/libbfio \
 			sysutils/afflib3 \
 			sysutils/libvhdi \
