@@ -1,0 +1,6 @@
+lib/sevenzipjbinding/
+@so lib/sevenzipjbinding/lib7-Zip-JBinding.so
+share/java/
+share/java/sevenzipjbinding/
+share/java/sevenzipjbinding/sevenzipjbinding-OpenBSD-${ARCH}.jar
+share/java/sevenzipjbinding/sevenzipjbinding.jar
