@@ -4,6 +4,10 @@ Recent Activity
    * WORKING
 Embedded File Extractor
  * Unable to initialize 7Zip libraries
+   * sevenzipjbinding needed to build with OpenBSD support
+   * old cmake
+   * then to find out, have to use sleuthkit fork of it
+   * but now test image works to dive into .zip, .7z, .tar.gz 
 Android Analyzer (aLEAPP)
  * aLeapp module requires windows
 Object Detection
