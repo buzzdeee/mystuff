@@ -1,0 +1,131 @@
+Index: Experimental/src/org/sleuthkit/autopsy/experimental/objectdetection/ObjectDetectectionFileIngestModule.java
+--- Experimental/src/org/sleuthkit/autopsy/experimental/objectdetection/ObjectDetectectionFileIngestModule.java.orig
++++ Experimental/src/org/sleuthkit/autopsy/experimental/objectdetection/ObjectDetectectionFileIngestModule.java
+@@ -25,11 +25,12 @@ import java.util.List;
+ import java.util.Map;
+ import java.util.logging.Level;
+ import org.apache.commons.io.FilenameUtils;
++import org.opencv.core.Core;
+ import org.opencv.core.CvException;
+ import org.opencv.core.Mat;
+ import org.opencv.core.MatOfByte;
+ import org.opencv.core.MatOfRect;
+-import org.opencv.highgui.Highgui;
++import org.opencv.imgcodecs.Imgcodecs;
+ import org.opencv.objdetect.CascadeClassifier;
+ import org.openide.util.NbBundle.Messages;
+ import org.sleuthkit.autopsy.casemodule.Case;
+@@ -50,6 +51,7 @@ import org.sleuthkit.datamodel.BlackboardArtifact;
+ import org.sleuthkit.datamodel.BlackboardAttribute;
+ import org.sleuthkit.datamodel.Score;
+ import org.sleuthkit.datamodel.TskCoreException;
++import org.sleuthkit.autopsy.corelibs.OpenCvLoader;
+ 
+ /**
+  * Data source module to detect objects in images.
+@@ -76,7 +78,7 @@ public class ObjectDetectectionFileIngestModule extend
+         File classifierDir = new File(PlatformUtil.getObjectDetectionClassifierPath());
+         classifiers = new HashMap<>();
+         
+-        if(!PlatformUtil.isWindowsOS()) {
++        if(!PlatformUtil.isWindowsOS() && !PlatformUtil.isOpenBSDOS()) {
+             //Pop-up that catches IngestModuleException will automatically indicate 
+             //the name of the module before the message.
+             String errorMsg = Bundle.ObjectDetectionFileIngestModule_notWindowsError();
+@@ -86,18 +88,69 @@ public class ObjectDetectectionFileIngestModule extend
+         
+         if(!OpenCvLoader.openCvIsLoaded()) {
+             String errorMsg = Bundle.ObjectDetectionFileIngestModule_openCVNotLoaded();
++            System.out.println("ObjectDetectectionFileIngestModule openCvIsLoaded() failed");
+             logger.log(Level.SEVERE, errorMsg);
+             throw new IngestModule.IngestModuleException(errorMsg);
+         }
+         
+         //Load all classifiers found in PlatformUtil.getObjectDetectionClassifierPath()
+         if (classifierDir.exists() && classifierDir.isDirectory()) {
++System.out.println("OpenCV version: " + Core.VERSION);
++System.out.println("OpenCV native: " + Core.NATIVE_LIBRARY_NAME);
++if (!OpenCvLoader.openCvIsLoaded()) {
++    throw new IngestModule.IngestModuleException(
++        "OpenCV native library not loaded"
++    );
++}
++System.out.println("OpenCV JNI loaded");
++try {
++    System.out.println("Cascade native constructor:");
++    System.out.println(
++        CascadeClassifier.class.getDeclaredMethod(
++            "CascadeClassifier_1",
++            String.class
++        )
++    );
++} catch (NoSuchMethodException ex) {
++    ex.printStackTrace();
++}
+             for (File classifier : classifierDir.listFiles()) {
+                 if (classifier.isFile() && FilenameUtils.getExtension(classifier.getName()).equalsIgnoreCase("xml")) {
+-                    classifiers.put(classifier.getName(), new CascadeClassifier(classifier.getAbsolutePath()));
++
++System.out.println("Core source: "
++        + (Core.class.getProtectionDomain().getCodeSource() == null
++            ? "null"
++            : Core.class.getProtectionDomain().getCodeSource().getLocation()));
++
++System.out.println("CascadeClassifier source: "
++        + (CascadeClassifier.class.getProtectionDomain().getCodeSource() == null
++            ? "null"
++            : CascadeClassifier.class.getProtectionDomain().getCodeSource().getLocation()));
++
++System.out.println("CascadeClassifier loader: "
++        + CascadeClassifier.class.getClassLoader());
++
++System.out.println("Core loader: "
++        + Core.class.getClassLoader());
++
++
++System.out.println("Classifier file: " + classifier.getAbsolutePath());
++
++System.out.println("About to call default constructor");
++CascadeClassifier cc = new CascadeClassifier();
++System.out.println("Default constructor worked");
++
++System.out.println("About to call load()");
++boolean loaded = cc.load(classifier.getAbsolutePath());
++System.out.println("load() returned: " + loaded);
++
++System.out.println("empty() returned: " + cc.empty());
++
++classifiers.put(classifier.getName(), cc);
+                 }
+             }
+         } else {
++            System.out.println("ObjectDetectectionFileIngestModule Unable to load classifiers for object detection module.");
+             throw new IngestModule.IngestModuleException("Unable to load classifiers for object detection module.");
+         }
+         if (refCounter.incrementAndGet(jobId) == 1 && classifiers.isEmpty()) {
+@@ -108,6 +161,7 @@ public class ObjectDetectectionFileIngestModule extend
+         try {
+             blackboard = Case.getCurrentCaseThrows().getSleuthkitCase().getBlackboard();
+         } catch (NoCurrentCaseException ex) {
++            System.out.println("ObjectDetectectionFileIngestModule Exception while getting open case.");
+             throw new IngestModule.IngestModuleException("Exception while getting open case.", ex);
+         }
+     }
+@@ -136,7 +190,7 @@ public class ObjectDetectectionFileIngestModule extend
+ 
+             Mat originalImage;
+             try {
+-                originalImage = Highgui.imdecode(new MatOfByte(imageInMemory), Highgui.IMREAD_GRAYSCALE);
++                originalImage = Imgcodecs.imdecode(new MatOfByte(imageInMemory), Imgcodecs.IMREAD_GRAYSCALE);
+             } catch (CvException ex) {
+                 //The image was something which could not be decoded by OpenCv, our isImageThumbnailSupported(file) check above failed us
+                 logger.log(Level.WARNING, "Unable to decode image from byte array to perform object detection on " + file.getParentPath() + file.getName() + " with object id of " + file.getId(), ex); //NON-NLS
+@@ -192,7 +246,7 @@ public class ObjectDetectectionFileIngestModule extend
+             detectionRectangles.release();
+             originalImage.release();
+         }
+-
++        System.out.println("ObjectDetectectionFileIngestModule: object detection worked returning OK");
+         return IngestModule.ProcessResult.OK;
+     }
+ 

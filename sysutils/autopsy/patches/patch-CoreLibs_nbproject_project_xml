@@ -1,7 +1,29 @@
 Index: CoreLibs/nbproject/project.xml
 --- CoreLibs/nbproject/project.xml.orig
 +++ CoreLibs/nbproject/project.xml
-@@ -917,116 +917,144 @@
+@@ -544,17 +544,19 @@
+                 <package>org.joda.time.format</package>
+                 <package>org.joda.time.tz</package>
+                 <package>org.opencv.calib3d</package>
+-                <package>org.opencv.contrib</package>
+                 <package>org.opencv.core</package>
++                <package>org.opencv.dnn</package>
+                 <package>org.opencv.features2d</package>
+-                <package>org.opencv.gpu</package>
+                 <package>org.opencv.highgui</package>
++                <package>org.opencv.imgcodecs</package>
+                 <package>org.opencv.imgproc</package>
+                 <package>org.opencv.ml</package>
+                 <package>org.opencv.objdetect</package>
++                <package>org.opencv.osgi</package>
+                 <package>org.opencv.photo</package>
+                 <package>org.opencv.utils</package>
+                 <package>org.opencv.video</package>
++                <package>org.opencv.videoio</package>
+                 <package>org.sleuthkit.autopsy.corelibs</package>
+                 <package>org.slf4j</package>
+                 <package>org.slf4j.event</package>
+@@ -917,116 +919,144 @@
                  <binary-origin>release/modules/ext/jackson-datatype-jsr310-2.18.2.jar</binary-origin>
              </class-path-extension>
              <class-path-extension>

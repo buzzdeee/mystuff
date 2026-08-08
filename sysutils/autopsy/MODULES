@@ -12,6 +12,10 @@ Android Analyzer (aLEAPP)
  * aLeapp module requires windows
 Object Detection
  * This module is only available on Windows
+   * use graphics/opencv,-java package
+   *         cp ${TRUEPREFIX}/share/java/opencv4/opencv-*.jar \
+                 ${PREFIX}/autopsy/autopsy/modules/ext/opencv-*.jar
+
 Plaso
  * Windows only - WIP ...
 YARA Analyzer

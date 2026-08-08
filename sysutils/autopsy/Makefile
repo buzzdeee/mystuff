@@ -102,10 +102,15 @@ pre-build:
 	ln -sf ${LOCALBASE}/share/java/sleuthkit-caseuco-4.15.0.jar \
 		${WRKDIR}/tsk_bindings/case-uco/java/dist/sleuthkit-caseuco-4.15.0.jar
 
+	# copy over opencv-*.jar from opencv-java package
+	cp ${TRUEPREFIX}/share/java/opencv4/opencv-*.jar \
+		 ${WRKSRC}/thirdparty/opencv/ext/opencv-*.jar
+
 do-install:
 	mkdir -p ${PREFIX}
 	cd ${PREFIX} && \
 		unzip ${WRKSRC}/dist/autopsy.zip
+		
 #	rm -f ${PREFIX}/autopsy/autopsy/modules/ext/javafx-*
 #	cp ${TRUEPREFIX}/share/java/openjfx/* \
 #		${PREFIX}/autopsy/autopsy/modules/ext/

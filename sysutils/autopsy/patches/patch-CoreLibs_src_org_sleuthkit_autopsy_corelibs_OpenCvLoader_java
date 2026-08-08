@@ -1,0 +1,23 @@
+Index: CoreLibs/src/org/sleuthkit/autopsy/corelibs/OpenCvLoader.java
+--- CoreLibs/src/org/sleuthkit/autopsy/corelibs/OpenCvLoader.java.orig
++++ CoreLibs/src/org/sleuthkit/autopsy/corelibs/OpenCvLoader.java
+@@ -36,9 +36,11 @@ public final class OpenCvLoader {
+     static {
+         openCvLoaded = false;
+         try {
++	    System.out.println("trying to load native OpenCV library: " + Core.NATIVE_LIBRARY_NAME);
+             System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+             openCvLoaded = true;
+         } catch (UnsatisfiedLinkError ex) {
++	    System.out.println("Failed to load core OpenCV library UnsatisfiedLinkError: " + ex);
+             logger.log(Level.WARNING, "Failed to load core OpenCV library", ex);
+             /*
+              * Save exception to rethrow later (deprecated).
+@@ -49,6 +51,7 @@ public final class OpenCvLoader {
+              * Exception firewall to ensure that runtime exceptions do not cause
+              * the loading of this class by the Java class loader to fail.
+              */
++	    System.out.println("Failed to load core OpenCV library other error: " + ex);
+             logger.log(Level.WARNING, "Failed to load core OpenCV library", ex);
+         }
+ 
