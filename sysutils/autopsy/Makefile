@@ -39,7 +39,8 @@ MODJAVA_BUILD_TARGET_NAME =	build-zip
 
 BUILD_DEPENDS =		archivers/zip
 # C/C++ Forensic & Database Libraries
-LIB_DEPENDS =		java/openjfx \
+LIB_DEPENDS =		databases/sqlite-jdbc \
+			java/openjfx \
 			java/sevenzipjbinding \
 			multimedia/libde265 \
 			multimedia/libheif \

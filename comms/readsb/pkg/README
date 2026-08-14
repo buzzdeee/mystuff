@@ -1,0 +1,17 @@
+
+ sudo /usr/loacal/bin/readsb --device-type rtlsdr \
+--gain 42.1 \
+--sdr-buffer-size 256 \
+--interactive
+
+sudo /usr/local/bin/readsb \
+  --device-type hackrf \
+  --sdr-buffer-size 256 \
+  --hackrf-vgagain 32 \
+  --interactive
+
+HackRF via SoapySDR
+sudo /usr/local/bin/readsb \
+  --device-type soapysdr \
+  --gain 40 \
+  --interactive
