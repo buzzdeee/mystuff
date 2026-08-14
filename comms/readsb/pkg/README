@@ -10,8 +10,11 @@ sudo /usr/local/bin/readsb \
   --hackrf-vgagain 32 \
   --interactive
 
-HackRF via SoapySDR
+HackRF or RTLSDR via SoapySDR
 sudo /usr/local/bin/readsb \
   --device-type soapysdr \
   --gain 40 \
   --interactive
+
+
+
