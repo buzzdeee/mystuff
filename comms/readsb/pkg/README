@@ -1,5 +1,5 @@
 
- sudo /usr/loacal/bin/readsb --device-type rtlsdr \
+ sudo /usr/local/bin/readsb --device-type rtlsdr \
 --gain 42.1 \
 --sdr-buffer-size 256 \
 --interactive
@@ -17,4 +17,13 @@ sudo /usr/local/bin/readsb \
   --interactive
 
 
+stream to dump1090 to see planes on the map:
+
+dump1090 --net --net-only --interactive
+
+sudo /usr/local/bin/readsb --device-type rtlsdr \
+--gain 42.1 \
+--sdr-buffer-size 256 \
+--net \
+--net-connector 127.0.0.1,30001,raw_out
 
