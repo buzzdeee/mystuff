@@ -1,0 +1,746 @@
+===>  Building for projectcenter-0.8.0
+This is gnustep-make 2.9.3. Type 'gmake print-gnustep-make-help' for help.
+Running in gnustep-make version 2 strict mode.
+Making all in Framework ...
+gmake[1]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Framework'
+Making build-headers for framework ProjectCenter...
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ProjectCenter.framework/Versions/0.7.0/Headers
+install -c -m 444 ../Headers/ProjectCenter/PCDefines.h ProjectCenter.framework/Versions/0.7.0/Headers/PCDefines.h
+install -c -m 444 ../Headers/ProjectCenter/ProjectCenter.h ProjectCenter.framework/Versions/0.7.0/Headers/ProjectCenter.h
+install -c -m 444 ../Headers/ProjectCenter/PCBundleManager.h ProjectCenter.framework/Versions/0.7.0/Headers/PCBundleManager.h
+install -c -m 444 ../Headers/ProjectCenter/PCEditorManager.h ProjectCenter.framework/Versions/0.7.0/Headers/PCEditorManager.h
+install -c -m 444 ../Headers/ProjectCenter/PCFileManager.h ProjectCenter.framework/Versions/0.7.0/Headers/PCFileManager.h
+install -c -m 444 ../Headers/ProjectCenter/PCAddFilesPanel.h ProjectCenter.framework/Versions/0.7.0/Headers/PCAddFilesPanel.h
+install -c -m 444 ../Headers/ProjectCenter/PCFileCreator.h ProjectCenter.framework/Versions/0.7.0/Headers/PCFileCreator.h
+install -c -m 444 ../Headers/ProjectCenter/PCMakefileFactory.h ProjectCenter.framework/Versions/0.7.0/Headers/PCMakefileFactory.h
+install -c -m 444 ../Headers/ProjectCenter/PCSaveModified.h ProjectCenter.framework/Versions/0.7.0/Headers/PCSaveModified.h
+install -c -m 444 ../Headers/ProjectCenter/PCProjectManager.h ProjectCenter.framework/Versions/0.7.0/Headers/PCProjectManager.h
+install -c -m 444 ../Headers/ProjectCenter/PCProject.h ProjectCenter.framework/Versions/0.7.0/Headers/PCProject.h
+install -c -m 444 ../Headers/ProjectCenter/PCProjectWindow.h ProjectCenter.framework/Versions/0.7.0/Headers/PCProjectWindow.h
+install -c -m 444 ../Headers/ProjectCenter/PCProjectInspector.h ProjectCenter.framework/Versions/0.7.0/Headers/PCProjectInspector.h
+install -c -m 444 ../Headers/ProjectCenter/PCProjectBuilder.h ProjectCenter.framework/Versions/0.7.0/Headers/PCProjectBuilder.h
+install -c -m 444 ../Headers/ProjectCenter/PCProjectBuilderOptions.h ProjectCenter.framework/Versions/0.7.0/Headers/PCProjectBuilderOptions.h
+install -c -m 444 ../Headers/ProjectCenter/PCProjectBuilderPanel.h ProjectCenter.framework/Versions/0.7.0/Headers/PCProjectBuilderPanel.h
+install -c -m 444 ../Headers/ProjectCenter/PCProjectLauncher.h ProjectCenter.framework/Versions/0.7.0/Headers/PCProjectLauncher.h
+install -c -m 444 ../Headers/ProjectCenter/PCProjectLauncherPanel.h ProjectCenter.framework/Versions/0.7.0/Headers/PCProjectLauncherPanel.h
+install -c -m 444 ../Headers/ProjectCenter/PCProjectEditor.h ProjectCenter.framework/Versions/0.7.0/Headers/PCProjectEditor.h
+install -c -m 444 ../Headers/ProjectCenter/PCProjectBrowser.h ProjectCenter.framework/Versions/0.7.0/Headers/PCProjectBrowser.h
+install -c -m 444 ../Headers/ProjectCenter/PCProjectLoadedFiles.h ProjectCenter.framework/Versions/0.7.0/Headers/PCProjectLoadedFiles.h
+install -c -m 444 ../Headers/ProjectCenter/PCProjectLoadedFilesPanel.h ProjectCenter.framework/Versions/0.7.0/Headers/PCProjectLoadedFilesPanel.h
+install -c -m 444 ../Headers/ProjectCenter/PCFileNameField.h ProjectCenter.framework/Versions/0.7.0/Headers/PCFileNameField.h
+install -c -m 444 ../Headers/ProjectCenter/PCFileNameIcon.h ProjectCenter.framework/Versions/0.7.0/Headers/PCFileNameIcon.h
+install -c -m 444 ../Headers/ProjectCenter/PCLogController.h ProjectCenter.framework/Versions/0.7.0/Headers/PCLogController.h
+install -c -m 444 ../Headers/ProjectCenter/PCAuxiliaryWindow.h ProjectCenter.framework/Versions/0.7.0/Headers/PCAuxiliaryWindow.h
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./derived_src; \
+touch derived_src/.stamp
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ProjectCenter.framework/Versions/0.7.0/Resources
+cd ./ProjectCenter.framework/Versions; \
+rm -f Current; \
+ln -s 0.7.0 Current
+cd ./ProjectCenter.framework; \
+  if [ ! -h "Resources" ]; then \
+    rm -f Resources; \
+    ln -s Versions/Current/Resources Resources; \
+  fi; \
+  if [ ! -h "Headers" ]; then \
+    rm -f Headers; \
+    ln -s Versions/Current/Headers Headers; \
+  fi
+cd ./derived_src; \
+  if [ ! -h "ProjectCenter" ]; then \
+    rm -f ./ProjectCenter; \
+    ln -s ../ProjectCenter.framework/Headers \
+                    ./ProjectCenter; \
+  fi
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for framework ProjectCenter...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/ProjectCenter.obj/
+cc PCBundleManager.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCBundleManager.m.o
+cc PCEditorManager.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCEditorManager.m.o
+cc PCMakefileFactory.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCMakefileFactory.m.o
+cc PCFileManager.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCFileManager.m.o
+cc PCAddFilesPanel.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCAddFilesPanel.m.o
+cc PCFileCreator.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCFileCreator.m.o
+cc PCSaveModified.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCSaveModified.m.o
+cc PCProjectManager.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCProjectManager.m.o
+cc PCProject.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCProject.m.o
+cc PCProjectWindow.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCProjectWindow.m.o
+cc PCProjectInspector.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCProjectInspector.m.o
+cc PCProjectBuilder.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCProjectBuilder.m.o
+cc PCProjectBuilderOptions.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCProjectBuilderOptions.m.o
+cc PCProjectBuilderPanel.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCProjectBuilderPanel.m.o
+cc PCProjectLauncher.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCProjectLauncher.m.o
+cc PCProjectLauncherPanel.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCProjectLauncherPanel.m.o
+cc PCProjectEditor.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCProjectEditor.m.o
+cc PCProjectBrowser.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCProjectBrowser.m.o
+cc PCProjectLoadedFiles.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCProjectLoadedFiles.m.o
+cc PCProjectLoadedFilesPanel.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCProjectLoadedFilesPanel.m.o
+cc PCButton.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCButton.m.o
+cc PCFileNameField.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCFileNameField.m.o
+cc PCFileNameIcon.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCFileNameIcon.m.o
+cc PCLogController.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCLogController.m.o
+cc PCAuxiliaryWindow.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\"" -fconstant-string-class=NSConstantString -I../ -I../Headers -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCAuxiliaryWindow.m.o
+classes=""; \
+for object_file in ./obj/ProjectCenter.obj/PCBundleManager.m.o ./obj/ProjectCenter.obj/PCEditorManager.m.o ./obj/ProjectCenter.obj/PCMakefileFactory.m.o ./obj/ProjectCenter.obj/PCFileManager.m.o ./obj/ProjectCenter.obj/PCAddFilesPanel.m.o ./obj/ProjectCenter.obj/PCFileCreator.m.o ./obj/ProjectCenter.obj/PCSaveModified.m.o ./obj/ProjectCenter.obj/PCProjectManager.m.o ./obj/ProjectCenter.obj/PCProject.m.o ./obj/ProjectCenter.obj/PCProjectWindow.m.o ./obj/ProjectCenter.obj/PCProjectInspector.m.o ./obj/ProjectCenter.obj/PCProjectBuilder.m.o ./obj/ProjectCenter.obj/PCProjectBuilderOptions.m.o ./obj/ProjectCenter.obj/PCProjectBuilderPanel.m.o ./obj/ProjectCenter.obj/PCProjectLauncher.m.o ./obj/ProjectCenter.obj/PCProjectLauncherPanel.m.o ./obj/ProjectCenter.obj/PCProjectEditor.m.o ./obj/ProjectCenter.obj/PCProjectBrowser.m.o ./obj/ProjectCenter.obj/PCProjectLoadedFiles.m.o ./obj/ProjectCenter.obj/PCProjectLoadedFilesPanel.m.o ./obj/ProjectCenter.obj/PCButton.m.o ./obj/ProjectCenter.obj/PCFileNameField.m.o ./obj/ProjectCenter.obj/PCFileNameIcon.m.o ./obj/ProjectCenter.obj/PCLogController.m.o ./obj/ProjectCenter.obj/PCAuxiliaryWindow.m.o  __dummy__; do \
+  if [ "$object_file" != "__dummy__" ]; then \
+    sym=`nm -g $object_file | sed -n -e '/[^U] ._OBJC_CLASS_/ {s/[0-9a-f]* [^U] ._OBJC_CLASS_//p;}' -e '/[^U] __objc_class_name_/ {s/[0-9a-f]* [^U] __objc_class_name_//p;}'`; \
+    classes="$classes $sym"; \
+  fi; \
+done; \
+classlist=""; \
+classarray=""; \
+for f in $classes __dummy__ ; do \
+  if [ "$f" != "__dummy__" ]; then \
+    if [ "$classlist" = "" ]; then \
+      classlist="@\"$f\""; \
+      classarray="(\"$f\""; \
+    else \
+      classlist="$classlist, @\"$f\""; \
+      classarray="$classarray, \"$f\""; \
+    fi; \
+  fi; \
+done; \
+if [ "$classlist" = "" ]; then \
+  classlist="NULL"; \
+  classarray="()"; \
+else \
+  classlist="$classlist, NULL"; \
+  classarray="$classarray)"; \
+fi; \
+echo "$classarray" > ./derived_src/ProjectCenter-class-list; \
+echo "#include <Foundation/NSObject.h>" > derived_src/NSFramework_ProjectCenter.m; \
+echo "#include <Foundation/NSString.h>" > derived_src/NSFramework_ProjectCenter.m; \
+echo "@interface NSFramework_ProjectCenter : NSObject" >> derived_src/NSFramework_ProjectCenter.m; \
+echo "+ (NSString *)frameworkVersion;" >> derived_src/NSFramework_ProjectCenter.m; \
+echo "+ (NSString *const*)frameworkClasses;" >> derived_src/NSFramework_ProjectCenter.m; \
+echo "@end" >> derived_src/NSFramework_ProjectCenter.m; \
+echo "@implementation NSFramework_ProjectCenter" >> derived_src/NSFramework_ProjectCenter.m; \
+echo "+ (NSString *)frameworkVersion { return @\"0.7.0\"; }" >> derived_src/NSFramework_ProjectCenter.m; \
+echo "static NSString *allClasses[] = {$classlist};" >> derived_src/NSFramework_ProjectCenter.m; \
+echo "+ (NSString *const*)frameworkClasses { return allClasses; }" >> derived_src/NSFramework_ProjectCenter.m;\
+echo "@end" >> derived_src/NSFramework_ProjectCenter.m
+cc derived_src/NSFramework_ProjectCenter.m -c -MMD -MP -I/usr/local/include/gnustep  -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1  -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1   -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread  -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe    -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -DPCDefaultBuildTool=@"\"/usr/local/bin/gmake\"" -DPCDefaultDebugger=@"\"/usr/bin/gdb\""  -fconstant-string-class=NSConstantString -I../ -I../Headers   -I./derived_src -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include  -I/usr/local/include -o obj/ProjectCenter.obj/NSFramework_ProjectCenter.o
+\
+cc -shared -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -o ./ProjectCenter.framework/Versions/0.7.0/./libProjectCenter.so.1.2 obj/ProjectCenter.obj/NSFramework_ProjectCenter.o obj/ProjectCenter.obj/PCBundleManager.m.o obj/ProjectCenter.obj/PCEditorManager.m.o obj/ProjectCenter.obj/PCMakefileFactory.m.o obj/ProjectCenter.obj/PCFileManager.m.o obj/ProjectCenter.obj/PCAddFilesPanel.m.o obj/ProjectCenter.obj/PCFileCreator.m.o obj/ProjectCenter.obj/PCSaveModified.m.o obj/ProjectCenter.obj/PCProjectManager.m.o obj/ProjectCenter.obj/PCProject.m.o obj/ProjectCenter.obj/PCProjectWindow.m.o obj/ProjectCenter.obj/PCProjectInspector.m.o obj/ProjectCenter.obj/PCProjectBuilder.m.o obj/ProjectCenter.obj/PCProjectBuilderOptions.m.o obj/ProjectCenter.obj/PCProjectBuilderPanel.m.o obj/ProjectCenter.obj/PCProjectLauncher.m.o obj/ProjectCenter.obj/PCProjectLauncherPanel.m.o obj/ProjectCenter.obj/PCProjectEditor.m.o obj/ProjectCenter.obj/PCProjectBrowser.m.o obj/ProjectCenter.obj/PCProjectLoadedFiles.m.o obj/ProjectCenter.obj/PCProjectLoadedFilesPanel.m.o obj/ProjectCenter.obj/PCButton.m.o obj/ProjectCenter.obj/PCFileNameField.m.o obj/ProjectCenter.obj/PCFileNameIcon.m.o obj/ProjectCenter.obj/PCLogController.m.o obj/ProjectCenter.obj/PCAuxiliaryWindow.m.o   -L../ProjectCenter/./obj    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib -lobjc2 -lgnustep-base -lgnustep-gui  && (cd ./ProjectCenter.framework/Versions/0.7.0/.; rm -f libProjectCenter.so; if [ "libProjectCenter.so.1.2" != "libProjectCenter.so.1.2" ]; then rm -f libProjectCenter.so.1.2; fi;) || rm -f ./ProjectCenter.framework/Versions/0.7.0/./libProjectCenter.so.1.2 ; \
+(cd ./ProjectCenter.framework/Versions/0.7.0/.; \
+  rm -f ProjectCenter; \
+  ln -s libProjectCenter.so.1.2 ProjectCenter) \
+
+for f in Resources/cfile.template Resources/cheader.template Resources/class.template Resources/gsmarkup.template Resources/header.template Resources/postamble.template Resources/protocol.template Resources/ocppclass.template; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./ProjectCenter.framework/Versions/0.7.0/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+for l in English; do \
+  if [ -d .//$l.lproj ]; then \
+    /usr/local/share/GNUstep/Makefiles/mkinstalldirs ./ProjectCenter.framework/Versions/0.7.0/Resources/$l.lproj; \
+    for f in ProjectWindow.gorm BuilderPanel.gorm Builder.gorm BuilderOptions.gorm NewSubproject.gorm NewFile.gorm ProjectInspector.gorm BuildAttributes.gorm ProjectAttributes.gorm ProjectDescription.gorm ProjectLanguages.gorm FileAttributes.gorm LogPanel.gorm SaveModified.gorm; do \
+      if [ -f .//$l.lproj/$f -o -d .//$l.lproj/$f ]; then \
+        cp -fr .//$l.lproj/$f \
+              ./ProjectCenter.framework/Versions/0.7.0/Resources/$l.lproj/; \
+      else \
+        echo "Warning: .//$l.lproj/$f not found - ignoring"; \
+      fi; \
+    done; \
+  else \
+    echo "Warning: .//$l.lproj not found - ignoring"; \
+  fi; \
+done
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"ProjectCenter\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSPrincipalClass = \"ProjectCenter\";"; \
+  echo "  Classes = "; \
+  cat ./derived_src/ProjectCenter-class-list; \
+  echo "  ;"; \
+  echo "}") >ProjectCenter.framework/Versions/0.7.0/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+   plmerge ProjectCenter.framework/Versions/0.7.0/Resources/Info-gnustep.plist ; \
+ fi
+cd ./ProjectCenter.framework/.; \
+rm -f ProjectCenter libProjectCenter.so.1.2; \
+ln -s `/usr/local/share/GNUstep/Makefiles/relative_path.sh . \
+                            Versions/Current/./ProjectCenter short` \
+	ProjectCenter; \
+ln -s `/usr/local/share/GNUstep/Makefiles/relative_path.sh . \
+		 	    Versions/Current/./libProjectCenter.so.1.2 short` \
+        libProjectCenter.so.1.2
+gmake[1]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Framework'
+Making all in Modules ...
+gmake[1]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules'
+Making all in Projects/Aggregate ...
+gmake[2]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Projects/Aggregate'
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for bundle Aggregate...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/Aggregate.obj/
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Aggregate.project/.
+cc PCAggregateProject.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/Aggregate.obj/PCAggregateProject.m.o
+cc -shared -fPIC -lc++abi -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -o ./Aggregate.project/./Aggregate ./obj/Aggregate.obj/PCAggregateProject.m.o   -L../../../Framework/ProjectCenter.framework/.    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib    -lgnustep-gui    -lgnustep-base    -lobjc2   -lm
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Aggregate.project/Resources
+for f in Resources/PC.project Resources/Inspector.gorm Resources/Info.table; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./Aggregate.project/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+echo "OLD_GNUSTEP_STAMP_ASTRING = _PCAggregateProject-" > ./Aggregate.project/stamp.make
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"Aggregate\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSPrincipalClass = \"PCAggregateProject\";"; \
+  echo "}") >Aggregate.project/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+  plmerge Aggregate.project/Resources/Info-gnustep.plist ; \
+fi
+gmake[2]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Projects/Aggregate'
+Making all in Projects/Application ...
+gmake[2]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Projects/Application'
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for bundle Application...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/Application.obj/
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Application.project/.
+cc PCAppProject.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/Application.obj/PCAppProject.m.o
+cc PCAppProject+Inspector.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/Application.obj/PCAppProject+Inspector.m.o
+cc -shared -fPIC -lc++abi -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -o ./Application.project/./Application ./obj/Application.obj/PCAppProject.m.o ./obj/Application.obj/PCAppProject+Inspector.m.o   -L../../../Framework/ProjectCenter.framework/.    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib    -lgnustep-gui    -lgnustep-base    -lobjc2   -lm
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Application.project/Resources
+for f in Resources/AppController.h Resources/AppController.m Resources/main.m Resources/PC.project Resources/Main.gorm Resources/Inspector.gorm Resources/Main.gsmarkup Resources/MainMenu-GNUstep.gsmarkup Resources/MainMenu-OSX.gsmarkup Resources/Info.table Resources/Info.gnustep; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./Application.project/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+echo "OLD_GNUSTEP_STAMP_ASTRING = _PCAppProject-" > ./Application.project/stamp.make
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"Application\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSPrincipalClass = \"PCAppProject\";"; \
+  echo "}") >Application.project/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+  plmerge Application.project/Resources/Info-gnustep.plist ; \
+fi
+gmake[2]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Projects/Application'
+Making all in Projects/Bundle ...
+gmake[2]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Projects/Bundle'
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for bundle Bundle...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/Bundle.obj/
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Bundle.project/.
+cc PCBundleProject.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/Bundle.obj/PCBundleProject.m.o
+cc -shared -fPIC -lc++abi -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -o ./Bundle.project/./Bundle ./obj/Bundle.obj/PCBundleProject.m.o   -L../../../Framework/ProjectCenter.framework/.    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib    -lgnustep-gui    -lgnustep-base    -lobjc2   -lm
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Bundle.project/Resources
+for f in Resources/PC.project Resources/Inspector.gorm Resources/Info.table; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./Bundle.project/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+echo "OLD_GNUSTEP_STAMP_ASTRING = _PCBundleProject-" > ./Bundle.project/stamp.make
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"Bundle\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSPrincipalClass = \"PCBundleProject\";"; \
+  echo "}") >Bundle.project/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+  plmerge Bundle.project/Resources/Info-gnustep.plist ; \
+fi
+gmake[2]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Projects/Bundle'
+Making all in Projects/Framework ...
+gmake[2]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Projects/Framework'
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for bundle Framework...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/Framework.obj/
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Framework.project/.
+cc PCFrameworkProject.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/Framework.obj/PCFrameworkProject.m.o
+cc -shared -fPIC -lc++abi -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -o ./Framework.project/./Framework ./obj/Framework.obj/PCFrameworkProject.m.o   -L../../../Framework/ProjectCenter.framework/.    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib    -lgnustep-gui    -lgnustep-base    -lobjc2   -lm
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Framework.project/Resources
+for f in Resources/PC.project Resources/Inspector.gorm Resources/Info.table; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./Framework.project/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+echo "OLD_GNUSTEP_STAMP_ASTRING = _PCFrameworkProject-" > ./Framework.project/stamp.make
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"Framework\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSPrincipalClass = \"PCFrameworkProject\";"; \
+  echo "}") >Framework.project/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+  plmerge Framework.project/Resources/Info-gnustep.plist ; \
+fi
+gmake[2]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Projects/Framework'
+Making all in Projects/Library ...
+gmake[2]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Projects/Library'
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for bundle Library...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/Library.obj/
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Library.project/.
+cc PCLibProject.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/Library.obj/PCLibProject.m.o
+cc -shared -fPIC -lc++abi -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -o ./Library.project/./Library ./obj/Library.obj/PCLibProject.m.o   -L../../../Framework/ProjectCenter.framework/.    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib    -lgnustep-gui    -lgnustep-base    -lobjc2   -lm
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Library.project/Resources
+for f in Resources/PC.project Resources/Version Resources/Inspector.gorm Resources/Info.table; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./Library.project/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+echo "OLD_GNUSTEP_STAMP_ASTRING = _PCLibProject-" > ./Library.project/stamp.make
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"Library\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSPrincipalClass = \"PCLibProject\";"; \
+  echo "}") >Library.project/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+  plmerge Library.project/Resources/Info-gnustep.plist ; \
+fi
+gmake[2]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Projects/Library'
+Making all in Projects/ResourceSet ...
+gmake[2]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Projects/ResourceSet'
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for bundle ResourceSet...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/ResourceSet.obj/
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ResourceSet.project/.
+cc PCResourceSetProject.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ResourceSet.obj/PCResourceSetProject.m.o
+cc -shared -fPIC -lc++abi -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -o ./ResourceSet.project/./ResourceSet ./obj/ResourceSet.obj/PCResourceSetProject.m.o   -L../../../Framework/ProjectCenter.framework/.    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib    -lgnustep-gui    -lgnustep-base    -lobjc2   -lm
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ResourceSet.project/Resources
+for f in Resources/PC.project Resources/Inspector.gorm Resources/Info.table; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./ResourceSet.project/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+echo "OLD_GNUSTEP_STAMP_ASTRING = _PCResourceSetProject-" > ./ResourceSet.project/stamp.make
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"ResourceSet\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSPrincipalClass = \"PCResourceSetProject\";"; \
+  echo "}") >ResourceSet.project/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+  plmerge ResourceSet.project/Resources/Info-gnustep.plist ; \
+fi
+gmake[2]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Projects/ResourceSet'
+Making all in Projects/Tool ...
+gmake[2]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Projects/Tool'
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for bundle Tool...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/Tool.obj/
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Tool.project/.
+cc PCToolProject.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/Tool.obj/PCToolProject.m.o
+cc -shared -fPIC -lc++abi -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -o ./Tool.project/./Tool ./obj/Tool.obj/PCToolProject.m.o   -L../../../Framework/ProjectCenter.framework/.    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib    -lgnustep-gui    -lgnustep-base    -lobjc2   -lm
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Tool.project/Resources
+for f in Resources/PC.project Resources/main.m Resources/Inspector.gorm Resources/Info.table Resources/Info.gnustep; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./Tool.project/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+echo "OLD_GNUSTEP_STAMP_ASTRING = _PCToolProject-" > ./Tool.project/stamp.make
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"Tool\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSPrincipalClass = \"PCToolProject\";"; \
+  echo "}") >Tool.project/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+  plmerge Tool.project/Resources/Info-gnustep.plist ; \
+fi
+gmake[2]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Projects/Tool'
+Making all in Editors/ProjectCenter ...
+gmake[2]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Editors/ProjectCenter'
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for bundle ProjectCenter...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/ProjectCenter.obj/
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ProjectCenter.editor/.
+cc PCEditor.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCEditor.m.o
+cc PCEditorView.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCEditorView.m.o
+cc PCCharacterRulerView.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCCharacterRulerView.m.o
+cc PCLineNumberRulerView.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCLineNumberRulerView.m.o
+cc TextPattern.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/TextPattern.m.o
+cc SyntaxDefinition.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/SyntaxDefinition.m.o
+cc SyntaxHighlighter.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/SyntaxHighlighter.m.o
+cc LineJumper.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/LineJumper.m.o
+cc -shared -fPIC -lc++abi -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -o ./ProjectCenter.editor/./ProjectCenter ./obj/ProjectCenter.obj/PCEditor.m.o ./obj/ProjectCenter.obj/PCEditorView.m.o ./obj/ProjectCenter.obj/PCCharacterRulerView.m.o ./obj/ProjectCenter.obj/PCLineNumberRulerView.m.o ./obj/ProjectCenter.obj/TextPattern.m.o ./obj/ProjectCenter.obj/SyntaxDefinition.m.o ./obj/ProjectCenter.obj/SyntaxHighlighter.m.o ./obj/ProjectCenter.obj/LineJumper.m.o   -L../../../Framework/ProjectCenter.framework/.    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib    -lgnustep-gui    -lgnustep-base    -lobjc2   -lm
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ProjectCenter.editor/Resources
+for f in Resources/Info.table Resources/C.syntax Resources/ObjC.syntax Resources/Plist.syntax Resources/FileC.tiff Resources/FileCH.tiff Resources/FileH.tiff Resources/FileHH.tiff Resources/FileM.tiff Resources/FileMH.tiff Resources/FileMM.tiff Resources/LineJumper.gorm; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./ProjectCenter.editor/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+echo "OLD_GNUSTEP_STAMP_ASTRING = _PCEditor-" > ./ProjectCenter.editor/stamp.make
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"ProjectCenter\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSPrincipalClass = \"PCEditor\";"; \
+  echo "}") >ProjectCenter.editor/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+  plmerge ProjectCenter.editor/Resources/Info-gnustep.plist ; \
+fi
+gmake[2]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Editors/ProjectCenter'
+Making all in Parsers/ProjectCenter ...
+gmake[2]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Parsers/ProjectCenter'
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for bundle ProjectCenter...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/ProjectCenter.obj/
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ProjectCenter.parser/.
+cc PCParser.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCParser.m.o
+cc ObjCCommentHandler.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/ObjCCommentHandler.m.o
+cc ObjCClassHandler.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/ObjCClassHandler.m.o
+cc ObjCMethodHandler.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/ObjCMethodHandler.m.o
+cc -shared -fPIC -lc++abi -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -o ./ProjectCenter.parser/./ProjectCenter ./obj/ProjectCenter.obj/PCParser.m.o ./obj/ProjectCenter.obj/ObjCCommentHandler.m.o ./obj/ProjectCenter.obj/ObjCClassHandler.m.o ./obj/ProjectCenter.obj/ObjCMethodHandler.m.o   -L../../../Framework/ProjectCenter.framework/.    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib    -lgnustep-gui    -lgnustep-base    -lobjc2   -lm
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ProjectCenter.parser/Resources
+for f in Resources/Info.table; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./ProjectCenter.parser/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+echo "OLD_GNUSTEP_STAMP_ASTRING = _PCParser-" > ./ProjectCenter.parser/stamp.make
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"ProjectCenter\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSPrincipalClass = \"PCParser\";"; \
+  echo "}") >ProjectCenter.parser/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+  plmerge ProjectCenter.parser/Resources/Info-gnustep.plist ; \
+fi
+gmake[2]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Parsers/ProjectCenter'
+Making all in Preferences/Build ...
+gmake[2]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Preferences/Build'
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for bundle Build...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/Build.obj/
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Build.preferences/.
+cc PCBuildPrefs.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/Build.obj/PCBuildPrefs.m.o
+cc -shared -fPIC -lc++abi -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -o ./Build.preferences/./Build ./obj/Build.obj/PCBuildPrefs.m.o   -L../../../Framework/ProjectCenter.framework/.    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib    -lgnustep-gui    -lgnustep-base    -lobjc2   -lm
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Build.preferences/Resources
+for f in Resources/BuildPrefs.gorm Resources/Info.table; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./Build.preferences/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+echo "OLD_GNUSTEP_STAMP_ASTRING = _PCBuildPrefs-" > ./Build.preferences/stamp.make
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"Build\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSPrincipalClass = \"PCBuildPrefs\";"; \
+  echo "}") >Build.preferences/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+  plmerge Build.preferences/Resources/Info-gnustep.plist ; \
+fi
+gmake[2]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Preferences/Build'
+Making all in Preferences/Saving ...
+gmake[2]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Preferences/Saving'
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for bundle Saving...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/Saving.obj/
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Saving.preferences/.
+cc PCSavingPrefs.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/Saving.obj/PCSavingPrefs.m.o
+cc -shared -fPIC -lc++abi -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -o ./Saving.preferences/./Saving ./obj/Saving.obj/PCSavingPrefs.m.o   -L../../../Framework/ProjectCenter.framework/.    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib    -lgnustep-gui    -lgnustep-base    -lobjc2   -lm
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Saving.preferences/Resources
+for f in Resources/SavingPrefs.gorm Resources/Info.table; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./Saving.preferences/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+echo "OLD_GNUSTEP_STAMP_ASTRING = _PCSavingPrefs-" > ./Saving.preferences/stamp.make
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"Saving\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSPrincipalClass = \"PCSavingPrefs\";"; \
+  echo "}") >Saving.preferences/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+  plmerge Saving.preferences/Resources/Info-gnustep.plist ; \
+fi
+gmake[2]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Preferences/Saving'
+Making all in Preferences/Misc ...
+gmake[2]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Preferences/Misc'
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for bundle Misc...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/Misc.obj/
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Misc.preferences/.
+cc PCMiscPrefs.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/Misc.obj/PCMiscPrefs.m.o
+cc -shared -fPIC -lc++abi -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -o ./Misc.preferences/./Misc ./obj/Misc.obj/PCMiscPrefs.m.o   -L../../../Framework/ProjectCenter.framework/.    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib    -lgnustep-gui    -lgnustep-base    -lobjc2   -lm
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs Misc.preferences/Resources
+for f in Resources/MiscPrefs.gorm Resources/Info.table; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./Misc.preferences/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+echo "OLD_GNUSTEP_STAMP_ASTRING = _PCMiscPrefs-" > ./Misc.preferences/stamp.make
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"Misc\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSPrincipalClass = \"PCMiscPrefs\";"; \
+  echo "}") >Misc.preferences/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+  plmerge Misc.preferences/Resources/Info-gnustep.plist ; \
+fi
+gmake[2]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Preferences/Misc'
+Making all in Preferences/EditorFSC ...
+gmake[2]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Preferences/EditorFSC'
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for bundle EditorFSC...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/EditorFSC.obj/
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs EditorFSC.preferences/.
+cc PCEditorFSCPrefs.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/EditorFSC.obj/PCEditorFSCPrefs.m.o
+cc -shared -fPIC -lc++abi -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -o ./EditorFSC.preferences/./EditorFSC ./obj/EditorFSC.obj/PCEditorFSCPrefs.m.o   -L../../../Framework/ProjectCenter.framework/.    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib    -lgnustep-gui    -lgnustep-base    -lobjc2   -lm
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs EditorFSC.preferences/Resources
+for f in Resources/EditorFSCPrefs.gorm Resources/Info.table; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./EditorFSC.preferences/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+echo "OLD_GNUSTEP_STAMP_ASTRING = _PCEditorFSCPrefs-" > ./EditorFSC.preferences/stamp.make
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"EditorFSC\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSPrincipalClass = \"PCEditorFSCPrefs\";"; \
+  echo "}") >EditorFSC.preferences/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+  plmerge EditorFSC.preferences/Resources/Info-gnustep.plist ; \
+fi
+gmake[2]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Preferences/EditorFSC'
+Making all in Debuggers/ProjectCenter ...
+gmake[2]: Entering directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Debuggers/ProjectCenter'
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for bundle ProjectCenter...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/ProjectCenter.obj/
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ProjectCenter.debugger/.
+cc PCDebugger.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCDebugger.m.o
+cc PCDebuggerView.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCDebuggerView.m.o
+cc GDBWrapper.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -fconstant-string-class=NSConstantString -I../../../ -I../../../Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/GDBWrapper.m.o
+cc -shared -fPIC -lc++abi -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -o ./ProjectCenter.debugger/./ProjectCenter ./obj/ProjectCenter.obj/PCDebugger.m.o ./obj/ProjectCenter.obj/PCDebuggerView.m.o ./obj/ProjectCenter.obj/GDBWrapper.m.o   -L../../../Framework/ProjectCenter.framework/.    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib    -lgnustep-gui    -lgnustep-base    -lobjc2   -lm
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ProjectCenter.debugger/Resources
+for f in Resources/PCDebugger.gorm Resources/Info.table Resources/go_button.png Resources/continue_button.png Resources/pause_button.png Resources/restart_button.png Resources/next_button.png Resources/stepin_button.png Resources/stepout_button.png Resources/up_button.png Resources/down_button.png; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./ProjectCenter.debugger/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+echo "OLD_GNUSTEP_STAMP_ASTRING = _PCDebugger-" > ./ProjectCenter.debugger/stamp.make
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"ProjectCenter\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSPrincipalClass = \"PCDebugger\";"; \
+  echo "}") >ProjectCenter.debugger/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+  plmerge ProjectCenter.debugger/Resources/Info-gnustep.plist ; \
+fi
+gmake[2]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules/Debuggers/ProjectCenter'
+gmake[1]: Leaving directory '/home/ports/pobj/amd64/projectcenter-0.8.0/apps-projectcenter-e20ec5cede0bd474529a47c0b360b7a74893b873/Modules'
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj
+Making all for app ProjectCenter...
+cd .; \
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ./obj/ProjectCenter.obj/
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ProjectCenter.app/.
+cc PCAppController.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -fconstant-string-class=NSConstantString -I./ -I./Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCAppController.m.o
+cc PCInfoController.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -fconstant-string-class=NSConstantString -I./ -I./Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCInfoController.m.o
+cc PCMenuController.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -fconstant-string-class=NSConstantString -I./ -I./Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCMenuController.m.o
+cc PCPrefController.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -fconstant-string-class=NSConstantString -I./ -I./Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/PCPrefController.m.o
+cc ProjectCenter_main.m -c \
+      -MMD -MP -I/usr/local/include/gnustep -DGNUSTEP -DGNUSTEP_BASE_LIBRARY=1 -DGNU_GUI_LIBRARY=1 -DGNUSTEP_RUNTIME=1 -D_NONFRAGILE_ABI=1 -DGNUSTEP_BASE_LIBRARY=1 -fno-strict-aliasing -fexceptions -fobjc-exceptions -D_NATIVE_OBJC_EXCEPTIONS -pthread -fPIC -Wall -DGSWARN -DGSDIAGNOSE -Wno-import -O2 -pipe -fobjc-runtime=gnustep-2.2 -fblocks -DDEVELOPMENT -fconstant-string-class=NSConstantString -I./ -I./Headers -I. -I/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Headers -I/usr/local/include -I/usr/local/include \
+       -o obj/ProjectCenter.obj/ProjectCenter_main.m.o
+cc -Wl,-E -lc++abi     -L/usr/local/lib -lobjc2 -lpthread -lBlocksRuntime  -pthread -fexceptions  -fobjc-runtime=gnustep-2.2 -fblocks  -o ProjectCenter.app/./ProjectCenter \
+./obj/ProjectCenter.obj/PCAppController.m.o ./obj/ProjectCenter.obj/PCInfoController.m.o ./obj/ProjectCenter.obj/PCMenuController.m.o ./obj/ProjectCenter.obj/PCPrefController.m.o ./obj/ProjectCenter.obj/ProjectCenter_main.m.o   -L./Framework/ProjectCenter.framework/.    -L/projectcenter-0.8.0_writes_to_HOME/GNUstep/Library/Libraries -L/usr/local/lib  -L/usr/local/lib -lProjectCenter   -lgnustep-gui    -lgnustep-base    -lobjc2   -lm
+/usr/local/share/GNUstep/Makefiles/mkinstalldirs ProjectCenter.app/Resources
+echo "OLD_GNUSTEP_STAMP_ASTRING = _NSApplication-Images/ProjectCenter.tiff---" > ./ProjectCenter.app/stamp.make
+(echo "{"; echo '  NOTE = "Automatically generated, do not edit!";'; \
+  echo "  NSExecutable = \"ProjectCenter\";"; \
+  echo "  NSMainNibFile = \"\";"; \
+  echo "  NSMainStoryboardFile = \"\";"; \
+  echo "  GSMainMarkupFile = \"\";"; \
+  if [ "Images/ProjectCenter.tiff" != "" ]; then \
+    echo "  NSIcon = \"Images/ProjectCenter.tiff\";"; \
+  fi; \
+  echo "  NSPrincipalClass = \"NSApplication\";"; \
+  echo "}") >ProjectCenter.app/Resources/Info-gnustep.plist
+if [ -r "" ]; then \
+   plmerge ProjectCenter.app/Resources/Info-gnustep.plist ""; \
+  fi
+pl2link ProjectCenter.app/Resources/Info-gnustep.plist ./ProjectCenter.app/Resources/ProjectCenter.desktop; \
+                 chmod a+x ./ProjectCenter.app/Resources/ProjectCenter.desktop
+for f in Resources/Info-gnustep.plist Images/ProjectCenter.tiff Images/FileProject.tiff Images/Build.tiff Images/Clean.tiff Images/Debug.tiff Images/Files.tiff Images/Find.tiff Images/Inspector.tiff Images/Install.tiff Images/MultiFiles.tiff Images/Options.tiff Images/Run.tiff Images/ProjectCenter_add.tiff Images/ProjectCenter_cvs.tiff Images/ProjectCenter_dist.tiff Images/ProjectCenter_documentation.tiff Images/ProjectCenter_profile.tiff Images/ProjectCenter_rpm.tiff Images/ProjectCenter_uml.tiff Images/classSuitcase.tiff Images/classSuitcaseH.tiff Images/genericSuitcase.tiff Images/genericSuitcaseH.tiff Images/headerSuitcase.tiff Images/headerSuitcaseH.tiff Images/helpSuitcase.tiff Images/helpSuitcaseH.tiff Images/iconSuitcase.tiff Images/iconSuitcaseH.tiff Images/librarySuitcase.tiff Images/librarySuitcaseH.tiff Images/nibSuitcase.tiff Images/nibSuitcaseH.tiff Images/otherSuitcase.tiff Images/otherSuitcaseH.tiff Images/projectSuitcase.tiff Images/projectSuitcaseH.tiff Images/soundSuitcase.tiff Images/soundSuitcaseH.tiff Images/subprojectSuitcase.tiff Images/subprojectSuitcaseH.tiff Modules/Projects/Aggregate/Aggregate.project Modules/Projects/Application/Application.project Modules/Projects/Bundle/Bundle.project Modules/Projects/Framework/Framework.project Modules/Projects/Library/Library.project Modules/Projects/ResourceSet/ResourceSet.project Modules/Projects/Tool/Tool.project Modules/Editors/ProjectCenter/ProjectCenter.editor Modules/Parsers/ProjectCenter/ProjectCenter.parser Modules/Debuggers/ProjectCenter/ProjectCenter.debugger Modules/Preferences/Build/Build.preferences Modules/Preferences/Saving/Saving.preferences Modules/Preferences/Misc/Misc.preferences Modules/Preferences/EditorFSC/EditorFSC.preferences; do \
+  if [ -f .//$f -o -d .//$f ]; then \
+    cp -fr .//$f ./ProjectCenter.app/Resources/; \
+  else \
+    echo "Warning: .//$f not found - ignoring"; \
+  fi; \
+done
+for l in English; do \
+  if [ -d .//$l.lproj ]; then \
+    /usr/local/share/GNUstep/Makefiles/mkinstalldirs ./ProjectCenter.app/Resources/$l.lproj; \
+    for f in ProjectCenter.gorm Info.gorm Preferences.gorm; do \
+      if [ -f .//$l.lproj/$f -o -d .//$l.lproj/$f ]; then \
+        cp -fr .//$l.lproj/$f \
+              ./ProjectCenter.app/Resources/$l.lproj/; \
+      else \
+        echo "Warning: .//$l.lproj/$f not found - ignoring"; \
+      fi; \
+    done; \
+  else \
+    echo "Warning: .//$l.lproj not found - ignoring"; \
+  fi; \
+done

@@ -1,0 +1,29 @@
+Index: install.sh
+--- install.sh.orig
++++ install.sh
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/usr/bin/env bash
+ # shellcheck shell=bash disable=SC2016
+ umask 022
+ 
+@@ -297,8 +297,8 @@ do
+ 
+     sed -i.orig -e "s?SOURCE_DIR?$srcdir?g" -e "s?SERVICE?${service}?g" tar1090.service
+ 
+-    cp -r -T html "$TMP"
+-    cp -r -T "$gpath/git-db/db" "$TMP/db-$DB_VERSION"
++    cp -r html/. "$TMP"
++    cp -r "$gpath/git-db/db/." "$TMP/db-$DB_VERSION"
+     sed -i -e "s/let databaseFolder = .*;/let databaseFolder = \"db-$DB_VERSION\";/" "$TMP/index.html"
+     echo "{ \"tar1090Version\": \"$TAR_VERSION\", \"databaseVersion\": \"$DB_VERSION\" }" > "$TMP/version.json"
+ 
+@@ -341,7 +341,7 @@ do
+ 
+     sed -i -e 's/id="webinterface_version">/\0'"(${TAR_VERSION})/" index.html
+ 
+-    "$gpath/git/cachebust.sh" "$gpath/git/cachebust.list" "$TMP"
++    bash "$gpath/git/cachebust.sh" "$gpath/git/cachebust.list" "$TMP"
+ 
+     rm -rf "$html_path"
+     mv "$TMP" "$html_path"

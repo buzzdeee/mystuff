@@ -16,6 +16,7 @@ sudo /usr/local/bin/readsb \
   --gain 40 \
   --interactive
 
+--write-json /var/run/readsb
 
 stream to dump1090 to see planes on the map:
 

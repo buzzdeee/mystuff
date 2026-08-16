@@ -1,0 +1,16 @@
+bin/ScoreMaker
+libexec/GNUstep/ScoreMaker.app/
+libexec/GNUstep/ScoreMaker.app/Resources/
+libexec/GNUstep/ScoreMaker.app/Resources/ChangeLog
+libexec/GNUstep/ScoreMaker.app/Resources/Info-gnustep.plist
+libexec/GNUstep/ScoreMaker.app/Resources/LICENSE
+libexec/GNUstep/ScoreMaker.app/Resources/README.md
+libexec/GNUstep/ScoreMaker.app/Resources/ScoreMaker.desktop
+libexec/GNUstep/ScoreMaker.app/Resources/ScoreMakerAppIcon.icns
+libexec/GNUstep/ScoreMaker.app/Resources/ScoreMakerAppIcon.png
+libexec/GNUstep/ScoreMaker.app/Resources/ScoreMakerDocumentIcon.icns
+libexec/GNUstep/ScoreMaker.app/Resources/ScoreMakerDocumentIcon.png
+libexec/GNUstep/ScoreMaker.app/Resources/bass_clef.png
+libexec/GNUstep/ScoreMaker.app/Resources/treble_clef.png
+@bin libexec/GNUstep/ScoreMaker.app/ScoreMaker
+libexec/GNUstep/ScoreMaker.app/stamp.make

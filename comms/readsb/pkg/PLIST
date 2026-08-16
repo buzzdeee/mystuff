@@ -1,2 +1,3 @@
 @bin bin/readsb
 @bin bin/viewadsb
+@sample /var/run/readsb

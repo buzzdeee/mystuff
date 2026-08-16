@@ -1,0 +1,9 @@
+ScoreMaker is a small Objective-C AppKit score viewer for macOS and
+GNUstep. It opens Standard MIDI files and MusicKit-style .score
+scorefiles, renders their pitched notes on simple treble and bass
+staves, and can save the current score back out as a .score file.
+
+The renderer is intentionally lightweight. It focuses on extracting
+timing, pitch, tempo, and time-signature data well enough to inspect a
+score visually; it is not a full notation editor or MusicKit synthesis
+environment.
