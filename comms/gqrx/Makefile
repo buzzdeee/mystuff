@@ -4,7 +4,6 @@ V =			2.17.7
 GH_ACCOUNT = 		gqrx-sdr
 GH_PROJECT =		gqrx
 GH_TAGNAME =		v${V}
-#DISTNAME =		gqrx-$V
 CATEGORIES =		comms x11
 
 HOMEPAGE =		https://gqrx.dk/
@@ -19,8 +18,6 @@ WANTLIB += ${COMPILER_LIBCXX} boost_atomic-mt boost_chrono-mt
 WANTLIB += boost_container-mt boost_date_time-mt boost_thread-mt
 WANTLIB += c fmt gmp gmpxx gnuradio-audio gnuradio-digital gnuradio-network
 WANTLIB += gnuradio-pmt spdlog Qt6Svg Qt6SvgWidgets
-
-#MASTER_SITES =		https://github.com/gqrx-sdr/gqrx/releases/download/v$V/
 
 COMPILER =		base-clang ports-gcc
 
