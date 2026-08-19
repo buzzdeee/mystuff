@@ -7,7 +7,7 @@ GH_PROJECT =	readsb
 GH_TAGNAME =	v${VERSION}
 MAINTAINER =	Sebastian Reitenbach <sebastia@openbsd.org>
 
-# BSD
+# GPLv3+
 PERMIT_PACKAGE =	Yes
 
 WANTLIB += c m pthread rtlsdr
@@ -40,5 +40,7 @@ pre-build:
 # No install routine
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/readsb ${WRKSRC}/viewadsb ${PREFIX}/bin
+	${INSTALL_DATA_DIR} ${PREFIX}/share/doc/readsb
+	${INSTALL_DATA} ${WRKSRC}/README* ${PREFIX}/share/doc/readsb
 
 .include <bsd.port.mk>

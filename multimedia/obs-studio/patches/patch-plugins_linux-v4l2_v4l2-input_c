@@ -12,7 +12,33 @@ Index: plugins/linux-v4l2/v4l2-input.c
  
  #include <util/threading.h>
  #include <util/bmem.h>
-@@ -339,7 +341,7 @@ static void v4l2_device_list(obs_property_t *prop, obs
+@@ -149,7 +151,12 @@ static void v4l2_prep_obs_frame(struct v4l2_data *data
+ 		plane_offsets[2] = data->linesize * data->height * 5 / 4;
+ 		break;
+ 	default:
+-		frame->linesize[0] = data->linesize;
++		/* Enforce fallback if driver returns invalid linesize */
++		if (data->linesize <= 0 || data->linesize > (data->width * 4)) {
++			frame->linesize[0] = data->width * 2; /* Standard UYVY 16bpp */
++		} else {
++			frame->linesize[0] = data->linesize;
++		}
+ 		break;
+ 	}
+ }
+@@ -178,7 +185,10 @@ static void *v4l2_thread(void *vptr)
+ 
+ 	/* Get framerate and calculate appropriate select timeout value. */
+ 	v4l2_unpack_tuple(&fps_num, &fps_denom, data->framerate);
+-	ffps = (float)fps_denom / fps_num;
++        /* fall back to standard 30 FPS if the calculation yields an out-of-range value */
++	ffps = (fps_num > 0) ? ((float)fps_denom / fps_num) : 30.0f;
++	if (ffps <= 0.0f || ffps > 120.0f)
++		ffps = 30.0f;
+ 	blog(LOG_DEBUG, "%s: framerate: %.2f fps", data->device_id, ffps);
+ 	/* Timeout set to 5 frame periods. */
+ 	timeout_usec = (1000000 * data->timeout_frames) / ffps;
+@@ -339,7 +349,7 @@ static void v4l2_device_list(obs_property_t *prop, obs
  	size_t cur_device_index;
  	const char *cur_device_name;
  
@@ -21,7 +47,7 @@ Index: plugins/linux-v4l2/v4l2-input.c
  	dirp = opendir("/dev");
  #else
  	dirp = opendir("/sys/class/video4linux");
-@@ -359,7 +361,7 @@ static void v4l2_device_list(obs_property_t *prop, obs
+@@ -359,7 +369,7 @@ static void v4l2_device_list(obs_property_t *prop, obs
  		uint32_t caps;
  		struct v4l2_capability video_cap;
  
@@ -30,3 +56,28 @@ Index: plugins/linux-v4l2/v4l2-input.c
  		if (strstr(dp->d_name, "video") == NULL)
  			continue;
  #endif
+@@ -445,6 +455,7 @@ static void v4l2_input_list(int_fast32_t dev, obs_prop
+ static void v4l2_format_list(int dev, obs_property_t *prop)
+ {
+ 	struct v4l2_fmtdesc fmt;
++        memset(&fmt, 0, sizeof(fmt)); /* Prevent uninitialized stack garbage */
+ 	fmt.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+ 	fmt.index = 0;
+ 	struct dstr buffer;
+@@ -453,7 +464,15 @@ static void v4l2_format_list(int dev, obs_property_t *
+ 	obs_property_list_clear(prop);
+ 
+ 	while (v4l2_ioctl(dev, VIDIOC_ENUM_FMT, &fmt) == 0) {
+-		dstr_copy(&buffer, (char *)fmt.description);
++                /* explicitly bound and NUL-terminate fmt.description */
++		fmt.description[sizeof(fmt.description) - 1] = '\0';
++		for (size_t i = 0; i < sizeof(fmt.description); i++) {
++			if (fmt.description[i] < 32 || fmt.description[i] > 126) {
++				fmt.description[i] = '\0';
++				break;
++			}
++		}
++		dstr_copy(&buffer, desc);
+ 		if (fmt.flags & V4L2_FMT_FLAG_EMULATED)
+ 			dstr_cat(&buffer, " (Emulated)");
+ 
