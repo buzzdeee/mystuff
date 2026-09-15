@@ -1,0 +1,14 @@
+/patch-CMakeLists_txt/1.7/Sat Sep 12 16:32:33 2026//
+/patch-src_ggml-backend-reg_cpp/1.8/Sat Sep 12 16:32:40 2026//
+/patch-src_ggml-cpu_arch_riscv_repack_cpp/1.1/Sat Sep 12 16:32:33 2026//
+/patch-src_ggml-cpu_ggml-cpu-impl_h/1.1/Sat Sep 12 16:32:33 2026//
+/patch-src_ggml-cpu_ggml-cpu_c/1.3/Sat Sep 12 16:32:40 2026//
+/patch-src_ggml-cpu_llamafile_sgemm_cpp/1.2/Sat Sep 12 16:32:33 2026//
+/patch-src_ggml-cpu_ops_cpp/1.3/Sat Sep 12 16:32:40 2026//
+/patch-src_ggml-cpu_simd-gemm_h/1.1/Sat Sep 12 16:32:33 2026//
+/patch-src_ggml-cpu_simd-mappings_h/1.2/Sat Sep 12 16:32:40 2026//
+/patch-src_ggml-cpu_vec_cpp/1.1/Sat Sep 12 16:32:33 2026//
+/patch-src_ggml-cpu_vec_h/1.1/Sat Sep 12 16:32:33 2026//
+/patch-tests_CMakeLists_txt/1.1.1.1/Sat Sep 12 16:32:33 2026//
+/patch-tests_test-opt_cpp/1.1.1.1/Sat Sep 12 16:32:33 2026//
+D

@@ -1,0 +1,67 @@
+@newgroup _llama-server:583
+@newuser _llama-server:583:_llama-server::llama-server account:${LOCALSTATEDIR}/db/llama-server:/sbin/nologin
+@rcscript ${RCDIR}/llama_server
+@bin bin/llama
+@bin bin/llama-batched
+@bin bin/llama-batched-bench
+@bin bin/llama-bench
+@bin bin/llama-cli
+@bin bin/llama-completion
+@bin bin/llama-debug
+@bin bin/llama-diffusion-cli
+@bin bin/llama-embedding
+@bin bin/llama-eval-callback
+@bin bin/llama-finetune
+@bin bin/llama-fit-params
+@bin bin/llama-gen-docs
+@bin bin/llama-gguf
+@bin bin/llama-gguf-hash
+@bin bin/llama-gguf-split
+@bin bin/llama-idle
+@bin bin/llama-imatrix
+@bin bin/llama-lookahead
+@bin bin/llama-lookup
+@bin bin/llama-lookup-create
+@bin bin/llama-lookup-merge
+@bin bin/llama-lookup-stats
+@bin bin/llama-mtmd-cli
+@bin bin/llama-parallel
+@bin bin/llama-passkey
+@bin bin/llama-perplexity
+@bin bin/llama-quantize
+@bin bin/llama-results
+@bin bin/llama-retrieval
+@bin bin/llama-server
+@bin bin/llama-simple
+@bin bin/llama-simple-chat
+@bin bin/llama-speculative
+@bin bin/llama-speculative-simple
+@bin bin/llama-tokenize
+@bin bin/llama-tts
+include/llama-cpp.h
+include/llama.h
+include/mtmd-debug.h
+include/mtmd-helper.h
+include/mtmd.h
+lib/cmake/llama/
+lib/cmake/llama/llama-config-version.cmake
+lib/cmake/llama/llama-config.cmake
+@so lib/libllama-batched-bench-impl.so
+@so lib/libllama-bench-impl.so
+@so lib/libllama-cli-impl.so
+@lib lib/libllama-common.so.${LIBllama-common_VERSION}
+@so lib/libllama-completion-impl.so
+@so lib/libllama-fit-params-impl.so
+@so lib/libllama-perplexity-impl.so
+@so lib/libllama-quantize-impl.so
+@so lib/libllama-server-impl.so
+@lib lib/libllama.so.${LIBllama_VERSION}
+@lib lib/libmtmd.so.${LIBmtmd_VERSION}
+lib/pkgconfig/llama.pc
+@owner _llama-server
+@group _llama-server
+@sample /var/db/llama-server/
+@owner
+@group
+share/examples/login.conf.d/llama_server
+@sample ${SYSCONFDIR}/login.conf.d/llama_server
