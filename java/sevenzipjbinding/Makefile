@@ -29,8 +29,6 @@ CONFIGURE_ENV =		JAVA_HOME=${JAVA_HOME}
 
 COMPILER =	base-clang ports-gcc
 
-NO_TEST =	Yes
-
 # cmake configure is looking for javah, so create a wrapper
 post-extract:
 	@printf '#!/bin/sh\nexit 0\n' > ${WRKDIR}/bin/javah
