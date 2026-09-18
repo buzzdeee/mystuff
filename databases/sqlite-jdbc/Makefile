@@ -1,16 +1,16 @@
 COMMENT=	SQLite JDBC driver with native OpenBSD bindings
 
-V=		3.49.1.0
+V =		3.49.1.0
 SLF4J_V =	2.0.16
 GH_ACCOUNT =	xerial
 GH_PROJECT =	sqlite-jdbc
 GH_TAGNAME =	$V
-CATEGORIES=	databases java
+CATEGORIES =	databases java
 
-MAINTAINER=	Sebastian Reitenbach <sebastia@openbsd.org>
+MAINTAINER =	Sebastian Reitenbach <sebastia@openbsd.org>
 
 # Apache 2.0
-PERMIT_PACKAGE=	Yes
+PERMIT_PACKAGE =Yes
 
 
 SITES.maven =	https://repo1.maven.org/maven2/
@@ -30,14 +30,13 @@ LIB_DEPENDS=	databases/sqlite3
 USE_GMAKE=	Yes
 SUBST_VARS +=	V
 
-# Direct the xerial build system to link against OpenBSD's native library files
 MAKE_FLAGS=	SQLITE_OBJ="${LOCALBASE}/lib/libsqlite3.a" \
 		SQLITE_HEADER="${LOCALBASE}/include/sqlite3.h" \
 		JAVA_HOME="${JAVA_HOME}"
 
 ALL_TARGET=	native
 
-JAR_DIR=	${PREFIX}/share/java
+JAR_DIR=	${PREFIX}/share/java/sqlite-jdbc
 
 pre-build:
 	mkdir -p ${WRKDIST}/target/classpath
