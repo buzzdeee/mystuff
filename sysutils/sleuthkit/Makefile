@@ -1,7 +1,11 @@
-COMMENT=		forensic toolkit based on TCT
+COMMENT-main =		forensic toolkit based on TCT
+COMMENT-java =		Java bindings for TCT
 
 VERSION =		4.15.0
 DISTNAME=		sleuthkit-${VERSION}
+PKGNAME-main =		${DISTNAME}
+PKGNAME-java =		sleuthkit-java-${VERSION}
+
 
 CATEGORIES=		sysutils security
 
@@ -11,12 +15,18 @@ SHARED_LIBS +=		tsk_jni 0.0
 HOMEPAGE =		https://www.sleuthkit.org/
 MAINTAINER =		Sebastian Reitenbach <sebastia@openbsd.org>
 
+MULTI_PACKAGES =        -main -java
+PSEUDO_FLAVORS =        no_java
+FLAVOR ?=
+
 # CPLv1 & IBM & GPLv2 & Apache2 & BSD & MIT
 PERMIT_PACKAGE=	Yes
 
-WANTLIB +=	bfio c m pthread ${COMPILER_LIBCXX} sqlite3 vhdi vmdk z
+WANTLIB +=	bfio m pthread ${COMPILER_LIBCXX} sqlite3 vhdi vmdk z
 WANTLIB +=	afflib aio_compat crypto curl expat nghttp2 nghttp3
 WANTLIB +=	ngtcp2 ngtcp2_crypto_libressl readline ssl ewf vslvm
+WANTLIB-main += ${WANTLIB} c
+WANTLIB-java += ${WANTLIB} tsk
 
 # Define the Maven Central master site shortcut
 SITES.maven =		https://repo1.maven.org/maven2/
@@ -48,6 +58,20 @@ DISTFILES.uco = \
 SITES =	https://github.com/sleuthkit/sleuthkit/releases/download/${DISTNAME}/
 EXTRACT_ONLY = ${DISTNAME}.tar.gz
 
+.include <bsd.port.arch.mk>
+
+.if ${BUILD_PACKAGES:M-java}
+MODULES +=              java
+MODJAVA_VER =           21
+# not using MODJAVA_BUILD=ant on purpose
+BUILD_DEPENDS +=        devel/apache-ant
+CONFIGURE_ARGS +=	--enable-java
+.else
+# Safe: Java will be detected, if present, but won't be used
+CONFIGURE_ARGS +=	--disable-java
+.endif
+
+
 MODULES =		java
 MODJAVA_VER =   	21
 
@@ -58,20 +82,18 @@ AUTOMAKE_VERSION =	1.15
 CONFIGURE_STYLE =	autoreconf
 USE_GMAKE =		Yes
 
-# not using MODJAVA_BUILD=ant on purpose
-BUILD_DEPENDS =		devel/apache-ant
-LIB_DEPENDS =		databases/sqlite3 \
-			databases/sqlite-jdbc \
+LIB_DEPENDS-main =	databases/sqlite3 \
 			devel/libbfio \
 			sysutils/afflib3 \
 			sysutils/libvhdi \
 			sysutils/libvmdk \
 			sysutils/libvslvm \
 			security/libewf
-RUN_DEPENDS =		converters/p5-DateManip
+LIB_DEPENDS-java =	databases/sqlite-jdbc
+RUN_DEPENDS-main =	converters/p5-DateManip
+RUN_DEPENDS-java =      ${BUILD_PKGPATH},-main=${VERSION}
 
 CONFIGURE_ARGS += 	--mandir='${PREFIX}/man' \
-			--enable-java \
 			--enable-offline \
 			PATH=${PATH}:${JAVA_HOME}/bin \
 			CFLAGS="${CFLAGS} -I${JAVA_HOME}/include/openbsd" \
@@ -96,7 +118,7 @@ pre-build:
 .for jar in ${DISTFILES.maven}
 	cp ${DISTDIR}/${jar} ${WRKBUILD}/bindings/java/lib/
 .endfor
-	cp ${TRUEPREFIX}/share/java/sqlite-jdbc-*.jar \
+	cp ${TRUEPREFIX}/share/java/sqlite-jdbc/sqlite-jdbc-*.jar \
 		${WRKBUILD}/bindings/java/lib/
 	
 	mkdir -p ${WRKBUILD}/case-uco/java/lib/

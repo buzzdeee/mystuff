@@ -15,7 +15,7 @@ Index: Makefile.common
  FreeBSD-aarch64_SQLITE_FLAGS  :=
  
 -OpenBSD-x86_64_CC        := $(CROSS_PREFIX)gcc
-+OpenBSD-x86_64_CC        := $(CROSS_PREFIX)clang
++OpenBSD-x86_64_CC        := $(CROSS_PREFIX)cc
  OpenBSD-x86_64_STRIP     := $(CROSS_PREFIX)strip
  OpenBSD-x86_64_CCFLAGS   := -I$(JAVA_HOME)/include -Ilib/inc_linux -Os -fPIC -fvisibility=hidden
  OpenBSD-x86_64_LINKFLAGS := -shared
