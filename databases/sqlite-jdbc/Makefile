@@ -15,8 +15,8 @@ PERMIT_PACKAGE =Yes
 
 SITES.maven =	https://repo1.maven.org/maven2/
 DISTFILES.maven = \
-		org/xerial/sqlite-jdbc/${V}/sqlite-jdbc-${V}.jar \
-		org/slf4j/slf4j-api/${SLF4J_V}/slf4j-api-${SLF4J_V}.jar
+		{org/xerial/sqlite-jdbc/${V}/}sqlite-jdbc-${V}.jar \
+		{org/slf4j/slf4j-api/${SLF4J_V}/}slf4j-api-${SLF4J_V}.jar
 EXTRACT_ONLY =	${DISTNAME}${EXTRACT_SUFX}
 
 
@@ -40,13 +40,13 @@ JAR_DIR=	${PREFIX}/share/java/sqlite-jdbc
 
 pre-build:
 	mkdir -p ${WRKDIST}/target/classpath
-	cp ${DISTDIR}/org/slf4j/slf4j-api/${SLF4J_V}/slf4j-api-${SLF4J_V}.jar \
+	cp ${DISTDIR}/slf4j-api-${SLF4J_V}.jar \
 		${WRKDIST}/target/classpath/slf4j-api.jar
 
 post-build:
 	mkdir -p ${WRKDIST}/dist
 	cd ${WRKDIST}/dist && \
-		unzip ${DISTDIR}/org/xerial/sqlite-jdbc/${V}/sqlite-jdbc-${V}.jar && \
+		unzip ${DISTDIR}/sqlite-jdbc-${V}.jar && \
 		mkdir -p org/sqlite/native/ && \
 		mv ${WRKSRC}/target/classes/org/sqlite/native/OpenBSD/ \
 			org/sqlite/native/
