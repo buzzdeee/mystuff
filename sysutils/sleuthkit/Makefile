@@ -1,11 +1,7 @@
-COMMENT-main =		forensic toolkit based on TCT
-COMMENT-java =		Java bindings for TCT
+COMMENT =		forensic toolkit based on TCT
 
 VERSION =		4.15.0
-DISTNAME=		sleuthkit-${VERSION}
-PKGNAME-main =		${DISTNAME}
-PKGNAME-java =		sleuthkit-java-${VERSION}
-
+DISTNAME =		sleuthkit-${VERSION}
 
 CATEGORIES=		sysutils security
 
@@ -15,65 +11,63 @@ SHARED_LIBS +=		tsk_jni 0.0
 HOMEPAGE =		https://www.sleuthkit.org/
 MAINTAINER =		Sebastian Reitenbach <sebastia@openbsd.org>
 
-MULTI_PACKAGES =        -main -java
-PSEUDO_FLAVORS =        no_java
-FLAVOR ?=
-
 # CPLv1 & IBM & GPLv2 & Apache2 & BSD & MIT
 PERMIT_PACKAGE=	Yes
 
-WANTLIB +=	bfio m pthread ${COMPILER_LIBCXX} sqlite3 vhdi vmdk z
+WANTLIB +=	bfio c m pthread ${COMPILER_LIBCXX} sqlite3 vhdi vmdk z
 WANTLIB +=	afflib aio_compat crypto curl expat nghttp2 nghttp3
 WANTLIB +=	ngtcp2 ngtcp2_crypto_libressl readline ssl ewf vslvm
-WANTLIB-main += ${WANTLIB} c
-WANTLIB-java += ${WANTLIB} tsk
 
 # Define the Maven Central master site shortcut
 SITES.maven =		https://repo1.maven.org/maven2/
 SITES.uco =		${SITES.maven}
 
+VIJODA =	2.13.1
+VIGUAVA =	33.4.0-jre
+VIFAILACC =	1.0.2
+VICOMMLAN =	3.17.0
+VICOMMVAL =	1.9.0
+VIGSON =	2.12.1
+VIJUNIT =	4.13.2
+VIJDU =		4.12
+VIPGSQL =	42.7.5
+VIC3PO =	0.12.0
+VIMCJ =		0.4.0
+VISBS =		1.3
+VUGSON =	2.8.5
+VUJUNIT =	4.12
+VUHCC =		1.3
+
+
 # list taken from: bindings/java/ivy.xml
 DISTFILES.maven = \
-	joda-time/joda-time/2.13.1/joda-time-2.13.1.jar \
-	com/google/guava/guava/33.4.0-jre/guava-33.4.0-jre.jar \
-	com/google/guava/failureaccess/1.0.2/failureaccess-1.0.2.jar \
-	org/apache/commons/commons-lang3/3.17.0/commons-lang3-3.17.0.jar \
-	commons-validator/commons-validator/1.9.0/commons-validator-1.9.0.jar \
-	com/google/code/gson/gson/2.12.1/gson-2.12.1.jar \
-	junit/junit/4.13.2/junit-4.13.2.jar \
-	io/github/java-diff-utils/java-diff-utils/4.12/java-diff-utils-4.12.jar \
-	org/postgresql/postgresql/42.7.5/postgresql-42.7.5.jar \
-	com/mchange/c3p0/0.12.0/c3p0-0.12.0.jar \
-	com/mchange/mchange-commons-java/0.4.0/mchange-commons-java-0.4.0.jar \
-	com/zaxxer/SparseBitSet/1.3/SparseBitSet-1.3.jar
+	{joda-time/joda-time/${VIJODA}/}joda-time-${VIJODA}.jar \
+	{com/google/guava/guava/${VIGUAVA}/}guava-${VIGUAVA}.jar \
+	{com/google/guava/failureaccess/${VIFAILACC}/}failureaccess-${VIFAILACC}.jar \
+	{org/apache/commons/commons-lang3/${VICOMMLAN}/}commons-lang3-${VICOMMLAN}.jar \
+	{commons-validator/commons-validator/${VICOMMVAL}/}commons-validator-${VICOMMVAL}.jar \
+	{com/google/code/gson/gson/${VIGSON}/}gson-${VIGSON}.jar \
+	{junit/junit/${VIJUNIT}/}junit-${VIJUNIT}.jar \
+	{io/github/java-diff-utils/java-diff-utils/${VIJDU}/}java-diff-utils-${VIJDU}.jar \
+	{org/postgresql/postgresql/${VIPGSQL}/}postgresql-${VIPGSQL}.jar \
+	{com/mchange/c3p0/${VIC3PO}/}c3p0-${VIC3PO}.jar \
+	{com/mchange/mchange-commons-java/${VIMCJ}/}mchange-commons-java-${VIMCJ}.jar \
+	{com/zaxxer/SparseBitSet/${VISBS}/}SparseBitSet-${VISBS}.jar
 
 # list taken from: case-uco/java/ivy.xml and
 # case-uco/java/nbproject/project.properties
 DISTFILES.uco = \
-	com/google/code/gson/gson/2.8.5/gson-2.8.5.jar \
-	junit/junit/4.12/junit-4.12.jar \
-	org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+	{com/google/code/gson/gson/${VUGSON}/}gson-${VUGSON}.jar \
+	{junit/junit/${VUJUNIT}/}junit-${VUJUNIT}.jar \
+	{org/hamcrest/hamcrest-core/${VUHCC}/}hamcrest-core-${VUHCC}.jar
 	
 
 SITES =	https://github.com/sleuthkit/sleuthkit/releases/download/${DISTNAME}/
 EXTRACT_ONLY = ${DISTNAME}.tar.gz
 
-.include <bsd.port.arch.mk>
-
-.if ${BUILD_PACKAGES:M-java}
 MODULES +=              java
 MODJAVA_VER =           21
 # not using MODJAVA_BUILD=ant on purpose
-BUILD_DEPENDS +=        devel/apache-ant
-CONFIGURE_ARGS +=	--enable-java
-.else
-# Safe: Java will be detected, if present, but won't be used
-CONFIGURE_ARGS +=	--disable-java
-.endif
-
-
-MODULES =		java
-MODJAVA_VER =   	21
 
 COMPILER =		base-clang ports-gcc
 
@@ -82,20 +76,21 @@ AUTOMAKE_VERSION =	1.15
 CONFIGURE_STYLE =	autoreconf
 USE_GMAKE =		Yes
 
-LIB_DEPENDS-main =	databases/sqlite3 \
+BUILD_DEPENDS +=        devel/apache-ant
+LIB_DEPENDS =	databases/sqlite3 \
 			devel/libbfio \
 			sysutils/afflib3 \
 			sysutils/libvhdi \
 			sysutils/libvmdk \
 			sysutils/libvslvm \
 			security/libewf
-LIB_DEPENDS-java =	databases/sqlite-jdbc
-RUN_DEPENDS-main =	converters/p5-DateManip
-RUN_DEPENDS-java =      ${BUILD_PKGPATH},-main=${VERSION}
+RUN_DEPENDS =	converters/p5-DateManip \
+		databases/sqlite-jdbc
 
 CONFIGURE_ARGS += 	--mandir='${PREFIX}/man' \
 			--enable-offline \
-			PATH=${PATH}:${JAVA_HOME}/bin \
+			--enable-java \
+			PATH=${PORTPATH}:${JAVA_HOME}/bin \
 			CFLAGS="${CFLAGS} -I${JAVA_HOME}/include/openbsd" \
 			CPPFLAGS="${CPPFLAGS} -I${JAVA_HOME}/include/openbsd" \
 			CXXFLAGS="${CXXFLAGS} -I${JAVA_HOME}/include/openbsd"
@@ -116,14 +111,14 @@ pre-build:
 		${WRKBUILD}/bindings/java/jni/.libs/libtsk_jni.so
 	mkdir -p ${WRKBUILD}/bindings/java/lib
 .for jar in ${DISTFILES.maven}
-	cp ${DISTDIR}/${jar} ${WRKBUILD}/bindings/java/lib/
+	cp ${DISTDIR}/${jar:C/\{.*\}//} ${WRKBUILD}/bindings/java/lib/
 .endfor
 	cp ${TRUEPREFIX}/share/java/sqlite-jdbc/sqlite-jdbc-*.jar \
 		${WRKBUILD}/bindings/java/lib/
 	
 	mkdir -p ${WRKBUILD}/case-uco/java/lib/
 .for jar in ${DISTFILES.uco}
-	cp ${DISTDIR}/${jar} ${WRKBUILD}/case-uco/java/lib/
+	cp ${DISTDIR}/${jar:C/\{.*\}//} ${WRKBUILD}/case-uco/java/lib/
 .endfor
 
 
