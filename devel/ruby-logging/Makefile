@@ -1,6 +1,6 @@
 COMMENT =		flexible logging library for use in Ruby
 
-DISTNAME =		logging-2.3.0
+DISTNAME =		logging-2.4.0
 CATEGORIES =		devel
 HOMEPAGE =		https://github.com/TwP/logging
 MAINTAINER =		Sebastian Reitenbach <sebastia@openbsd.org>

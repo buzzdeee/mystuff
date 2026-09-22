@@ -1,0 +1,36 @@
+${GEM_LIB}/cache/${DISTNAME}.gem
+${GEM_LIB}/extensions/${MODRUBY_ARCH}/${MODRUBY_LIBREV}/${DISTNAME}/
+${GEM_LIB}/extensions/${MODRUBY_ARCH}/${MODRUBY_LIBREV}/${DISTNAME}/gem.build_complete
+${GEM_LIB}/extensions/${MODRUBY_ARCH}/${MODRUBY_LIBREV}/${DISTNAME}/gem_make.out
+${GEM_LIB}/extensions/${MODRUBY_ARCH}/${MODRUBY_LIBREV}/${DISTNAME}/mkmf.log
+@so ${GEM_LIB}/extensions/${MODRUBY_ARCH}/${MODRUBY_LIBREV}/${DISTNAME}/readline.so
+${GEM_LIB}/gems/${DISTNAME}/
+${GEM_LIB}/gems/${DISTNAME}/.git-blame-ignore-revs
+${GEM_LIB}/gems/${DISTNAME}/.github/
+${GEM_LIB}/gems/${DISTNAME}/.github/dependabot.yml
+${GEM_LIB}/gems/${DISTNAME}/.github/workflows/
+${GEM_LIB}/gems/${DISTNAME}/.github/workflows/test.yml
+${GEM_LIB}/gems/${DISTNAME}/.gitignore
+${GEM_LIB}/gems/${DISTNAME}/Gemfile
+${GEM_LIB}/gems/${DISTNAME}/LICENSE.txt
+${GEM_LIB}/gems/${DISTNAME}/README.md
+${GEM_LIB}/gems/${DISTNAME}/Rakefile
+${GEM_LIB}/gems/${DISTNAME}/bin/
+${GEM_LIB}/gems/${DISTNAME}/bin/console
+${GEM_LIB}/gems/${DISTNAME}/bin/setup
+${GEM_LIB}/gems/${DISTNAME}/ext/
+${GEM_LIB}/gems/${DISTNAME}/ext/readline/
+${GEM_LIB}/gems/${DISTNAME}/ext/readline/.gitignore
+${GEM_LIB}/gems/${DISTNAME}/ext/readline/.sitearchdir.time
+${GEM_LIB}/gems/${DISTNAME}/ext/readline/Makefile
+${GEM_LIB}/gems/${DISTNAME}/ext/readline/README
+${GEM_LIB}/gems/${DISTNAME}/ext/readline/README.ja
+${GEM_LIB}/gems/${DISTNAME}/ext/readline/depend-gem
+${GEM_LIB}/gems/${DISTNAME}/ext/readline/extconf.rb
+${GEM_LIB}/gems/${DISTNAME}/ext/readline/readline.c
+${GEM_LIB}/gems/${DISTNAME}/ext/readline/readline.o
+@so ${GEM_LIB}/gems/${DISTNAME}/ext/readline/readline.so
+${GEM_LIB}/gems/${DISTNAME}/lib/
+@so ${GEM_LIB}/gems/${DISTNAME}/lib/readline.so
+${GEM_LIB}/gems/${DISTNAME}/readline-ext.gemspec
+${GEM_LIB}/specifications/${DISTNAME}.gemspec

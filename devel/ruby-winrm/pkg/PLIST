@@ -8,6 +8,7 @@ ${GEM_LIB}/gems/${DISTNAME}/bin/rwinrm
 ${GEM_LIB}/gems/${DISTNAME}/lib/
 ${GEM_LIB}/gems/${DISTNAME}/lib/winrm/
 ${GEM_LIB}/gems/${DISTNAME}/lib/winrm.rb
+${GEM_LIB}/gems/${DISTNAME}/lib/winrm/compat_logger.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/winrm/connection.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/winrm/connection_opts.rb
 ${GEM_LIB}/gems/${DISTNAME}/lib/winrm/exceptions.rb

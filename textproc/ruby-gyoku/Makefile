@@ -1,6 +1,6 @@
 COMMENT=		translates Ruby Hashes to XML
 
-DISTNAME=		gyoku-1.3.1
+DISTNAME=		gyoku-1.4.0
 CATEGORIES=		textproc
 
 HOMEPAGE=		https://github.com/savonrb/gyoku

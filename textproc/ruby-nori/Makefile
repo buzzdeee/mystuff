@@ -1,6 +1,6 @@
 COMMENT=		XML to Hash translator
 
-DISTNAME=		nori-2.6.0
+DISTNAME=		nori-2.9.1
 CATEGORIES=		textproc
 
 HOMEPAGE=		https://github.com/savonrb/nori
