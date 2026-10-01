@@ -11,12 +11,16 @@ SITES.maven =           https://repo1.maven.org/maven2/
 
 # list taken from: bindings/java/ivy.xml
 DISTFILES.maven = \
-	org/postgresql/postgresql/42.7.5/postgresql-42.7.5.jar \
-        com/mchange/c3p0/0.12.0/c3p0-0.12.0.jar \
-        com/mchange/mchange-commons-java/0.4.0/mchange-commons-java-0.4.0.jar \
-        com/zaxxer/SparseBitSet/1.3/SparseBitSet-1.3.jar \
-	net/java/dev/jna/jna/5.18.1/jna-5.18.1.jar \
-	net/java/dev/jna/jna-platform/5.18.1/jna-platform-5.18.1.jar
+	{org/postgresql/postgresql/42.7.5/}postgresql-42.7.5.jar \
+        {com/mchange/c3p0/0.12.0/}c3p0-0.12.0.jar \
+        {com/mchange/mchange-commons-java/0.4.0/}mchange-commons-java-0.4.0.jar \
+        {com/zaxxer/SparseBitSet/1.3/}SparseBitSet-1.3.jar \
+	{net/java/dev/jna/jna/5.18.1/}jna-5.18.1.jar \
+	{net/java/dev/jna/jna-platform/5.18.1/}jna-platform-5.18.1.jar \
+	{org/apache/ivy/ivy/2.5.0/}ivy-2.5.0.jar
+
+SITES.github =		https://raw.githubusercontent.com/binlist/data/master/
+DISTFILES.github =	ranges.csv
 
 
 EXTRACT_ONLY =		${DISTNAME}${EXTRACT_SUFX}
@@ -68,6 +72,7 @@ MAKE_FLAGS =		-Doffline=true \
 			-Dbuild.compiler.emacs=true
 
 MAKE_ENV +=		TSK_HOME="${WRKDIR}/tsk_bindings" \
+			ANT_OPTS="-Duser.home=/${WRKDIR}" \
 			ASSUME_TSK_BUILD_FROM_SOURCE=false
 
 
@@ -80,18 +85,23 @@ pre-build:
 	mkdir -p ${WRKDIR}/tsk_bindings/bindings/java/lib/
 	mkdir -p ${WRKDIR}/tsk_bindings/case-uco/java/dist/
 .for jar in ${DISTFILES.maven}
-	cp ${DISTDIR}/${jar} ${WRKDIR}/tsk_bindings/bindings/java/lib/
+	cp ${DISTDIR}/${jar:C/\{.*\}//} ${WRKDIR}/tsk_bindings/bindings/java/lib/
 .endfor
-	cp ${TRUEPREFIX}/share/java/sqlite-jdbc-*.jar \
+	cp ${TRUEPREFIX}/share/java/sqlite-jdbc/sqlite-jdbc-*.jar \
 		${WRKDIR}/tsk_bindings/bindings/java/lib/
 	
 	# 4. Supply the missing JNA dependencies to satisfy the compiler paths
 	mkdir -p ${WRKSRC}/CoreLibs/release/modules/ext
 	mkdir -p ${WRKSRC}/Core/release/modules/ext
 .for jar in ${DISTFILES.maven}
-	cp ${DISTDIR}/${jar} ${WRKSRC}/CoreLibs/release/modules/ext/
-	cp ${DISTDIR}/${jar} ${WRKSRC}/Core/release/modules/ext/
+	cp ${DISTDIR}/${jar:C/\{.*\}//} ${WRKSRC}/CoreLibs/release/modules/ext/
+	cp ${DISTDIR}/${jar:C/\{.*\}//} ${WRKSRC}/Core/release/modules/ext/
 .endfor
+
+#	mkdir -p ${WRKSRC}/Core/src/org/sleuthkit/autopsy/datamodel/
+#	cp ${DISTDIR}/${DISTFILES.github} \
+#		${WRKSRC}/Core/src/org/sleuthkit/autopsy/datamodel/
+
 	cp ${TRUEPREFIX}/share/java/openjfx/*openbsd* \
 		${WRKSRC}/CoreLibs/release/modules/ext/
 	# doesn't seem to be used, and causes lots of noisy exceptions with jdk-21

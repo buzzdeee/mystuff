@@ -37,11 +37,11 @@ post-extract:
 SUBST_VARS = ARCH
 
 do-install:
-	${INSTALL_DATA_DIR} ${PREFIX}/share/java/sevenzipjbinding
+	${INSTALL_DATA_DIR} ${MODJAVA_JAR_DIR}
 	${INSTALL_DATA} ${WRKBUILD}/jbinding-java/sevenzipjbinding.jar \
-		${PREFIX}/share/java/sevenzipjbinding/
+		${MODJAVA_JAR_DIR}
 	${INSTALL_DATA} ${WRKBUILD}/sevenzipjbinding-OpenBSD-${ARCH}.jar \
-		${PREFIX}/share/java/sevenzipjbinding/
+		${MODJAVA_JAR_DIR}
 
 	# Install native JNI shared object
 	${INSTALL_DATA_DIR} ${PREFIX}/lib/sevenzipjbinding
