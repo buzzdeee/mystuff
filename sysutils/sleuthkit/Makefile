@@ -102,6 +102,10 @@ CONFIGURE_ENV =		ac_cv_path_CPPUNIT_CONFIG=no \
 NO_TEST =		Yes
 SUBST_VARS +=		VERSION
 
+post-patch:
+	${SUBST_CMD} ${WRKSRC}/bindings/java/Makefile.am \
+			 ${WRKSRC}/case-uco/java/Makefile.am
+
 pre-configure:
 	@sed -i 's:%%PREFIX%%:${PREFIX}:' ${WRKSRC}/man/sorter.1
 
@@ -113,7 +117,7 @@ pre-build:
 .for jar in ${DISTFILES.maven}
 	cp ${DISTDIR}/${jar:C/\{.*\}//} ${WRKBUILD}/bindings/java/lib/
 .endfor
-	cp ${TRUEPREFIX}/share/java/sqlite-jdbc/sqlite-jdbc-*.jar \
+	cp ${TRUEPREFIX}/share/java/classes/sqlite-jdbc.jar \
 		${WRKBUILD}/bindings/java/lib/
 	
 	mkdir -p ${WRKBUILD}/case-uco/java/lib/
@@ -124,5 +128,9 @@ pre-build:
 
 post-install:
 	mv ${PREFIX}/bin/pstat ${PREFIX}/bin/pstat.sleuthkit
+	mv ${MODJAVA_SHARE_DIR}/classes/sleuthkit-${VERSION}.jar \
+		${MODJAVA_SHARE_DIR}/classes/sleuthkit.jar
+	mv ${MODJAVA_SHARE_DIR}/classes/sleuthkit-caseuco-${VERSION}.jar \
+		${MODJAVA_SHARE_DIR}/classes/sleuthkit-caseuco.jar
 
 .include <bsd.port.mk>

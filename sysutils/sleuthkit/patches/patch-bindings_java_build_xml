@@ -6,7 +6,7 @@ Index: bindings/java/build.xml
  
  	<!-- set global properties for this build -->
 -	<property name="default-jar-location" location="/usr/share/java"/>
-+	<property name="default-jar-location" location="/usr/local/share/java"/>
++	<property name="default-jar-location" location="/usr/local/share/java/classes"/>
  	<property name="src" location="src/org/sleuthkit/datamodel"/>
  	<property name="sample" location="src/org/sleuthkit/datamodel/Examples"/>
  	<property name="build" location="build/"/>
