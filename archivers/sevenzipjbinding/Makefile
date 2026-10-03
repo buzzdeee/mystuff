@@ -43,10 +43,5 @@ do-install:
 	${INSTALL_DATA} ${WRKBUILD}/sevenzipjbinding-OpenBSD-${ARCH}.jar \
 		${MODJAVA_JAR_DIR}
 
-#	# Install native JNI shared object
-#	${INSTALL_DATA_DIR} ${PREFIX}/lib/sevenzipjbinding
-#	${INSTALL_DATA} ${WRKBUILD}/jbinding-cpp/lib7-Zip-JBinding.so \
-#		${PREFIX}/lib/sevenzipjbinding/
-
 .include <bsd.port.mk>
 

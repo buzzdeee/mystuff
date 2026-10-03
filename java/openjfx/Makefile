@@ -68,7 +68,6 @@ DISTFILES.maven = \
 
 EXTRACT_ONLY =	${DISTFILES}
 
-
 HOMEPAGE =		https://openjfx.io/
 MAINTAINER =		Sebastian Reitenbach <sebastia@openbsd.org>
 
@@ -78,11 +77,12 @@ PERMIT_PACKAGE =	Yes
 MODULES =		java devel/cmake
 MODJAVA_VER =		21
 
-BUILD_DEPENDS =		java/gradle \
+BUILD_DEPENDS =		archivers/zip \
 			devel/apache-ant \
 			devel/gperf \
 			devel/ninja \
-			archivers/zip
+			java/gradle \
+			lang/ruby/4.0
 
 LIB_DEPENDS =		\
 			audio/pulseaudio \
@@ -94,7 +94,7 @@ USE_GMAKE =		Yes
 WRKDIST =		${WRKDIR}/jfx21u-${BASE_V}-${BASE_REV}
 
 CONFIGURE_STYLE =	none
-SUBST_VARS =		BASE_V
+SUBST_VARS =		BASE_V FULLDISTDIR
 
 MAKE_FLAGS =		NUM_COMPILE_THREADS=${MAKE_JOBS}
 
@@ -103,15 +103,12 @@ post-extract:
 		${WRKSRC}/buildSrc
 	mkdir -p ${WRKDIR}/.gradle/wrapper/dists
 	cp ${DISTDIR}/${DISTFILES.gradle} ${WRKDIR}/.gradle/wrapper/dists/
-#	mkdir -p ${WRKDIR}/.gradle/caches/modules-2/files-2.1/
-#.for file in ${DISTFILES.maven} ${DISTFILES.github}
-#	# Copy each file into the offline build cache directory
-#	cp ${DISTDIR}/${file:C/\{.*\}//} ${WRKDIR}/.gradle/caches/modules-2/files-2.1/
-#.endfor
-
 	printf 'allprojects {\n  repositories {\n    clear()\n    flatDir { dirs "%s" }\n  }\n}\n' \
 		"${DISTDIR}" > ${WRKDIR}/init.gradle
+	cp ${DISTDIR}/${DISTFILES.gradle} ${WRKDIR}/.gradle/wrapper/dists
 
+pre-build:
+	${SUBST_CMD} ${WRKSRC}/gradle/wrapper/gradle-wrapper.properties
 
 do-build:
 	cd ${WRKSRC} && \
@@ -127,27 +124,18 @@ do-build:
 	        sdk
 
 do-install:
-	${INSTALL_DATA_DIR} ${PREFIX}/share/java/openjfx
+	${INSTALL_DATA_DIR} ${MODJAVA_JAR_DIR}
 
-	# Copy the main platform-neutral jars with the version number injected
+	# Copy the main platform-neutral jars                                 
 .for mod in base controls fxml graphics media swing web
 	${INSTALL_DATA} ${WRKSRC}/build/publications/javafx.${mod}.jar \
-		${PREFIX}/share/java/openjfx/javafx-${mod}-${BASE_V}.jar
+		${MODJAVA_JAR_DIR}/javafx-${mod}.jar
 .endfor
 
-	# Copy the OpenBSD native library jars with the version number injected
+	# Copy the OpenBSD native library jars 
 .for mod in base controls fxml graphics media swing web
 	${INSTALL_DATA} ${WRKSRC}/build/publications/javafx.${mod}-openbsd.jar \
-		${PREFIX}/share/java/openjfx/javafx-${mod}-${BASE_V}-openbsd.jar
+		${MODJAVA_JAR_DIR}/javafx-${mod}-openbsd.jar
 .endfor
-
-do-install-not-anymore:
-	${INSTALL_DATA_DIR} \
-	    ${PREFIX}/share/java/openjfx
-
-	cd ${WRKSRC}/build/sdk && \
-	    pax -rw -pp . \
-	    ${PREFIX}/share/java/openjfx
-
 
 .include <bsd.port.mk>

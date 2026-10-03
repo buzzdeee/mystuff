@@ -1,60 +1,69 @@
-COMMENT=	SQLite JDBC driver with native OpenBSD bindings
+COMMENT =	jdbc driver for SQLite
 
-V =		3.49.1.0
-SLF4J_V =	2.0.16
+VERSION = 	3.53.4.0
+SQLITE_SRC_V =	3530400
+SLF4J_V =	1.7.36
+MVM_DEPS_V =	20260924
+
 GH_ACCOUNT =	xerial
 GH_PROJECT =	sqlite-jdbc
-GH_TAGNAME =	$V
-CATEGORIES =	databases java
+GH_TAGNAME =	${VERSION}
 
-MAINTAINER =	Sebastian Reitenbach <sebastia@openbsd.org>
+CATEGORIES =	databases
 
-# Apache 2.0
-PERMIT_PACKAGE =Yes
+# Apache v2
+PERMIT_PACKAGE =	Yes
 
+DISTFILES.mvn =		sqlite-jdbc-mvn-deps-${MVM_DEPS_V}.tgz
+DISTFILES.sqlite =	sqlite-src-${SQLITE_SRC_V}.zip
+DISTFILES.slf4j =	slf4j-api-${SLF4J_V}.jar
 
-SITES.maven =	https://repo1.maven.org/maven2/
-DISTFILES.maven = \
-		{org/xerial/sqlite-jdbc/${V}/}sqlite-jdbc-${V}.jar \
-		{org/slf4j/slf4j-api/${SLF4J_V}/}slf4j-api-${SLF4J_V}.jar
-EXTRACT_ONLY =	${DISTNAME}${EXTRACT_SUFX}
+SITES.mvn =	https://www.intricatesoftware.com/distfiles/
+SITES.sqlite =	https://www.sqlite.org/2026/
+SITES.slf4j =	https://repo1.maven.org/maven2/org/slf4j/slf4j-api/${SLF4J_V}/
 
+EXTRACT_ONLY =	${DISTFILES} ${DISTFILES.mvn}
 
-MODULES=	java
-MODJAVA_VER=	21
+# libsqlitejdbc.so inside the jar needs these, Ignore Extra
+WANTLIB =	m pthread
 
-BUILD_DEPENDS=	devel/maven
+MODULES =	java
+MODJAVA_VER =	11+
 
-LIB_DEPENDS=	databases/sqlite3
+BUILD_DEPENDS =	archivers/zip \
+		archivers/unzip \
+		devel/maven \
+		shells/bash
 
-USE_GMAKE=	Yes
-SUBST_VARS +=	V
+USE_GMAKE =	Yes
 
-MAKE_FLAGS=	SQLITE_OBJ="${LOCALBASE}/lib/libsqlite3.a" \
-		SQLITE_HEADER="${LOCALBASE}/include/sqlite3.h" \
-		JAVA_HOME="${JAVA_HOME}"
+MAKE_ENV =	CCACHE=none
+MAKE_FLAGS =	CC="${CC}"
+ALL_TARGET =	native
 
-ALL_TARGET=	native
+MAVEN_ARGS =	-Dmaven.repo.local=${WRKDIR}/m2 \
+		--offline
 
-JAR_DIR=	${PREFIX}/share/java/sqlite-jdbc
-
-pre-build:
-	mkdir -p ${WRKDIST}/target/classpath
-	cp ${DISTDIR}/slf4j-api-${SLF4J_V}.jar \
-		${WRKDIST}/target/classpath/slf4j-api.jar
+post-extract:
+	mkdir -p ${WRKSRC}/target/classpath
+	cp ${FULLDISTDIR}/${DISTFILES.sqlite} \
+	    ${WRKSRC}/target/sqlite-${VERSION:S/.0$//}-src.zip
+	cp ${FULLDISTDIR}/${DISTFILES.slf4j} \
+	    ${WRKSRC}/target/classpath/slf4j-api.jar
+	cd ${WRKSRC} && \
+	    rm -rf src/main/resources/org/sqlite/native
 
 post-build:
-	mkdir -p ${WRKDIST}/dist
-	cd ${WRKDIST}/dist && \
-		unzip ${DISTDIR}/sqlite-jdbc-${V}.jar && \
-		mkdir -p org/sqlite/native/ && \
-		mv ${WRKSRC}/target/classes/org/sqlite/native/OpenBSD/ \
-			org/sqlite/native/
+	@cd ${WRKSRC} && \
+	    ${SETENV} ${MAKE_ENV} mvn ${MAVEN_ARGS} -DskipTests package
+
+do-test:
+	@cd ${WRKSRC} && \
+	    ${SETENV} ${MAKE_ENV} mvn ${MAVEN_ARGS} test
 
 do-install:
-	${INSTALL_DATA_DIR} ${JAR_DIR}
-	
-	cd ${WRKSRC}/dist && \
-		${JAVA_HOME}/bin/jar cfM ${JAR_DIR}/sqlite-jdbc-${V}.jar .
+	${INSTALL_DATA_DIR} ${MODJAVA_JAR_DIR}
+	${INSTALL_DATA} ${WRKSRC}/target/sqlite-jdbc-${VERSION}.jar \
+	    ${MODJAVA_JAR_DIR}/sqlite-jdbc.jar
 
 .include <bsd.port.mk>
