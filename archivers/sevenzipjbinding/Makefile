@@ -5,7 +5,7 @@ GH_PROJECT =	sevenzipjbinding
 GH_COMMIT =	fcdbb86ef565a60577a3120942e71df05ac3e87f
 DISTNAME =	sevenzipjbinding-16.02.2.01.0
 
-CATEGORIES =	archivers java
+CATEGORIES =	archivers
 
 MAINTAINER =	Sebastian Reitenbach <sebastia@openbsd.org>
 
@@ -17,7 +17,7 @@ WANTLIB +=	${COMPILER_LIBCXX} m
 MODULES =	devel/cmake \
 		java
 
-MODJAVA_VER =	21
+MODJAVA_VER =	11+
 
 CONFIGURE_STYLE =	cmake
 CONFIGURE_ARGS += -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
@@ -43,10 +43,10 @@ do-install:
 	${INSTALL_DATA} ${WRKBUILD}/sevenzipjbinding-OpenBSD-${ARCH}.jar \
 		${MODJAVA_JAR_DIR}
 
-	# Install native JNI shared object
-	${INSTALL_DATA_DIR} ${PREFIX}/lib/sevenzipjbinding
-	${INSTALL_DATA} ${WRKBUILD}/jbinding-cpp/lib7-Zip-JBinding.so \
-		${PREFIX}/lib/sevenzipjbinding/
+#	# Install native JNI shared object
+#	${INSTALL_DATA_DIR} ${PREFIX}/lib/sevenzipjbinding
+#	${INSTALL_DATA} ${WRKBUILD}/jbinding-cpp/lib7-Zip-JBinding.so \
+#		${PREFIX}/lib/sevenzipjbinding/
 
 .include <bsd.port.mk>
 
