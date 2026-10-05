@@ -29,18 +29,21 @@ CONFIGURE_ENV =		JAVA_HOME=${JAVA_HOME}
 
 COMPILER =	base-clang ports-gcc
 
+JAR_ARCH =	${MACHINE_ARCH:S/sparc64/sparcv9/}
+
+SUBST_VARS +=	JAR_ARCH
+
+
 # cmake configure is looking for javah, so create a wrapper
 post-extract:
 	@printf '#!/bin/sh\nexit 0\n' > ${WRKDIR}/bin/javah
 	@chmod +x ${WRKDIR}/bin/javah
 
-SUBST_VARS = ARCH
-
 do-install:
 	${INSTALL_DATA_DIR} ${MODJAVA_JAR_DIR}
 	${INSTALL_DATA} ${WRKBUILD}/jbinding-java/sevenzipjbinding.jar \
 		${MODJAVA_JAR_DIR}
-	${INSTALL_DATA} ${WRKBUILD}/sevenzipjbinding-OpenBSD-${ARCH}.jar \
+	${INSTALL_DATA} ${WRKBUILD}/sevenzipjbinding-OpenBSD-${JAR_ARCH}.jar \
 		${MODJAVA_JAR_DIR}
 
 .include <bsd.port.mk>
