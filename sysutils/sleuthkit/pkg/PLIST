@@ -104,9 +104,6 @@ include/tsk/vs/tsk_vs.h
 @static-lib lib/libtsk.a
 lib/libtsk.la
 @lib lib/libtsk.so.${LIBtsk_VERSION}
-@static-lib lib/libtsk_jni.a
-lib/libtsk_jni.la
-@lib lib/libtsk_jni.so.${LIBtsk_jni_VERSION}
 lib/pkgconfig/tsk.pc
 @man man/man1/blkcalc.1
 @man man/man1/blkcat.1

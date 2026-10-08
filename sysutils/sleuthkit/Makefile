@@ -1,12 +1,12 @@
 COMMENT =		forensic toolkit based on TCT
 
+REVISION =		0
 VERSION =		4.15.0
 DISTNAME =		sleuthkit-${VERSION}
 
 CATEGORIES=		sysutils security
 
 SHARED_LIBS +=		tsk 4.0
-SHARED_LIBS +=		tsk_jni 0.0
 
 HOMEPAGE =		https://www.sleuthkit.org/
 MAINTAINER =		Sebastian Reitenbach <sebastia@openbsd.org>
@@ -66,7 +66,7 @@ SITES =	https://github.com/sleuthkit/sleuthkit/releases/download/${DISTNAME}/
 EXTRACT_ONLY = ${DISTNAME}.tar.gz
 
 MODULES +=              java
-MODJAVA_VER =           21
+MODJAVA_VER =           17+
 # not using MODJAVA_BUILD=ant on purpose
 
 COMPILER =		base-clang ports-gcc
@@ -132,5 +132,6 @@ post-install:
 		${MODJAVA_SHARE_DIR}/classes/sleuthkit.jar
 	mv ${MODJAVA_SHARE_DIR}/classes/sleuthkit-caseuco-${VERSION}.jar \
 		${MODJAVA_SHARE_DIR}/classes/sleuthkit-caseuco.jar
+	rm -rf ${PREFIX}/lib/libtsk_jni*
 
 .include <bsd.port.mk>
