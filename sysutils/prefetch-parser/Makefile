@@ -17,13 +17,12 @@ MODPY_PI =	Yes
 MODPY_PYBUILD =	poetry-core
 
 BUILD_DEPENDS =	sysutils/libscca
-RUN_DEPENDS =	sysutils/libscca
+RUN_DEPENDS =	${BUILD_DEPENDS}
 
 post-install:
 	${INSTALL_SCRIPT} ${PREFIX}/lib/python${MODPY_VERSION}/site-packages/prefetch_parser/prefetch_parser.py \
 		${PREFIX}/bin/prefetch-parser
 	perl -pi -e 'print "#!${MODPY_BIN}\n" if $$. == 1' ${PREFIX}/bin/prefetch-parser
-
 
 .include <bsd.port.mk>
 
